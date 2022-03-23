@@ -6,7 +6,9 @@ session_start();
 
 if($_SESSION != NULL){
     $login_account = "1";
-}else{
+    $login_mail = $_SESSION["mail"];
+    $login_authority = $_SESSION["authority"];
+    }else{
     $login_account = "0";
 }
 ?>
@@ -46,6 +48,13 @@ if($_SESSION != NULL){
             for($i=0;$i< mb_strlen($password);$i++){
             echo '●';}?>
         </p>
+        <p>アカウント権限
+        <br>
+        <?php if($_POST['authority']==="0"){
+            echo'一般';
+        }else{
+            echo '管理者'; 
+        }?>
         
         <input type="submit" onclick=history.back() value="戻って修正する">
             

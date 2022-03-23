@@ -6,7 +6,9 @@ session_start();
 
 if($_SESSION != NULL){
     $login_account = "1";
-}else{
+    $login_mail = $_SESSION["mail"];
+    $login_authority = $_SESSION["authority"];
+    }else{
     $login_account = "0";
 }
 
@@ -46,6 +48,13 @@ if($_SESSION != NULL){
                     <input type="password"class="text" size="10"name="password"id="password"value="<?php if( !empty($_POST['password']) ){ echo $_POST['password']; } ?>"><br>
                     <span id = 'password_error' class="error_m"></span><br>
                 </div>
+                <div class="textarea">
+                        <label>アカウント権限</label>
+                        <select class="dropdown" name="authority">
+                            <option value='0'　checked>一般</option>
+                            <option value='1'>管理者</option>
+                        </select>
+                    </div>
                 <div class="textarea">
                     <input type="submit" class="btn_submit" id="btn_confirm" value="確認する">
                 </div>

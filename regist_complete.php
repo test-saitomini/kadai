@@ -8,9 +8,11 @@ $error_message = 'アカウント登録画面からアカウント登録をし�
 session_start();
 
 if($_SESSION != NULL){
+    $login_account = "1";
+    $login_mail = $_SESSION["mail"];
     $login_authority = $_SESSION["authority"];
-}else{
-    $login_authority = "NULL";
+    }else{
+    $login_account = "0";
 }
 
 try{
@@ -23,7 +25,7 @@ try{
 if($_POST != NULL){
     try{
         if($error_flag == 0){
-        $pdo -> exec("insert into account(name,mail,password)values('".$_POST['name']."','".$_POST['mail']."','".password_hash($_POST['password'],PASSWORD_DEFAULT)."');");
+        $pdo -> exec("insert into account(name,mail,password,authority)values('".$_POST['name']."','".$_POST['mail']."','".password_hash($_POST['password'],PASSWORD_DEFAULT)."','".$_POST['authority']."');");
         }
     }catch(PDOException $Exception){
         $error_message = $Exception->getMessage();

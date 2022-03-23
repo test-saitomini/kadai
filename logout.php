@@ -8,6 +8,7 @@ session_destroy();
 <html>
     <head>
         <title>ログアウト</title>
+        <link rel="stylesheet"type="text/css"href="regist.css">
     </head>
     
     <body>

@@ -43,6 +43,8 @@ if (isset($_POST['login'])) {
             if(!empty($result['password'])){
                 if (password_verify($password, $result['password'])) {    
                     $_SESSION['name'] = $result['name'];
+                    $_SESSION['authority'] = $result['authority'];
+                    $_SESSION['mail'] = $result['mail'];
                     header('Location: top.php');
                     exit();
                 } else {
@@ -125,7 +127,7 @@ if (isset($_POST['login'])) {
         </main>
         
         <footer>
-            portfolio_
+            Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
         </footer>
         <script type="text/javascript" src="regist.js"></script>
     </body>
