@@ -19,6 +19,8 @@ if($_SESSION != NULL){
         <meta charset="UTF-8">
         <title>アカウント登録確認画面</title>
         <link rel="stylesheet"type="text/css"href="regist.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     </head>
     <body>
         <?php if($login_account == 0) : ?>
@@ -26,6 +28,7 @@ if($_SESSION != NULL){
             <ul>
                 <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
                 <li>会員登録</li>
+                <li><a href = "http://localhost/kadai/login.php">ログイン</a></li>
             </ul>
         </header>
         <?php if($_POST != NULL) : ?>
@@ -33,6 +36,7 @@ if($_SESSION != NULL){
         <p>お問合わせ内容はこちらでよろしいでしょうか？
         <br>よろしければ「登録する」ボタンを押してください。
         </p>
+        <div class = kakunin>
         <p>名前
         <br>
         <?php echo $_POST['name'];?>
@@ -64,6 +68,7 @@ if($_SESSION != NULL){
             <input type="hidden" value="<?php echo $_POST['mail'];?>" name="mail">
             <input type="hidden" value="<?php echo $_POST['password'];?>" name="password">
         </form>
+        </div>
         <?php else : ?>
             <div class="error_messge">
                 <h8>※新規会員登録画面からアカウント登録をしてください。</h8>
@@ -97,6 +102,7 @@ if($_SESSION != NULL){
             <ul>
                 <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
                 <li>会員登録</li>
+                <li><a href = "http://localhost/kadai/login.php">ログイン</a></li>
             </ul>
         </header>
         <main>

@@ -3,7 +3,8 @@ header{
 }
 
 header ul{float: left;
-    width: 120%;
+    width: 100%;
+    display: flex;
     line-height: 40px;
     background-color: black;
 }
@@ -16,8 +17,12 @@ header ul li{
     font-size: 18px;
 }
 
+header li:last-child{
+    margin-left: auto;
+}
+
 footer{float:left;
-    width: 120%;
+    width: 100%;
     left: 0px;
     color: white;
     background-color: black;
@@ -61,4 +66,36 @@ th:nth-of-type(1), td:nth-of-type(1){　/*--日曜日は赤--*/
 }
 th:nth-of-type(7), td:nth-of-type(7){　/*--土曜日は青--*/
     color: blue;
+}
+
+/*regist.jsの赤文字エラーの表示*/
+span.error_m {
+    font-size: 15px;
+	font-weight: normal;
+	color: #FF0000;
+    display: block;
+    margin: 0;
+}
+/*regist_complete.phpアカウント登録完了画面装飾*/
+h4{
+    font-size: 30px;
+}
+.back-top{
+    text-align: center;
+}
+/*regist_confirm.phpアカウント登録確認画面装飾*/
+.kakunin{
+    text-align: center;
+}
+/*regist.phpアカウント登録画面装飾*/
+.textarea{
+    font-size: 15px;
+	font-weight: normal;
+    padding-left: 10px;
+    background-color: #e0ffff;
+}
+
+/*login.phpでのエラーの際の文言*/
+h7{
+    color: red;
 }
