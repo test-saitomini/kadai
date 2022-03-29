@@ -38,30 +38,32 @@ if($_SESSION != NULL){
                 <h1>会員登録入力フォーム</h1>
                 会員登録を行います。<br>必要事項を入力し、間違えがなければ「確認」ボタンを押下してください。<br>
                 <h7>*</h7>は必須項目になっています。
-                <div class="textarea">
-                    <label>名前</label><h7>*</h7>
-                    <input type="text"class="text"size="10"name="name"id="name"value="<?php if( !empty($_POST['name']) ){ echo $_POST['name']; } ?>"><br>
-                    <span id = 'name_error' class="error_m"></span><br>
-                </div>
-                <div class="textarea">
-                    <label>メールアドレス</label><h7>*</h7>
-                    <input type="text"class="text" size="10"name="mail"id="mail"value="<?php if( !empty($_POST['mail']) ){ echo $_POST['mail']; } ?>"><br>
-                    <span id = 'mail_error' class="error_m"></span><br>
-                </div>
-                <div class="textarea">
-                    <label>パスワード</label><h7>*</h7>
-                    <input type="password"class="text" size="10"name="password"id="password"value="<?php if( !empty($_POST['password']) ){ echo $_POST['password']; } ?>"><br>
-                    <span id = 'password_error' class="error_m"></span><br>
-                </div>
-                <div class="textarea">
+                <div class = "box">
+                    <div class="textarea">
+                        <label>名前</label><h7>*</h7>
+                        <input type="text"class="text"size="10"name="name"id="name"value="<?php if( !empty($_POST['name']) ){ echo $_POST['name']; } ?>"><br>
+                        <span id = 'name_error' class="error_m"></span><br>
+                    </div>
+                    <div class="textarea">
+                        <label>メールアドレス</label><h7>*</h7>
+                        <input type="text"class="text" size="10"name="mail"id="mail"value="<?php if( !empty($_POST['mail']) ){ echo $_POST['mail']; } ?>"><br>
+                        <span id = 'mail_error' class="error_m"></span><br>
+                    </div>
+                    <div class="textarea">
+                        <label>パスワード</label><h7>*</h7>
+                        <input type="password"class="text" size="10"name="password"id="password"value="<?php if( !empty($_POST['password']) ){ echo $_POST['password']; } ?>"><br>
+                        <span id = 'password_error' class="error_m"></span><br>
+                    </div>
+                    <div class="textarea">
                         <label>アカウント権限</label><h7>*</h7>
                         <select class="dropdown" name="authority">
                             <option value='0'　checked>一般</option>
                             <option value='1'>管理者</option>
                         </select>
                     </div>
-                <div class="textarea">
-                    <input type="submit" class="btn_submit" id="btn_confirm" value="確認する">
+                    <div class="textarea">
+                        <input type="submit" class="btn_submit" id="btn_confirm" value="確認する">
+                    </div>
                 </div>
             </form>
             <br>

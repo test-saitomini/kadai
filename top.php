@@ -13,6 +13,42 @@ if($_SESSION != NULL){
     $login_account = "0";
 }
 
+$pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
+
+$stmt = $pdo -> query('select * from setting');
+$schedule = $stmt->fetch();
+
+function getreservation(){
+    foreach($schedule as $schedule_out){
+        $day_out = strtotime((string) $schedule_out['day_kaishi']);
+        $midashi_out = (string) $out['midashi'];
+        $reservation_midashi[date('Y-m-d', $day_out)] = $midashi_out;
+    }
+    ksort($reservation_midashi);
+    return $reservation_,midashi;
+}
+
+ $reservation_array = getreservation();
+//getreservation関数を$reservation_arrayに代入しておく
+
+if($login_mail != NULL){
+    $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
+
+$stmt = $pdo -> query('select * from schedule where mail = '.$login_mail);
+$yotei = $stmt->fetch();
+
+function getyotei(){
+    foreach($yotei as $yotei_out){
+        $day_out = strtotime((string) $yotei_out['day_kaishi']);
+        $yotei_out = (string) $out['yotei'];
+        $reservation_yotei[date('Y-m-d', $day_out)] = $yotei_out;
+    }
+    ksort($reservation_yotei);
+    return $reservation_,yotei;
+}
+
+ $reseryotei_array = getyotei();
+}
 
 //前月・次月リンクが選択された場合は、GETパラメーターから年月を取得
 if(isset($_GET['ym'])){ 
@@ -59,11 +95,23 @@ $week .= str_repeat('<td></td>', $youbi);
 for($day = 1; $day <= $day_count; $day++, $youbi++){
     
     $date = $ym . '-' . $day; //2020-00-00
-    
+    $Holidays_day = display_to_Holidays(date("Y-m-d",strtotime($date)),$Holidays_array);
+
+    $reservation = reservation(date("Y-m-d",strtotime($date)),$reservation_array);
+    $reseryotei = reseryotei(date("Y-m-d",strtotime($date)),$reseryotei_array);
+ 
     if($today == $date){
         
         $week .= '<td class="today">' . $day;//今日の場合はclassにtodayをつける
-    } else {
+    }elseif(display_to_Holidays(date("Y-m-d",strtotime($date)),$Holidays_array)){
+        //もしその日に祝日が存在していたら
+        //その日が祝日の場合は祝日名を追加しclassにholidayを追加する
+        $week .= '<td class="holiday">' . $day . $Holidays_day;
+    }elseif(reservation(date("Y-m-d",strtotime($date)),$reservation_array)){
+        $week .= '<td>' . $day . $reservation;
+    }elseif(reseryotei(date("Y-m-d",strtotime($date)),$reseryotei_array)){
+        $week .= '<td>' . $day . $reseryotei;
+    }else{
         $week .= '<td>' . $day;
     }
     $week .= '</td>';
@@ -81,6 +129,8 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         $week = '';//weekをリセット
     }
 }
+
+
 
 ?>
 <!DOCTYPE HTML>
@@ -120,7 +170,6 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
                 
             </div>
             <div class = "right">
-                ログインされていない状態のカレンダー表示
                 <div class="container">
         <h3><a href="?ym=<?php echo $prev; ?>">&lt;</a><?php echo $html_title; ?><a href="?ym=<?php echo $next; ?>">&gt;</a></h3>
         <table class="table table-bordered">
@@ -162,6 +211,13 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
             </ul>
         </header>
         <?php endif; ?>
+        <?php
+            mb_internal_encoding("UTF-8");
+            $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
+            
+            $stmt = $pdo -> query('select * from schedule where mail = '.$login_mail);
+            $yotei = $stmt->fetch();
+        ?>
         <main>
             ログインされている状態のカレンダー表示
             <div class = "left">
