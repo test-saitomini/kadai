@@ -34,7 +34,18 @@ if($_SESSION != NULL){
             </ul>
         </header>
         <main>
-            
+            <div class="error_messge">
+                <h8>※ログインを行ってください。</h8>
+                <form action="login.php">
+                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                </form>
+                <form action="regist.php">
+                    <input type="submit" class="submit" value="会員登録画面へ戻る">
+                </form>
+                <form action="top.php" >
+                    <input type="submit" class="submit" value="トップページへ戻る">
+                </form>
+            </div>
             <br>
         </main>
         <?php elseif($login_account == 1) : ?>
@@ -45,6 +56,7 @@ if($_SESSION != NULL){
                 <li><a href = "http://localhost/kadai/logout.php">ログアウト</a></li>
             </ul>
         </header>
+        <?php if($login_authority == 1) : ?>
         <main>
             <form method="post" action="regist_confirm.php" name="regist">
                 <h1>カレンダー設定フォーム</h1>
@@ -63,13 +75,13 @@ if($_SESSION != NULL){
                     </div>
                     <div class="textarea">
                         <label>見出し</label><h7>*</h7>
-                        <input type="text"class="text" size="10"name="mail"id="mail"value="<?php if( !empty($_POST['mail']) ){ echo $_POST['mail']; } ?>"><br>
-                        <span id = 'mail_error' class="error_m"></span><br>
+                        <input type="text"class="text" size="10"name="midashi"id="midashi"value="<?php if( !empty($_POST['midashi']) ){ echo $_POST['midashi']; } ?>"><br>
+                        <span id = 'midashi_error' class="error_m"></span><br>
                     </div>
                     <div class="textarea">
                         <label>詳細内容</label><h7>*</h7>
-                        <input type="password"class="text" size="10"name="password"id="password"value="<?php if( !empty($_POST['password']) ){ echo $_POST['password']; } ?>"><br>
-                        <span id = 'password_error' class="error_m"></span><br>
+                        <input type="text"class="text" size="10"name="naiyou"id="naiyou"value="<?php if( !empty($_POST['naiyou']) ){ echo $_POST['naiyou']; } ?>"><br>
+                        <span id = 'naiyou_error' class="error_m"></span><br>
                     </div>
                     <div class="textarea">
                         <input type="submit" class="btn_submit" id="btn_confirm" value="確認する">
@@ -77,6 +89,23 @@ if($_SESSION != NULL){
                 </div>
             </form>
         </main>
+        <?php else : ?>
+        <main>
+            <div class="error_messge">
+                <h8>※この画面は操作できません。</h8>
+                <form action="login.php">
+                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                </form>
+                <form action="regist.php">
+                    <input type="submit" class="submit" value="会員登録画面へ戻る">
+                </form>
+                <form action="top.php" >
+                    <input type="submit" class="submit" value="トップページへ戻る">
+                </form>
+            </div>
+            <br>
+        </main>
+        <?php endif; ?> 
         <?php else : ?>
         <header>
             <ul>

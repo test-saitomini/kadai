@@ -13,41 +13,67 @@ if($_SESSION != NULL){
     $login_account = "0";
 }
 
+function getreservation(){
 $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
 
-$stmt = $pdo -> query('select * from setting');
-$schedule = $stmt->fetch();
+$schedule = $pdo -> query('select * from setting');
+$reservation_midashi = array();
 
-function getreservation(){
-    foreach($schedule as $schedule_out){
-        $day_out = strtotime((string) $schedule_out['day_kaishi']);
+
+    foreach($schedule as $out){
+        $day_out = strtotime((string) $out['day_kaishi']);
         $midashi_out = (string) $out['midashi'];
         $reservation_midashi[date('Y-m-d', $day_out)] = $midashi_out;
     }
     ksort($reservation_midashi);
-    return $reservation_,midashi;
+    return $reservation_midashi;
 }
 
  $reservation_array = getreservation();
 //getreservation関数を$reservation_arrayに代入しておく
-
-if($login_mail != NULL){
-    $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
-
-$stmt = $pdo -> query('select * from schedule where mail = '.$login_mail);
-$yotei = $stmt->fetch();
-
-function getyotei(){
-    foreach($yotei as $yotei_out){
-        $day_out = strtotime((string) $yotei_out['day_kaishi']);
-        $yotei_out = (string) $out['yotei'];
-        $reservation_yotei[date('Y-m-d', $day_out)] = $yotei_out;
+ 
+function reservation($date,$reservation_array){
+    //カレンダーの日付と予約された日付を照合する関数
+    
+    if(array_key_exists($date,$reservation_array)){
+        $reservation_midashi = "<br/>".$reservation_array[$date];
+        //もし"カレンダーの日付"と"予約された日"が一致すれば以下を実行する
+        return $reservation_midashi; 
     }
-    ksort($reservation_yotei);
-    return $reservation_,yotei;
+}
+    
+if($login_mail != NULL){
+    function getyotei(){
+        global $login_mail;
+        $mail = $login_mail;
+        
+        $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
+
+        $yotei = $pdo -> prepare('select * from schedule where mail = ?');
+        $yotei ->execute(array($mail));
+        
+        $reseryotei = array();
+        
+        foreach($yotei as $out){
+            $day_out = strtotime((string) $out['day_kaishi']);
+            $yotei_out = (string) $out['yotei'];
+            $reseryotei[date('Y-m-d', $day_out)] = $yotei_out;
+        }
+        ksort($reseryotei);
+        return $reseryotei;
+    }
 }
 
  $reseryotei_array = getyotei();
+
+function reseryotei($date,$reseryotei_array){
+    //カレンダーの日付と予約された日付を照合する関数
+    
+    if(array_key_exists($date,$reseryotei_array)){
+        //もし"カレンダーの日付"と"予約された日"が一致すれば以下を実行する
+        $reseryotei = "<br/>".$reseryotei_array[$date];
+        return $reseryotei;
+    }
 }
 
 //前月・次月リンクが選択された場合は、GETパラメーターから年月を取得
@@ -95,7 +121,6 @@ $week .= str_repeat('<td></td>', $youbi);
 for($day = 1; $day <= $day_count; $day++, $youbi++){
     
     $date = $ym . '-' . $day; //2020-00-00
-    $Holidays_day = display_to_Holidays(date("Y-m-d",strtotime($date)),$Holidays_array);
 
     $reservation = reservation(date("Y-m-d",strtotime($date)),$reservation_array);
     $reseryotei = reseryotei(date("Y-m-d",strtotime($date)),$reseryotei_array);
@@ -103,10 +128,6 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
     if($today == $date){
         
         $week .= '<td class="today">' . $day;//今日の場合はclassにtodayをつける
-    }elseif(display_to_Holidays(date("Y-m-d",strtotime($date)),$Holidays_array)){
-        //もしその日に祝日が存在していたら
-        //その日が祝日の場合は祝日名を追加しclassにholidayを追加する
-        $week .= '<td class="holiday">' . $day . $Holidays_day;
     }elseif(reservation(date("Y-m-d",strtotime($date)),$reservation_array)){
         $week .= '<td>' . $day . $reservation;
     }elseif(reseryotei(date("Y-m-d",strtotime($date)),$reseryotei_array)){
@@ -153,8 +174,66 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
             </ul>
         </header>
         <main>
-            
-            <div class = "left">
+            <div class = "contents">
+                <div class = "left">
+                    <h3>東京ディズニーリゾート</h3>
+                    <br>
+                    ～情報～<br>
+                    現在のディズニーリゾートでの閑散期は
+                    1月・6月・7月となっております。<br>
+                    繁忙期は3月・8月が一番多く、
+                    12月や2月後半も混雑しています。<br>
+                    日にちによってチケットの販売価格が異なりますので、
+                    下のリンクからチケットの金額等ご確認ください。
+                    <br>
+                    <p>リンク</p>
+                    <a href = "https://www.tokyodisneyresort.jp/top.html">公式サイトはコチラ</a>
+                </div>
+                <div class = "right">
+                    <div class="container">
+                        <h3><a href="?ym=<?php echo $prev; ?>">&lt;</a><?php echo $html_title; ?><a href="?ym=<?php echo $next; ?>">&gt;</a></h3>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>日</th>
+                                <th>月</th>
+                                <th>火</th>
+                                <th>水</th>
+                                <th>木</th>
+                                <th>金</th>
+                                <th>土</th>
+                            </tr>
+                            <?php
+                            foreach ($weeks as $week) {
+                                echo $week;
+                            }
+                            ?>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <?php elseif($login_account == 1) : ?>
+        <?php if($login_authority == 1) : ?>
+        <header>
+            <ul>
+                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
+                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
+                <li><a href = "http://localhost/kadai/setting.php">設定</a></li>
+                <li><a href = "http://localhost/kadai/logout.php">ログアウト</a></li>
+            </ul>
+        </header>
+        <?php else : ?>
+        <header>
+            <ul>
+                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
+                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
+                <li><a href = "http://localhost/kadai/logout.php">ログアウト</a></li>
+            </ul>
+        </header>
+        <?php endif; ?>
+        <main>
+           <div class = "left">
                 <h3>東京ディズニーリゾート</h3>
                 <br>
                 ～情報～<br>
@@ -189,40 +268,6 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
             ?>
         </table>
     </div>
-            </div>
-        </main>
-        
-        <?php elseif($login_account == 1) : ?>
-        <?php if($login_authority == 1) : ?>
-        <header>
-            <ul>
-                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
-                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
-                <li><a href = "http://localhost/kadai/setting.php">設定</a></li>
-                <li><a href = "http://localhost/kadai/logout.php">ログアウト</a></li>
-            </ul>
-        </header>
-        <?php else : ?>
-        <header>
-            <ul>
-                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
-                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
-                <li><a href = "http://localhost/kadai/logout.php">ログアウト</a></li>
-            </ul>
-        </header>
-        <?php endif; ?>
-        <?php
-            mb_internal_encoding("UTF-8");
-            $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
-            
-            $stmt = $pdo -> query('select * from schedule where mail = '.$login_mail);
-            $yotei = $stmt->fetch();
-        ?>
-        <main>
-            ログインされている状態のカレンダー表示
-            <div class = "left">
-            </div>
-            <div class = "right">
             </div>
         </main>
         
