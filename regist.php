@@ -34,6 +34,7 @@ if($_SESSION != NULL){
             </ul>
         </header>
         <main>
+            <div class = "main-container">
             <form method="post" action="regist_confirm.php" name="regist">
                 <h1>会員登録入力フォーム</h1>
                 会員登録を行います。<br>必要事項を入力し、間違えがなければ「確認」ボタンを押下してください。<br>
@@ -67,6 +68,7 @@ if($_SESSION != NULL){
                 </div>
             </form>
             <br>
+                </div>
         </main>
         <?php elseif($login_account == 1) : ?>
         <header>

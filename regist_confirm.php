@@ -23,6 +23,7 @@ if($_SESSION != NULL){
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     </head>
     <body>
+        
         <?php if($login_account == 0) : ?>
         <header>
             <ul>
@@ -31,6 +32,7 @@ if($_SESSION != NULL){
                 <li><a href = "http://localhost/kadai/login.php">ログイン</a></li>
             </ul>
         </header>
+        <div class = "main-container">
         <?php if($_POST != NULL) : ?>
         <h2>お問合わせ内容の確認</h2>
         <p>お問合わせ内容はこちらでよろしいでしょうか？
@@ -68,6 +70,7 @@ if($_SESSION != NULL){
             <input type="hidden" value="<?php echo $_POST['mail'];?>" name="mail">
             <input type="hidden" value="<?php echo $_POST['password'];?>" name="password">
         </form>
+        </div>
         </div>
         <?php else : ?>
             <div class="error_messge">

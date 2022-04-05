@@ -174,7 +174,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
             </ul>
         </header>
         <main>
-            <div class = "contents">
+            <div class = "main-container">
                 <div class = "left">
                     <h3>東京ディズニーリゾート</h3>
                     <br>
@@ -233,6 +233,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         </header>
         <?php endif; ?>
         <main>
+            <div class = "main-container">
            <div class = "left">
                 <h3>東京ディズニーリゾート</h3>
                 <br>
@@ -268,6 +269,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
             ?>
         </table>
     </div>
+            </div>
             </div>
         </main>
         

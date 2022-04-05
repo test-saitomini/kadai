@@ -62,7 +62,32 @@ if($_SESSION != NULL){
         </header>
         <main>
             <h1>予定入力フォーム</h1>
-            予定を入力する画面です。日付は
+            予定を入力する画面です。日付と予定の見出し、内容、必要であればURLを張り付けてください。
+            <div class = "box">
+                <div class="textarea">
+                    <label>日付（開始）</label><h7>*</h7>
+                    <input type="date"list="daylist" min="" name="day_kaishi"id="day_kaishi"value="<?php if(   !empty($_POST['day_kaishi']) ){ echo $_POST['day_kaishi']; } ?>"><br>
+                    <span id = 'day_kaishi_error' class="error_m"></span><br>
+                </div>
+                <div class="textarea">
+                    <label>日付（終了）</label><h7>*</h7>
+                    <input type="date"list="daylist" min="" name="day_owari"id="day_owari"value="<?php if( !empty($_POST['day_owari']) ){ echo $_POST['day_owari']; } ?>"><br>
+                    <span id = 'day_owari_error' class="error_m"></span><br>
+                </div>
+                <div class="textarea">
+                    <label>予定の見出し</label><h7>*</h7>
+                    <input type="text"class="text" size="10"name="midashi"id="midashi"value="<?php if( !empty($_POST['midashi']) ){ echo $_POST['midashi']; } ?>"><br>
+                    <span id = 'midashi_error' class="error_m"></span><br>
+                </div>
+                <div class="textarea">
+                    <label>内容</label><h7>*</h7>
+                    <input type="text"class="text" size="10"name="naiyou"id="naiyou"value="<?php if( !empty($_POST['naiyou']) ){ echo $_POST['naiyou']; } ?>"><br>
+                    <span id = 'naiyou_error' class="error_m"></span><br>
+                </div>
+                <div class="textarea">
+                    <input type="submit" class="btn_submit" id="btn_confirm" value="確認する">
+                </div>
+            </div>
         </main>
         <?php else : ?>
         <header>

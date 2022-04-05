@@ -96,6 +96,7 @@ if (isset($_POST['login'])) {
         </header>
         
         <main>
+            <div class = "main-container">
             <h1>ログイン画面</h1>
             <div class="form">
             <form id="loginForm" name="loginForm" action="" method="POST">
@@ -127,6 +128,7 @@ if (isset($_POST['login'])) {
             </div>
             
             <a href="http://localhost/kadai/regist.php">新規会員登録はコチラ</a>
+                </div>
         </main>
         
         <footer>

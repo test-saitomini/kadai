@@ -55,6 +55,7 @@ if($_POST != NULL){
             </ul>
     </header>
     <body>
+        <div class = "main-container">
         <div class="back-top">
             <?php if($error_flag == 1){
                 echo '<h7>エラーが発生したためアカウント登録できません。<br>
@@ -68,6 +69,7 @@ if($_POST != NULL){
             <form action="login.php">
                 <input type="submit" class="submit" value="ログイン画面へ戻る">
             </form>
+        </div>
         </div>
     </body>
     <?php elseif($login_account == 1) : ?>
