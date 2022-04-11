@@ -59,7 +59,7 @@ if($_SESSION != NULL){
         <?php if($login_authority == 1) : ?>
         <main>
             <div class = "main-container">
-                <form method="post" action="regist_confirm.php" name="regist">
+                <form method="post" action="setting_confirm.php" name="setting">
                     <h1>カレンダー設定フォーム</h1>
                     カレンダーの設定を行います。<br>カレンダーの日付やイベントの内容を入力し、間違えがなければ「確認」ボタンを押下してください。<br>
                     <h7>*</h7>は必須項目になっています。
@@ -135,6 +135,6 @@ if($_SESSION != NULL){
         <footer>
             Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
         </footer>
-        <script type="text/javascript" src="regist_check.js"></script>
+        <script type="text/javascript" src="regist_check_setting.js"></script>
     </body>
 </html>

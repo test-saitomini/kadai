@@ -11,14 +11,14 @@ if($_SESSION != NULL){
     $login_authority = $_SESSION["authority"];
     }else{
     $login_account = "0";
+    $login_mail= NULL;
 }
 
 function getreservation(){
-$pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
+    $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
 
-$schedule = $pdo -> query('select * from setting');
-$reservation_midashi = array();
-
+    $schedule = $pdo -> query('select * from setting');
+    $reservation_midashi = array();
 
     foreach($schedule as $out){
         $day_out = strtotime((string) $out['day_kaishi']);
@@ -29,7 +29,7 @@ $reservation_midashi = array();
     return $reservation_midashi;
 }
 
- $reservation_array = getreservation();
+$reservation_array = getreservation();
 //getreservation関数を$reservation_arrayに代入しておく
  
 function reservation($date,$reservation_array){
@@ -41,7 +41,7 @@ function reservation($date,$reservation_array){
         return $reservation_midashi; 
     }
 }
-    
+
 if($login_mail != NULL){
     function getyotei(){
         global $login_mail;
@@ -62,17 +62,17 @@ if($login_mail != NULL){
         ksort($reseryotei);
         return $reseryotei;
     }
-}
-
- $reseryotei_array = getyotei();
-
-function reseryotei($date,$reseryotei_array){
+    
+    $reseryotei_array = getyotei();
+    
+    function reseryotei($date,$reseryotei_array){
     //カレンダーの日付と予約された日付を照合する関数
     
-    if(array_key_exists($date,$reseryotei_array)){
-        //もし"カレンダーの日付"と"予約された日"が一致すれば以下を実行する
-        $reseryotei = "<br/>".$reseryotei_array[$date];
-        return $reseryotei;
+        if(array_key_exists($date,$reseryotei_array)){
+            //もし"カレンダーの日付"と"予約された日"が一致すれば以下を実行する
+            $reseryotei = "<br/>".$reseryotei_array[$date];
+            return $reseryotei;
+        }
     }
 }
 
@@ -123,17 +123,30 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
     $date = $ym . '-' . $day; //2020-00-00
 
     $reservation = reservation(date("Y-m-d",strtotime($date)),$reservation_array);
-    $reseryotei = reseryotei(date("Y-m-d",strtotime($date)),$reseryotei_array);
- 
-    if($today == $date){
-        
-        $week .= '<td class="today">' . $day;//今日の場合はclassにtodayをつける
-    }elseif(reservation(date("Y-m-d",strtotime($date)),$reservation_array)){
-        $week .= '<td>' . $day . $reservation;
-    }elseif(reseryotei(date("Y-m-d",strtotime($date)),$reseryotei_array)){
-        $week .= '<td>' . $day . $reseryotei;
-    }else{
-        $week .= '<td>' . $day;
+    if($login_mail != NULL){
+        $reseryotei = reseryotei(date("Y-m-d",strtotime($date)),$reseryotei_array);
+    }
+    //ログインされている場合
+    if($login_mail != NULL){
+        if($today == $date){
+            $week .= '<td class="today">' . $day;//今日の場合はclassにtodayをつける
+        }elseif(reservation(date("Y-m-d",strtotime($date)),$reservation_array)){
+            $week .= '<td>' . $day . $reservation;
+        }elseif(reseryotei(date("Y-m-d",strtotime($date)),$reseryotei_array)){
+            $week .= '<td>' . $day . $reseryotei;
+        }else{
+            $week .= '<td>' . $day;
+        }
+    }
+    
+    if($login_mail == NULL){
+        if($today == $date){
+            $week .= '<td class="today">' . $day;//今日の場合はclassにtodayをつける
+        }elseif(reservation(date("Y-m-d",strtotime($date)),$reservation_array)){
+            $week .= '<td>' . $day . $reservation;
+        }else{
+            $week .= '<td>' . $day;
+        }
     }
     $week .= '</td>';
     
@@ -187,7 +200,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
                     下のリンクからチケットの金額等ご確認ください。
                     <br>
                     <p>リンク</p>
-                    <a href = "https://www.tokyodisneyresort.jp/top.html">公式サイトはコチラ</a>
+                    <a href = "https://www.tokyodisneyresort.jp/top.html" target="_blank" rel="noopener">公式サイトはコチラ</a>
                 </div>
                 <div class = "right">
                     <div class="container">
@@ -234,42 +247,43 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         <?php endif; ?>
         <main>
             <div class = "main-container">
-           <div class = "left">
-                <h3>東京ディズニーリゾート</h3>
-                <br>
-                ～情報～<br>
-                現在のディズニーリゾートでの閑散期は
-                1月・6月・7月となっております。<br>
-                繁忙期は3月・8月が一番多く、
-                12月や2月後半も混雑しています。<br>
-                日にちによってチケットの販売価格が異なりますので、
-                下のリンクからチケットの金額等ご確認ください。
-                <br>
-                <p>リンク</p>
-                <a href = "https://www.tokyodisneyresort.jp/top.html">公式サイトはコチラ</a>
-                
-            </div>
-            <div class = "right">
-                <div class="container">
-        <h3><a href="?ym=<?php echo $prev; ?>">&lt;</a><?php echo $html_title; ?><a href="?ym=<?php echo $next; ?>">&gt;</a></h3>
-        <table class="table table-bordered">
-            <tr>
-                <th>日</th>
-                <th>月</th>
-                <th>火</th>
-                <th>水</th>
-                <th>木</th>
-                <th>金</th>
-                <th>土</th>
-            </tr>
-            <?php
-                foreach ($weeks as $week) {
-                    echo $week;
-                }
-            ?>
-        </table>
-    </div>
-            </div>
+                <div class = "left">
+                    <h3>東京ディズニーリゾート</h3>
+                    <br>
+                    <h2>～情報～</h2><br>
+                    現在のディズニーリゾートでの閑散期は
+                    1月・6月・7月となっております。<br>
+                    繁忙期は3月・8月が一番多く、
+                    12月や2月後半も混雑しています。<br>
+                    日にちによってチケットの販売価格が異なりますので、
+                    下のリンクからチケットの金額等ご確認ください。
+                    <br>
+                    <h2>リンク</h2>
+                    <a href = "https://www.tokyodisneyresort.jp/top.html" target="_blank" rel="noopener">公式サイトはコチラ</a>
+                    <br>
+                    <h3>予定入力する場合は<a href = "http://localhost/kadai/schedule.php">コチラ</a></h3>
+                </div>
+                <div class = "right">
+                    <div class="container">
+                    <h3><a href="?ym=<?php echo $prev; ?>">&lt;</a><?php echo $html_title; ?><a href="?ym=<?php echo $next; ?>">&gt;</a></h3>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>日</th>
+                                <th>月</th>
+                                <th>火</th>
+                                <th>水</th>
+                                <th>木</th>
+                                <th>金</th>
+                                <th>土</th>
+                            </tr>
+                            <?php
+                            foreach ($weeks as $week) {
+                            echo $week;
+                            }
+                            ?>
+                        </table>
+                    </div>
+                </div>
             </div>
         </main>
         
@@ -283,18 +297,18 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         </header>
         <main>
             <div class="error_messge">
-            <h8>※何らかのエラーが発生しました。<br>
-                最初からやり直してください。</h8>
-            <form action="login.php">
-                <input type="submit" class="submit" value="ログイン画面へ戻る">
-            </form>
-            <form action="regist.php">
-                <input type="submit" class="submit" value="会員登録画面へ戻る">
-            </form>
-            <form action="top.php" >
-                <input type="submit" class="submit" value="トップページへ戻る">
-            </form>
-        </div>
+                <h8>※何らかのエラーが発生しました。<br>
+                    最初からやり直してください。</h8>
+                <form action="login.php">
+                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                </form>
+                <form action="regist.php">
+                    <input type="submit" class="submit" value="会員登録画面へ戻る">
+                </form>
+                <form action="top.php" >
+                    <input type="submit" class="submit" value="トップページへ戻る">
+                </form>
+            </div>
         </main>
         
         <?php endif; ?>
@@ -304,5 +318,3 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         <script type="text/javascript" src="regist_check.js"></script>
     </body>
 </html>
-            
-            
