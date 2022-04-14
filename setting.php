@@ -61,7 +61,7 @@ if($_SESSION != NULL){
             <div class = "main-container">
                 <form method="post" action="setting_confirm.php" name="setting">
                     <h1>カレンダー設定フォーム</h1>
-                    カレンダーの設定を行います。<br>カレンダーの日付やイベントの内容を入力し、間違えがなければ「確認」ボタンを押下してください。<br>
+                    キャラクターの誕生日やパークのイベント情報を入力する画面です。<br>日付やイベント内容を入力し、間違えがなければ「確認」ボタンを押下してください。<br>
                     <h7>*</h7>は必須項目になっています。
                     <div class = "box">
                         <div class="textarea">
@@ -76,12 +76,12 @@ if($_SESSION != NULL){
                         </div>
                         <div class="textarea">
                             <label>見出し</label><h7>*</h7>
-                            <input type="text"class="text" size="10"name="midashi"id="midashi"value="<?php if( !empty($_POST['midashi']) ){ echo $_POST['midashi']; } ?>"><br>
+                            <input type="text"class="text" size="100"name="midashi"id="midashi"value="<?php if( !empty($_POST['midashi']) ){ echo $_POST['midashi']; } ?>"><br>
                             <span id = 'midashi_error' class="error_m"></span><br>
                         </div>
                         <div class="textarea">
                             <label>詳細内容</label><h7>*</h7>
-                            <input type="text"class="text" size="10"name="naiyou"id="naiyou"value="<?php if( !empty($_POST['naiyou']) ){ echo $_POST['naiyou']; } ?>"><br>
+                            <input type="text"class="text" size="500"name="naiyou"id="naiyou"value="<?php if( !empty($_POST['naiyou']) ){ echo $_POST['naiyou']; } ?>"><br>
                             <span id = 'naiyou_error' class="error_m"></span><br>
                         </div>
                         <div class="textarea">

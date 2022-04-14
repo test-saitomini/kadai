@@ -76,6 +76,68 @@ if($login_mail != NULL){
     }
 }
 
+//GoogleカレンダーAPIから祝日を取得
+ 
+$year = date("Y");
+ 
+function getHolidays($year) {//その年の祝日を全て取得する関数を作成
+	
+	$api_key = 'AIzaSyC9d5DWJMOGtInRqE-FVDAhTQbfGRgAI2k'; //取得したAPIを入れる
+	$holidays = array(); //祝日を入れる配列の箱を用意しておく
+	$holidays_id = 'japanese__ja@holiday.calendar.google.com';
+	$url = sprintf(
+        //sprintf関数を使用しURLを設定
+        //このURLはGoogleカレンダー独自のURL
+        //Googleカレンダーから祝日を調べるURL
+        'https://www.googleapis.com/calendar/v3/calendars/%s/events?'.
+		'key=%s&timeMin=%s&timeMax=%s&maxResults=%d&orderBy=startTime&singleEvents=true',
+		$holidays_id,
+		$api_key,
+		$year.'-01-01T00:00:00Z' , // 取得開始日
+		$year.'-12-31T00:00:00Z' , // 取得終了日
+		150 // 最大取得数
+	);
+ 
+	if ( $results = file_get_contents($url, true )) {
+        //file_get_contents関数を使用
+        //URLの中に情報が入っていれば（trueなら）以下を実行する
+		$results = json_decode($results);
+        //JSON形式で取得した情報を配列に格納
+		foreach ($results->items as $item ) {
+			$date = strtotime((string) $item->start->date);
+			$title = (string) $item->summary;
+			$holidays[date('Y-m-d', $date)] = $title;
+            //年月日をキー、祝日名を配列に格納
+		}
+		ksort($holidays);
+        //祝日の配列を並び替え
+        //ksort関数で配列をキーで逆順に（１月からの順番にした）
+	}
+	return $holidays; 
+}
+
+
+
+$Holidays_array = getHolidays($year); 
+//getHolidays関数を$Holidays_arrayに代入して使用しやすいようにしておく
+ 
+ 
+//その日の祝日名を取得
+function display_to_Holidays($date,$Holidays_array) {
+    //※引数1は日付"Y-m-d"型、引数に2は祝日の配列データ
+    //display_to_Holidays("Y-m-d","Y-m-d") →引数1の日付と引数2の日付が一致すればその日の祝日名を取得する
+    
+	if(array_key_exists($date,$Holidays_array)){
+        //array_key_exists関数を使用
+        //$dateが$Holidays_arrayに存在するか確認
+        //各日付と祝日の配列データを照らし合わせる
+        
+		$holidays = "<br/>".$Holidays_array[$date];
+        //祝日が見つかれば$holidaysに入れておく
+		return $holidays; 
+	}
+}   
+
 //前月・次月リンクが選択された場合は、GETパラメーターから年月を取得
 if(isset($_GET['ym'])){ 
     $ym = $_GET['ym'];
@@ -123,6 +185,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
     $date = $ym . '-' . $day; //2020-00-00
 
     $reservation = reservation(date("Y-m-d",strtotime($date)),$reservation_array);
+    $Holidays_day = display_to_Holidays(date("Y-m-d",strtotime($date)),$Holidays_array);
     if($login_mail != NULL){
         $reseryotei = reseryotei(date("Y-m-d",strtotime($date)),$reseryotei_array);
     }
@@ -130,6 +193,10 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
     if($login_mail != NULL){
         if($today == $date){
             $week .= '<td class="today">' . $day;//今日の場合はclassにtodayをつける
+        }elseif(display_to_Holidays(date("Y-m-d",strtotime($date)),$Holidays_array)){
+        //もしその日に祝日が存在していたら
+        //その日が祝日の場合は祝日名を追加しclassにholidayを追加する
+        $week .= '<td class="holiday">' . $day . $Holidays_day;
         }elseif(reservation(date("Y-m-d",strtotime($date)),$reservation_array)){
             $week .= '<td>' . $day . $reservation;
         }elseif(reseryotei(date("Y-m-d",strtotime($date)),$reseryotei_array)){
@@ -142,6 +209,10 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
     if($login_mail == NULL){
         if($today == $date){
             $week .= '<td class="today">' . $day;//今日の場合はclassにtodayをつける
+        }elseif(display_to_Holidays(date("Y-m-d",strtotime($date)),$Holidays_array)){
+        //もしその日に祝日が存在していたら
+        //その日が祝日の場合は祝日名を追加しclassにholidayを追加する
+        $week .= '<td class="holiday">' . $day . $Holidays_day;
         }elseif(reservation(date("Y-m-d",strtotime($date)),$reservation_array)){
             $week .= '<td>' . $day . $reservation;
         }else{
