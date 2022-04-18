@@ -89,6 +89,11 @@ th:nth-of-type(7),td:nth-of-type(7){
     background:#e0ffff;
 }
 
+.holiday{
+    color: #FF0000;
+    background:#fff0f5;
+}
+
 /*regist.jsの赤文字エラーの表示*/
 span.error_m {
     font-size: 15px;
