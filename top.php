@@ -192,8 +192,24 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
     //ログインされている場合
     if($login_mail != NULL){
         
-        $link1 = '<a href="event.php?date="' . $date . '>' . $reservation . '</a>';
-        $link2 = '<a href="yotei.php?date="' . $date . '>' . $reseryotei . '</a>';
+        if($today == $date){
+            $week .= '<td class="today">' . $day;//今日の場合はclassにtodayをつける
+        }elseif(display_to_Holidays(date("Y-m-d",strtotime($date)),$Holidays_array)){
+        //もしその日に祝日が存在していたら
+        //その日が祝日の場合は祝日名を追加しclassにholidayを追加する
+        $week .= '<td class="holiday">' . $day . $Holidays_day;
+        }elseif(reservation(date("Y-m-d",strtotime($date)),$reservation_array)){
+            $link1 = '<a href="event.php?date= '. $date . '">' . $reservation . '</a>';
+            $week .= '<td>' . $day . $link1;
+        }elseif(reseryotei(date("Y-m-d",strtotime($date)),$reseryotei_array)){
+            $link2 = '<a href="yotei.php?date=' . $date . '">' . $reseryotei . '</a>';
+            $week .= '<td>' . $day . $link2;
+        }else{
+            $week .= '<td>' . $day;
+        }
+    }
+    
+    if($login_mail == NULL){
         
         if($today == $date){
             $week .= '<td class="today">' . $day;//今日の場合はclassにtodayをつける
@@ -202,23 +218,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         //その日が祝日の場合は祝日名を追加しclassにholidayを追加する
         $week .= '<td class="holiday">' . $day . $Holidays_day;
         }elseif(reservation(date("Y-m-d",strtotime($date)),$reservation_array)){
-            $week .= '<td>' . $day . $link1;
-        }elseif(reseryotei(date("Y-m-d",strtotime($date)),$reseryotei_array)){
-            $week .= '<td>' . $day . $link2;
-        }else{
-            $week .= '<td>' . $day;
-        }
-    }
-    
-    if($login_mail == NULL){
-        $link1 = '<a href="event.php?date="' . $date . '>' . $reservation . '</a>';
-        if($today == $date){
-            $week .= '<td class="today">' . $day;//今日の場合はclassにtodayをつける
-        }elseif(display_to_Holidays(date("Y-m-d",strtotime($date)),$Holidays_array)){
-        //もしその日に祝日が存在していたら
-        //その日が祝日の場合は祝日名を追加しclassにholidayを追加する
-        $week .= '<td class="holiday">' . $day . $Holidays_day;
-        }elseif(reservation(date("Y-m-d",strtotime($date)),$reservation_array)){
+            $link1 = '<a href="event.php?date=' . $date . '">' . $reservation . '</a>';
             $week .= '<td>' . $day . $link1 ;
         }else{
             $week .= '<td>' . $day;
