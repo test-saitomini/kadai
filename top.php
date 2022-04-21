@@ -36,7 +36,7 @@ function reservation($date,$reservation_array){
     //カレンダーの日付と予約された日付を照合する関数
     
     if(array_key_exists($date,$reservation_array)){
-        $reservation_midashi = "<br/>".$reservation_array[$date];
+        $reservation_midashi = $reservation_array[$date];
             
         return $reservation_midashi;
     }
@@ -70,7 +70,7 @@ if($login_mail != NULL){
     
         if(array_key_exists($date,$reseryotei_array)){
             //もし"カレンダーの日付"と"予約された日"が一致すれば以下を実行する
-            $reseryotei = "<br/>".$reseryotei_array[$date];
+            $reseryotei = $reseryotei_array[$date];
             return $reseryotei;
         }
     }
@@ -199,11 +199,11 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         //その日が祝日の場合は祝日名を追加しclassにholidayを追加する
         $week .= '<td class="holiday">' . $day . $Holidays_day;
         }elseif(reservation(date("Y-m-d",strtotime($date)),$reservation_array)){
-            $link1 = '<a href="event.php?date= '. $date . '">' . $reservation . '</a>';
-            $week .= '<td>' . $day . $link1;
+            $link1 = '<a href="event.php?date= '. $reservation . '">' . $reservation . '</a>';
+            $week .= '<td>' . $day ."<br/>". $link1;
         }elseif(reseryotei(date("Y-m-d",strtotime($date)),$reseryotei_array)){
-            $link2 = '<a href="yotei.php?date=' . $date . '">' . $reseryotei . '</a>';
-            $week .= '<td>' . $day . $link2;
+            $link2 = '<a href="yotei.php?date=' . $reseryotei . '">' . $reseryotei . '</a>';
+            $week .= '<td>' . $day ."<br/>". $link2;
         }else{
             $week .= '<td>' . $day;
         }
@@ -218,8 +218,8 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         //その日が祝日の場合は祝日名を追加しclassにholidayを追加する
         $week .= '<td class="holiday">' . $day . $Holidays_day;
         }elseif(reservation(date("Y-m-d",strtotime($date)),$reservation_array)){
-            $link1 = '<a href="event.php?date=' . $date . '">' . $reservation . '</a>';
-            $week .= '<td>' . $day . $link1 ;
+            $link1 = '<a href="event.php?date=' . $reservation . '">' . $reservation . '</a>';
+            $week .= '<td>' . $day ."<br/>". $link1 ;
         }else{
             $week .= '<td>' . $day;
         }

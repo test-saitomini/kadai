@@ -14,9 +14,6 @@ if($_SESSION != NULL){
     $login_mail= NULL;
 }
 
-$date = $_GET['date'];
-var_dump($date);
-
 ?>
 <!DOCTYPE HTML>
 <html lang="ja">
@@ -29,6 +26,20 @@ var_dump($date);
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
     <body>
+        <?php 
+        $date = $_GET['date'];
+        //$day = new DateTime($date);
+        //var_dump($day);
+        
+        $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
+            
+        //$stmt = $pdo -> query("select * from setting where day_kaishi = DATE(".$day.",'%Y-%m-%d')");
+        $stmt = $pdo -> prepare("select * from setting where midashi = ?");
+        $stmt -> execute(array($date));
+        
+        $set = $stmt -> fetch();
+        ?>
+        
         <?php if($login_account == 0) : ?>
         <header>
             <ul>
@@ -39,7 +50,24 @@ var_dump($date);
         </header>
         <main>
             <div class = "main-container">
-                <?php echo $date; ?>
+                予定の詳細です。
+                <form>
+                <p><label>日付（開始）</label>
+                    <?php echo $set['day_kaishi']; ?></p>
+            
+                <p><label>日付（終了）</label>
+                    <?php  echo $set['day_owari']; ?></p>
+            
+                <p><label>見出し</label>
+                    <?php echo $set['midashi']; ?></p>
+        
+                 <p><label>内容</label>
+                    <?php echo $set['naiyou']; ?></p>
+                </form>
+                <form action="top.php" >
+                    <input type="submit" class="submit" value="トップページへ戻る">
+                </form>
+                
             </div>
         </main>
         
@@ -64,7 +92,24 @@ var_dump($date);
         <?php endif; ?>
         <main>
             <div class = "main-container">
-                <?php echo $date; ?>
+                
+                <form>
+                <p><label>日付（開始）</label>
+                    <?php echo $set['day_kaishi']; ?></p>
+            
+                <p><label>日付（終了）</label>
+                    <?php  echo $set['day_owari']; ?></p>
+            
+                <p><label>見出し</label>
+                    <?php echo $set['midashi']; ?></p>
+        
+                 <p><label>内容</label>
+                    <?php echo $set['naiyou']; ?></p>
+                </form>
+                
+                <form action="top.php" >
+                    <input type="submit" class="submit" value="トップページへ戻る">
+                </form>
             </div>
         </main>
         

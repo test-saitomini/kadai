@@ -26,6 +26,20 @@ if($_SESSION != NULL){
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
     <body>
+        
+        <?php 
+        $date = $_GET['date'];
+        //$day = new DateTime($date);
+        //var_dump($day);
+        
+        $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
+        
+        $stmt = $pdo -> prepare("select * from schedule where yotei = ?");
+        $stmt -> execute(array($date));
+        
+        $yotei = $stmt -> fetch();
+        ?>
+        
         <?php if($login_account == 0) : ?>
         <header>
             <ul>
@@ -57,7 +71,26 @@ if($_SESSION != NULL){
         </header>
         <main>
             <div class = "main-container">
-                <?php echo $_GET['$date']; ?>
+                予定の詳細です。
+                <form>
+                <p><label>日付（開始）</label>
+                    <?php echo $yotei['day_kaishi']; ?></p>
+            
+                <p><label>日付（終了）</label>
+                    <?php  echo $yotei['day_owari']; ?></p>
+            
+                <p><label>見出し</label>
+                    <?php echo $yotei['yotei']; ?></p>
+        
+                <p><label>内容</label>
+                    <?php echo $yotei['naiyou']; ?></p>
+                    
+                <p><label>URL</label>
+                    <?php echo '<a href = "'.$yotei['url'].'"target="_blank" rel="noopener">'.$yotei['url']."</a>"; ?></p>
+                </form>
+                <form action="top.php" >
+                    <input type="submit" class="submit" value="トップページへ戻る">
+                </form>
             </div>
         </main>
         <?php else : ?>
