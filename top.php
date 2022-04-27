@@ -189,41 +189,35 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
     if($login_mail != NULL){
         $reseryotei = reseryotei(date("Y-m-d",strtotime($date)),$reseryotei_array);
     }
-    //ログインされている場合
-    if($login_mail != NULL){
-        
-        if($today == $date){
-            $week .= '<td class="today">' . $day;//今日の場合はclassにtodayをつける
-        }elseif(display_to_Holidays(date("Y-m-d",strtotime($date)),$Holidays_array)){
-        //もしその日に祝日が存在していたら
-        //その日が祝日の場合は祝日名を追加しclassにholidayを追加する
-        $week .= '<td class="holiday">' . $day . $Holidays_day;
-        }elseif(reservation(date("Y-m-d",strtotime($date)),$reservation_array)){
-            $link1 = '<a href="event.php?date= '. $reservation . '">' . $reservation . '</a>';
-            $week .= '<td>' . $day ."<br/>". $link1;
-        }elseif(reseryotei(date("Y-m-d",strtotime($date)),$reseryotei_array)){
-            $link2 = '<a href="yotei.php?date=' . $reseryotei . '">' . $reseryotei . '</a>';
-            $week .= '<td>' . $day ."<br/>". $link2;
-        }else{
-            $week .= '<td>' . $day;
-        }
-    }
     
-    if($login_mail == NULL){
-        
+    $tag = '<td class="%value%">'. $day;
+    $value = "";
+    
+    //ログインされている場合
         if($today == $date){
-            $week .= '<td class="today">' . $day;//今日の場合はclassにtodayをつける
-        }elseif(display_to_Holidays(date("Y-m-d",strtotime($date)),$Holidays_array)){
-        //もしその日に祝日が存在していたら
-        //その日が祝日の場合は祝日名を追加しclassにholidayを追加する
-        $week .= '<td class="holiday">' . $day . $Holidays_day;
-        }elseif(reservation(date("Y-m-d",strtotime($date)),$reservation_array)){
-            $link1 = '<a href="event.php?date=' . $reservation . '">' . $reservation . '</a>';
-            $week .= '<td>' . $day ."<br/>". $link1 ;
-        }else{
-            $week .= '<td>' . $day;
+            //$week .= '<td class="today">' . $day;//今日の場合はclassにtodayをつける
+            $value .= "today ";
+        }if(display_to_Holidays(date("Y-m-d",strtotime($date)),$Holidays_array)){
+            //もしその日に祝日が存在していたら
+            //その日が祝日の場合は祝日名を追加しclassにholidayを追加する
+            //$week .= '<td class="holiday">' . $day . $Holidays_day;
+            $tag .= $Holidays_day;
+            $value .="holiday ";
+        }if(reservation(date("Y-m-d",strtotime($date)),$reservation_array)){
+            $link1 = '<a href="event.php?date= '. $reservation . '">' . $reservation . '</a>';
+            //$week .= '<td>' . $day ."<br/>". $link1;
+            $tag .="<br/>". $link1;
+        }if($login_mail != NULL){
+            if(reseryotei(date("Y-m-d",strtotime($date)),$reseryotei_array)){
+            $link2 = '<a href="yotei.php?date=' . $reseryotei . '">' . $reseryotei . '</a>';
+            //$week .= '<td>' . $day ."<br/>". $link2;
+            $tag .= "<br/>". $link2;
+            }
         }
-    }
+    $tag = str_replace("%value%", $value, $tag);
+    $tag .='</td>';
+    $week .= $tag;
+    
     $week .= '</td>';
     
     if($youbi % 7 == 6 || $day == $day_count){//週終わり、月終わりの場合
@@ -337,7 +331,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
                     <h2>リンク</h2>
                     <a href = "https://www.tokyodisneyresort.jp/top.html" target="_blank" rel="noopener">公式サイトはコチラ</a>
                     <br>
-                    <h3>予定入力する場合は<a href = "http://localhost/kadai/schedule.php">コチラ</a></h3>
+                    <h3>予定入力する場合は<br><a href = "http://localhost/kadai/schedule.php">コチラ</a></h3>
                 </div>
                 <div class = "right">
                     <div class="container">

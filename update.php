@@ -14,6 +14,14 @@ if($_SESSION != NULL){
     $login_mail= NULL;
 }
 
+$id = $_POST['id'];
+            
+mb_internal_encoding("UTF-8");
+$pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
+            
+$stmt = $pdo -> query('select * from schedule where id = '.$id);
+$update = $stmt->fetch();
+
 ?>
 <!DOCTYPE HTML>
 <html lang="ja">
@@ -26,21 +34,7 @@ if($_SESSION != NULL){
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
     <body>
-        
-        <?php 
-        $date = $_GET['date'];
-        //$day = new DateTime($date);
-        //var_dump($day);
-        
-        $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
-        
-        $stmt = $pdo -> prepare("select * from schedule where yotei = ?");
-        $stmt -> execute(array($date));
-        
-        $yotei = $stmt -> fetch();
-        ?>
-        
-        <?php if($login_account == 0) : ?>
+    <?php if($login_account == 0) : ?>
         <header>
             <ul>
                 <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
@@ -71,31 +65,37 @@ if($_SESSION != NULL){
         </header>
         <main>
             <div class = "main-container">
-                予定の詳細です。
-                <p><label>日付（開始）</label>
-                    <?php echo $yotei['day_kaishi']; ?></p>
-            
-                <p><label>日付（終了）</label>
-                    <?php  echo $yotei['day_owari']; ?></p>
-            
-                <p><label>見出し</label>
-                    <?php echo $yotei['yotei']; ?></p>
-        
-                <p><label>内容</label>
-                    <?php echo $yotei['naiyou']; ?></p>
-                    
-                <p><label>URL</label>
-                    <?php echo '<a href = "'.$yotei['url'].'"target="_blank" rel="noopener">'.$yotei['url']."</a>"; ?></p>
-                <form action="top.php" >
-                    <input type="submit" class="submit" value="トップページへ戻る">
-                </form>
-                <form action="update.php" method="post">
-                    <input type="hidden" name = "id" value="<?php echo $yotei['id'];?>">
-                    <input type="submit" value="更新">
-                </form>
-                <form action="delete.php" method="post">
-                    <input type="hidden" name = "id" value="<?php echo $yotei['id'];?>">
-                    <input type="submit" value="削除">
+                <form action="update_confirm.php" method="post">
+                    <div class="textarea">
+                        <label>日付（開始）</label><h7>*</h7>
+                            <input type="date"list="daylist" min="" name="day_kaishi"id="day_kaishi"value="<?php if( !empty($update['day_kaishi']) ){ echo $update['day_kaishi']; } ?>"><br>
+                        <span id = 'day_kaishi_error' class="error_m"></span><br>
+                        </div>
+                        <div class="textarea">
+                            <label>日付（終了）</label><h7>*</h7>
+                            <input type="date"list="daylist" min="" name="day_owari"id="day_owari"value="<?php if( !empty($update['day_owari']) ){ echo $update['day_owari']; } ?>"><br>
+                            <span id = 'day_owari_error' class="error_m"></span><br>
+                        </div>
+                        <div class="textarea">
+                            <label>予定の見出し</label><h7>*</h7>
+                            <input type="text"class="text" size="10"name="yotei"id="yotei"value="<?php if( !empty($update['yotei']) ){ echo $update['yotei']; } ?>"><br>
+                            <span id = 'yotei_error' class="error_m"></span><br>
+                        </div>
+                        <div class="textarea">
+                            <label>内容</label>
+                            <input type="text"class="text" size="10"name="naiyou"id="naiyou"value="<?php if( !empty($update['naiyou']) ){ echo $update['naiyou']; } ?>"><br>
+                            <span id = 'naiyou_error' class="error_m"></span><br>
+                        </div>
+                        <div class="textarea">
+                            <label>URL</label>
+                            <input type="text"class="text" size="10"name="url"id="url"value="<?php if( !empty($update['url']) ){ echo $update['url']; } ?>"><br>
+                            <span id = 'url_error' class="error_m"></span><br>
+                        </div>
+                
+                        <div class="textarea">
+                            <input type="submit" class="btn_submit" id="btn_confirm" value="確認する">
+                            <input type="hidden" name = "id" value="<?php echo $id;?>">
+                        </div>
                 </form>
             </div>
         </main>

@@ -56,11 +56,12 @@ if($_SESSION != NULL){
         </header>
         <main>
             <div class = "main-container">
+                
+                <h1>予定入力フォーム</h1>
+                予定を入力する画面です。日付と予定の見出し、内容、必要であればURLを張り付けてください。
+                <br>
+                <h7>*</h7>は必須項目になっています。
                 <form method="post" action="schedule_complete.php" name="schedule">
-                    <h1>予定入力フォーム</h1>
-                    予定を入力する画面です。日付と予定の見出し、内容、必要であればURLを張り付けてください。
-                    <br>
-                    <h7>*</h7>は必須項目になっています。
                     <div class = "box">
                         <div class="textarea">
                             <label>日付（開始）</label><h7>*</h7>
