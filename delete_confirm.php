@@ -14,13 +14,6 @@ if($_SESSION != NULL){
     $login_mail= NULL;
 }
 
-$id = $_POST['id'];
-
-$pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
-            
-$stmt = $pdo -> query('select * from schedule where id = '.$id);
-$delete = $stmt->fetch();
-
 ?>
 <!DOCTYPE HTML>
 <html lang="ja">
@@ -64,34 +57,16 @@ $delete = $stmt->fetch();
         </header>
         <main>
             <div class = "main-container">
-                こちらは削除をする画面です。<br>予定を削除してもよろしければ下の確認ボタンを押してください。
-                <form action="delete_confirm.php" method="post">
-                    <div class="textarea">
-                        <p><label>名前（姓）</label>
-                            <?php echo $delete['day_kaishi']; ?></p>
-                    </div>
-                    <div class="textarea">
-                        <p><label>日付（終了）</label>
-                            <?php echo $delete['day_owari']; ?></p>
-                    </div>
-                    <div class="textarea">
-                        <p><label>予定の見出し</label>
-                            <?php echo $delete['yotei']; ?></p>
-                    </div>
-                    <div class="textarea">
-                        <p><label>内容</label>
-                            <?php echo $delete['naiyou']; ?></p>
-                    </div>
-                    <div class="textarea">
-                        <p><label>URL</label>
-                            <?php echo $delete['url']; ?></p>
-                    </div>
-                
-                    <div class="textarea">
-                        <input type="submit" class="btn_submit" id="btn_confirm" value="確認する">
-                        <input type="hidden" name = "id" value="<?php echo $id;?>">
-                    </div>
-                </form>
+            <div class="kakunin">
+            <h4>本当に削除してよろしいですか？</h4>
+            
+            <input type="submit" onclick=history.back() value="戻って修正する">
+            
+            <form action="delete_complete.php" method="post">
+                <input type="submit" name="delete_submit" value="登録する">
+                <input type="hidden" name = "id" value="<?php echo $_POST['id'];?>">
+            </form>
+            </div>
             </div>
         </main>
         <?php else : ?>

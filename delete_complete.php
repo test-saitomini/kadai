@@ -5,6 +5,9 @@ date_default_timezone_set('Asia/Tokyo');
 
 session_start();
 
+$delete_error_flag = 0;
+$delete_error_message = 'カレンダーから予定を削除する日を選択してください。';
+
 if($_SESSION != NULL){
     $login_account = "1";
     $login_mail = $_SESSION["mail"];
@@ -14,14 +17,31 @@ if($_SESSION != NULL){
     $login_mail= NULL;
 }
 
-$id = $_POST['id'];
+try{
+    $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
+}catch(PDOException $Exception){
+    $delete_error_message = $Exception->getMessage();
+    $delete_error_flag = 1;
+}
 
-$pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
-            
-$stmt = $pdo -> query('select * from schedule where id = '.$id);
-$delete = $stmt->fetch();
+if($_POST != NULL){
+    $id = $_POST['id'];
+    
+    try{
+        if($delete_error_flag == 0){
+        $stmt = $pdo ->  query('delete from schedule where id = '.$id);
+        }
+    }catch(PDOException $Exception){
+        $delete_error_message = $Exception->getMessage();
+        $delete_error_flag = 1;
+    }
+}else{
+    $delete_error_flag = 1;
+}
+
 
 ?>
+
 <!DOCTYPE HTML>
 <html lang="ja">
     <head>
@@ -42,7 +62,7 @@ $delete = $stmt->fetch();
             </ul>
         </header>
         <main>
-            <div class="error_messge">
+            <div class="delete_error_messge">
                 <h8>※アカウントをログインしてから行ってください。</h8>
                 <form action="login.php" >
                     <input type="submit" class="submit" value="ログイン画面へ戻る">
@@ -64,34 +84,20 @@ $delete = $stmt->fetch();
         </header>
         <main>
             <div class = "main-container">
-                こちらは削除をする画面です。<br>予定を削除してもよろしければ下の確認ボタンを押してください。
-                <form action="delete_confirm.php" method="post">
-                    <div class="textarea">
-                        <p><label>名前（姓）</label>
-                            <?php echo $delete['day_kaishi']; ?></p>
-                    </div>
-                    <div class="textarea">
-                        <p><label>日付（終了）</label>
-                            <?php echo $delete['day_owari']; ?></p>
-                    </div>
-                    <div class="textarea">
-                        <p><label>予定の見出し</label>
-                            <?php echo $delete['yotei']; ?></p>
-                    </div>
-                    <div class="textarea">
-                        <p><label>内容</label>
-                            <?php echo $delete['naiyou']; ?></p>
-                    </div>
-                    <div class="textarea">
-                        <p><label>URL</label>
-                            <?php echo $delete['url']; ?></p>
-                    </div>
-                
-                    <div class="textarea">
-                        <input type="submit" class="btn_submit" id="btn_confirm" value="確認する">
-                        <input type="hidden" name = "id" value="<?php echo $id;?>">
-                    </div>
-                </form>
+                <div class="back-top">
+                    <?php if($delete_error_flag == 1){
+                        echo '<h7>エラーが発生したため予定の削除が登録できません。<br>
+                        '.$delete_error_message.'</h7>';
+                    }else{
+                        echo '<h4>予定の削除が完了しました。</h4>';
+                    };?>
+                    <form action="top.php" >
+                        <input type="submit" class="submit" value="トップページへ戻る">
+                    </form>
+                    <form action="login.php">
+                        <input type="submit" class="submit" value="ログイン画面へ戻る">
+                    </form>
+                </div>
             </div>
         </main>
         <?php else : ?>
@@ -103,7 +109,7 @@ $delete = $stmt->fetch();
             </ul>
         </header>
         <main>
-            <div class="error_messge">
+            <div class="delete_error_messge">
                 <h8>※何らかのエラーが発生しました。<br>
                 最初からやり直してください。</h8>
                 <form action="login.php">
