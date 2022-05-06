@@ -77,6 +77,7 @@ if($_SESSION != NULL){
             <ul>
                 <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
                 <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
+                <li><a href = "http://localhost/kadai/mypage.php">マイページ</a></li>
                 <li><a href = "http://localhost/kadai/setting.php">設定</a></li>
                 <li><a href = "http://localhost/kadai/logout.php">ログアウト</a></li>
             </ul>
@@ -86,6 +87,7 @@ if($_SESSION != NULL){
             <ul>
                 <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
                 <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
+                <li><a href = "http://localhost/kadai/mypage.php">マイページ</a></li>
                 <li><a href = "http://localhost/kadai/logout.php">ログアウト</a></li>
             </ul>
         </header>

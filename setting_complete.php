@@ -51,9 +51,11 @@ if($_POST != NULL){
             <ul>
                 <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
                 <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
+                <li><a href = "http://localhost/kadai/mypage.php">マイページ</a></li>
                 <li><a href = "http://localhost/kadai/logout.php">ログアウト</a></li>
             </ul>
     </header>
+    <?php if($login_authority == 1) : ?>
     <body>
         <div class = "main-container">
         <div class="back-top">
@@ -72,6 +74,23 @@ if($_POST != NULL){
         </div>
         </div>
     </body>
+    <?php else : ?>
+        <main>
+            <div class="error_messge">
+                <h8>※この画面は操作できません。</h8>
+                <form action="login.php">
+                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                </form>
+                <form action="regist.php">
+                    <input type="submit" class="submit" value="会員登録画面へ戻る">
+                </form>
+                <form action="top.php" >
+                    <input type="submit" class="submit" value="トップページへ戻る">
+                </form>
+            </div>
+            <br>
+        </main>
+    <?php endif; ?> 
     <?php elseif($login_account == 0) : ?>
     <header>
             <ul>

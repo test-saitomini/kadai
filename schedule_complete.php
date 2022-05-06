@@ -47,13 +47,26 @@ if($_POST != NULL){
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     </head>
     <?php if($login_account == 1) : ?>
-    <header>
+    <?php if($login_authority == 1) : ?>
+        <header>
             <ul>
                 <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
                 <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
+                <li><a href = "http://localhost/kadai/mypage.php">マイページ</a></li>
+                <li><a href = "http://localhost/kadai/setting.php">設定</a></li>
                 <li><a href = "http://localhost/kadai/logout.php">ログアウト</a></li>
             </ul>
-    </header>
+        </header>
+        <?php else : ?>
+        <header>
+            <ul>
+                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
+                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
+                <li><a href = "http://localhost/kadai/mypage.php">マイページ</a></li>
+                <li><a href = "http://localhost/kadai/logout.php">ログアウト</a></li>
+            </ul>
+        </header>
+        <?php endif; ?>
     <body>
         <div class = "main-container">
         <div class="back-top">

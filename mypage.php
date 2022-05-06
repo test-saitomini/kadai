@@ -14,14 +14,15 @@ if($_SESSION != NULL){
     $login_mail= NULL;
 }
 
-$id = $_POST['id'];
-
 $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
-            
-$stmt = $pdo -> query('select * from schedule where id = '.$id);
-$delete = $stmt->fetch();
+
+$stmt = $pdo -> prepare('select * from account where mail = ?');
+$stmt ->execute(array($login_mail));
+
+$mypage = $stmt -> fetch();
 
 ?>
+
 <!DOCTYPE HTML>
 <html lang="ja">
     <head>
@@ -74,35 +75,35 @@ $delete = $stmt->fetch();
             </ul>
         </header>
         <?php endif; ?>
+        
         <main>
             <div class = "main-container">
-                こちらは削除をする画面です。<br>予定を削除してもよろしければ下の確認ボタンを押してください。
-                <form action="delete_confirm.php" method="post">
-                    <div class="textarea">
-                        <p><label>名前（姓）</label>
-                            <?php echo $delete['day_kaishi']; ?></p>
-                    </div>
-                    <div class="textarea">
-                        <p><label>日付（終了）</label>
-                            <?php echo $delete['day_owari']; ?></p>
-                    </div>
-                    <div class="textarea">
-                        <p><label>予定の見出し</label>
-                            <?php echo $delete['yotei']; ?></p>
-                    </div>
-                    <div class="textarea">
-                        <p><label>内容</label>
-                            <?php echo $delete['naiyou']; ?></p>
-                    </div>
-                    <div class="textarea">
-                        <p><label>URL</label>
-                            <?php echo $delete['url']; ?></p>
-                    </div>
+                会員情報の詳細です。<br>更新する場合や削除する場合は下のボタンを押してください。
+                <p><label>名前</label>
+                    <?php echo $mypage['name']; ?></p>
+            
+                <p><label>メールアドレス</label>
+                    <?php  echo $mypage['mail']; ?></p>
+            
+                <p><label>パスワード</label>
+                    <h7>※セキュリティ上、パスワードを非表示にしています。</h7></p>
+        
+                <p><label>アカウント権限</label>
+                    <?php if($mypage['authority']==="0"){ 
+                        echo'一般';
+                    }else{ echo '管理者'; }?></p> 
+                    
                 
-                    <div class="textarea">
-                        <input type="submit" class="btn_submit" id="btn_confirm" value="確認する">
-                        <input type="hidden" name = "id" value="<?php echo $id;?>">
-                    </div>
+                <form action="top.php" >
+                    <input type="submit" class="submit" value="トップページへ戻る">
+                </form>
+                <form action="account_update.php" method="post">
+                    <input type="hidden" name = "id" value="<?php echo $mypage['id'];?>">
+                    <input type="submit" value="更新">
+                </form>
+                <form action="account_delete.php" method="post">
+                    <input type="hidden" name = "id" value="<?php echo $mypage['id'];?>">
+                    <input type="submit" value="削除">
                 </form>
             </div>
         </main>

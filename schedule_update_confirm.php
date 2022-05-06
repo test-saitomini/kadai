@@ -48,13 +48,26 @@ if($_SESSION != NULL){
             <br>
         </main>
         <?php elseif($login_account == 1) : ?>
+        <?php if($login_authority == 1) : ?>
         <header>
             <ul>
                 <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
-                <li>会員登録</li>
-                <li><a href = "http://localhost/kadai/login.php">ログイン</a></li>
+                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
+                <li><a href = "http://localhost/kadai/mypage.php">マイページ</a></li>
+                <li><a href = "http://localhost/kadai/setting.php">設定</a></li>
+                <li><a href = "http://localhost/kadai/logout.php">ログアウト</a></li>
             </ul>
         </header>
+        <?php else : ?>
+        <header>
+            <ul>
+                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
+                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
+                <li><a href = "http://localhost/kadai/mypage.php">マイページ</a></li>
+                <li><a href = "http://localhost/kadai/logout.php">ログアウト</a></li>
+            </ul>
+        </header>
+        <?php endif; ?>
         <div class = "main-container">
             <?php if($_POST != NULL) : ?>
             <h2>編集する内容の確認</h2>
@@ -117,7 +130,7 @@ if($_SESSION != NULL){
         <header>
             <ul>
                 <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
-                <li>会員登録</li>
+                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
                 <li><a href = "http://localhost/kadai/login.php">ログイン</a></li>
             </ul>
         </header>
