@@ -4,32 +4,32 @@ session_start();
 $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
 
 //エラーメッセージの初期化
-$login_error = array();
-$login_error_flag = 0;
+$kakunin_error = array();
+$kakunin_error_flag = 0;
 
 
 // ログインボタンが押されたら
-if (isset($_POST['login'])) {
+if (isset($_POST['kakunin'])) {
 
    //エラー文
     if (empty($_POST['mail'])) {
-       $login_error['mail'] = 'メールアドレスが未入力です。';
+       $kakunin_error['mail'] = 'メールアドレスが未入力です。';
     } 
-    if (empty($_POST['password'])) {
-       $login_error['password'] = 'パスワードが未入力です。';
+    if (empty($_POST['name'])) {
+       $kakunin_error['name'] = 'パスワードが未入力です。';
     }
     
     $mail_mblen = mb_strlen($_POST['mail']);
-    $password_mblen = mb_strlen($_POST['password']);
+    $name_mblen = mb_strlen($_POST['name']);
     
     if($mail_mblen > 100){
-        $login_error['mail'] = 'メールアドレスは100文字以内で入力してください。';
+        $kakunin_error['mail'] = 'メールアドレスは100文字以内で入力してください。';
     }
-    if ($password_mblen > 10) {
-       $login_error['password'] = 'パスワードは10文字以内で入力してください。';
+    if ($name_mblen > 100) {
+       $kakunin_error['name'] = '名前は100文字以内で入力してください。';
     }
     
-    if (!empty($_POST['mail']) && !empty($_POST['password'])) {
+    if (!empty($_POST['mail']) && !empty($_POST['name'])) {
         $mail = $_POST['mail'];
         try {
             $pdo -> beginTransaction();
@@ -37,33 +37,33 @@ if (isset($_POST['login'])) {
             $stmt -> bindValue(':mail', $mail, PDO::PARAM_STR);
             $stmt -> execute();
 
-            $password = $_POST['password'];
+            $name = $_POST['name'];
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             
-            if(!empty($result['password'])){
-                if (password_verify($password, $result['password'])) {    
+            if(!empty($result['name'])){
+                if (name_verify($name, $result['name'])) {    
                     $_SESSION['name'] = $result['name'];
                     $_SESSION['authority'] = $result['authority'];
                     $_SESSION['mail'] = $result['mail'];
-                    header('Location: top.php');
+                    header('Location: name_resetting_complete.php');
                     exit();
                 } else {
-                    $login_error['login'] = 'メールアドレスまたはパスワードに誤りがあります。';
+                    $kakunin_error['kakunin'] = '名前またはメールアドレスに誤りがあります。';
                 }
             }else{
-                $login_error['login'] = 'メールアドレスまたはパスワードに誤りがあります。';
+                $kakunin_error['kakunin'] = '名前またはメールアドレスに誤りがあります。';
             }
 
-            /*if (password_verify($password, $result['password'])) {    
+            /*if (name_verify($name, $result['name'])) {    
                 $_SESSION['authority'] = $result['authority'];
                 header('Location: regist_top.php');
                 exit();
             } else {
-                $login_error['login'] = 'メールアドレスまたはパスワードに誤りがあります。';
+                $kakunin_error['kakunin'] = 'メールアドレスまたはパスワードに誤りがあります。';
             }*/
         } catch (PDOException $Exception) {
-            $login_error_message = $Exception->getMessage();
-            $login_error_flag = 1;
+            $kakunin_error_message = $Exception->getMessage();
+            $kakunin_error_flag = 1;
         }
     }
 }
@@ -97,39 +97,34 @@ if (isset($_POST['login'])) {
         
         <main>
             <div class = "main-container">
-            <h1>ログイン画面</h1>
+            <h1>パスワード再設定情報画面</h1>
             <div class="form">
-            <form id="loginForm" name="loginForm" action="" method="POST">
+            <form id="kakuninForm" name="kakuninForm" action="" method="POST">
                <?php
-                foreach($login_error as $error){
-                    print "<p class='login_error'>";
+                foreach($kakunin_error as $error){
+                    print "<p class='kakunin_error'>";
                     print "<h7>".$error."</h7><br>";
                     print "</p>";
                 }
-                if($login_error_flag == 1){
-                    echo '<h7>エラーが発生したためログイン情報を取得できません。<br>'.$login_erorr_message.'<br></h7>';
+                if($kakunin_error_flag == 1){
+                    echo '<h7>エラーが発生したためパスワード再設定のための情報が得られません。<br>'.$kakunin_erorr_message.'<br></h7>';
                 };
 
                ?>
+                <div>
+                   <label for="name">名前
+                   <input type="name" id="name" name="name" value="" placeholder="名前">
+                   </label>
+               </div>
 
                <div>
                    <label for="mail">メールアドレス
                    <input type="text" id="mail" name="mail" placeholder="メールアドレス" value="<?php if (!empty($_POST["mail"])) {echo $_POST["mail"];} ?>">
                    </label>
-               </div>
-
-               <div>
-                   <label for="password">パスワード
-                   <input type="password" id="password" name="password" value="" placeholder="パスワード">
-                   </label>
-               </div>
-                <input type="submit" id="login" name="login" value="ログイン">
+                </div>
+                <input type="submit" id="kakunin" name="kakunin" value="確認する">
             </form>
             </div>
-            
-            新規会員登録は<a href="http://localhost/kadai/regist.php">コチラ</a>
-            <br>
-            パスワードを忘れた方は<a href="http://localhost/kadai/password_resetting.php">コチラ</a>
             </div>
         </main>
         
