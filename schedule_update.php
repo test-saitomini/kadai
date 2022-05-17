@@ -77,7 +77,7 @@ $update = $stmt->fetch();
         <?php endif; ?>
         <main>
             <div class = "main-container">
-                <form action="update_confirm.php" method="post">
+                <form action="schedule_update_confirm.php" method="post">
                     <div class="textarea">
                         <label>日付（開始）</label><h7>*</h7>
                             <input type="date"list="daylist" min="" name="day_kaishi"id="day_kaishi"value="<?php if( !empty($update['day_kaishi']) ){ echo $update['day_kaishi']; } ?>"><br>
@@ -107,6 +107,7 @@ $update = $stmt->fetch();
                         <div class="textarea">
                             <input type="submit" class="btn_submit" id="btn_confirm" value="確認する">
                             <input type="hidden" name = "id" value="<?php echo $id;?>">
+                            <input type="hidden" value="1" name="yotei_delete_flg">
                         </div>
                 </form>
             </div>

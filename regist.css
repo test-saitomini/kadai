@@ -40,6 +40,10 @@ footer{float:left;
     margin-top:70px;
 }
 
+table.table-bordered{
+    width: 700px;
+}
+
 .error_messge{
     width:95%;
     margin: 0 auto;
@@ -60,20 +64,22 @@ footer{float:left;
 }
 
 .container{
-    font-family: 'Noto Sans', sans-serif;　/*--GoogleFontsを使用--*/
-    margin-top: 80px;
+   /* font-family: 'Noto Sans', sans-serif;　--GoogleFontsを使用--*/
     width: 700px;
 }
 h3{
     margin-bottom: 30px;
 }
-th{
+table.table-bordered th{
     height: 30px;
+    width: 100px;
     text-align: center;
 }
-td{
+table.table-bordered td{
     height: 100px;
     width: 100px;
+    margin: 0 auto;
+    text-align: left;
     word-wrap: break-word;
 }
 .today{

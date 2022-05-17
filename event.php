@@ -29,12 +29,10 @@ if($_SESSION != NULL){
         <?php 
         $date = $_GET['date'];
         //$day = new DateTime($date);
-        //var_dump($day);
-        
         $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
             
         //$stmt = $pdo -> query("select * from setting where day_kaishi = DATE(".$day.",'%Y-%m-%d')");
-        $stmt = $pdo -> prepare("select * from setting where midashi = ?");
+        $stmt = $pdo -> prepare("select * from setting where midashi = ? AND set_delete_flg = 0");
         $stmt -> execute(array($date));
         
         $set = $stmt -> fetch();
@@ -94,7 +92,7 @@ if($_SESSION != NULL){
         <?php endif; ?>
         <main>
             <div class = "main-container">
-                
+                予定の詳細です。
                 <form>
                 <p><label>日付（開始）</label>
                     <?php echo $set['day_kaishi']; ?></p>
@@ -112,9 +110,20 @@ if($_SESSION != NULL){
                 <form action="top.php" >
                     <input type="submit" class="submit" value="トップページへ戻る">
                 </form>
-            </div>
-        </main>
+        <?php if($login_authority == 1) : ?>
         
+        <form action="setting_update.php" method="post">
+            <input type="hidden" name = "id" value="<?php echo $set['id'];?>">
+            <input type="submit" value="更新">
+        </form>
+        <form action="setting_delete.php" method="post">
+            <input type="hidden" name = "id" value="<?php echo $set['id'];?>">
+            <input type="submit" value="削除">
+        </form>
+                </div>
+        </main>
+        <?php else : ?>
+        <?php endif; ?>
         <?php else : ?>
         <header>
             <ul>

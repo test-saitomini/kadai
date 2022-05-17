@@ -18,7 +18,7 @@ $id = $_POST['id'];
 
 $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
             
-$stmt = $pdo -> query('select * from schedule where id = '.$id);
+$stmt = $pdo -> query('select * from setting where id = '.$id);
 $delete = $stmt->fetch();
 
 ?>
@@ -54,20 +54,22 @@ $delete = $stmt->fetch();
         </main>
         
         <?php elseif($login_account == 1) : ?>
-        
+        <?php if($login_authority == 1) : ?>
         <header>
             <ul>
                 <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
-                <li>会員登録</li>
+                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
+                <li><a href = "http://localhost/kadai/mypage.php">マイページ</a></li>
+                <li><a href = "http://localhost/kadai/setting.php">設定</a></li>
                 <li><a href = "http://localhost/kadai/logout.php">ログアウト</a></li>
             </ul>
         </header>
         <main>
             <div class = "main-container">
                 こちらは削除をする画面です。<br>予定を削除してもよろしければ下の確認ボタンを押してください。
-                <form action="delete_confirm.php" method="post">
+                <form action="setting_delete_confirm.php" method="post">
                     <div class="textarea">
-                        <p><label>名前（姓）</label>
+                        <p><label>日付（開始）</label>
                             <?php echo $delete['day_kaishi']; ?></p>
                     </div>
                     <div class="textarea">
@@ -76,24 +78,45 @@ $delete = $stmt->fetch();
                     </div>
                     <div class="textarea">
                         <p><label>予定の見出し</label>
-                            <?php echo $delete['yotei']; ?></p>
+                            <?php echo $delete['midashi']; ?></p>
                     </div>
                     <div class="textarea">
                         <p><label>内容</label>
                             <?php echo $delete['naiyou']; ?></p>
                     </div>
-                    <div class="textarea">
-                        <p><label>URL</label>
-                            <?php echo $delete['url']; ?></p>
-                    </div>
                 
                     <div class="textarea">
                         <input type="submit" class="btn_submit" id="btn_confirm" value="確認する">
                         <input type="hidden" name = "id" value="<?php echo $id;?>">
+                        <input type="hidden" value="1" name="set_delete_flg">
                     </div>
                 </form>
             </div>
         </main>
+        <?php else : ?>
+        <header>
+            <ul>
+                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
+                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
+                <li><a href = "http://localhost/kadai/mypage.php">マイページ</a></li>
+                <li><a href = "http://localhost/kadai/logout.php">ログアウト</a></li>
+            </ul>
+        </header>
+        <main>
+            <div class = "main-container">
+                <h8>※この画面は操作できません。</h8>
+                <form action="login.php">
+                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                </form>
+                <form action="regist.php">
+                    <input type="submit" class="submit" value="会員登録画面へ戻る">
+                </form>
+                <form action="top.php" >
+                    <input type="submit" class="submit" value="トップページへ戻る">
+                </form>
+            </div>
+        </main>
+        <?php endif; ?>
         <?php else : ?>
         <header>
             <ul>
@@ -121,6 +144,6 @@ $delete = $stmt->fetch();
         <footer>
             Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
         </footer>
-        <script type="text/javascript" src="regist_check_schedule.js"></script>
+        <script type="text/javascript" src="regist_check_setting.js"></script>
     </body>
 </html>

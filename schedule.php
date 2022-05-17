@@ -103,6 +103,7 @@ if($_SESSION != NULL){
                 
                         <div class="textarea">
                             <input type="submit" class="btn_submit" id="btn_confirm" value="確認する">
+                            <input type="hidden" value="0" name="yotei_delete_flg">
                         </div>
                     </div>
                 </form>

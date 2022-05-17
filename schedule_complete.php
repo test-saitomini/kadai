@@ -25,7 +25,7 @@ try{
 if($_POST != NULL){
     try{
         if($error_flag == 0){
-        $pdo -> exec("insert into schedule(day_kaishi,day_owari,yotei,naiyou,url,mail)values('".$_POST['day_kaishi']."','".$_POST['day_owari']."','".$_POST['yotei']."','".$_POST['naiyou']."','".$_POST['url']."','".$login_mail."');");
+        $pdo -> exec("insert into schedule(day_kaishi,day_owari,yotei,naiyou,url,mail,yotei_delete_flg)values('".$_POST['day_kaishi']."','".$_POST['day_owari']."','".$_POST['yotei']."','".$_POST['naiyou']."','".$_POST['url']."','".$login_mail."','".$_POST['yotei_delete_flg']."');");
         }
     }catch(PDOException $Exception){
         $error_message = $Exception->getMessage();

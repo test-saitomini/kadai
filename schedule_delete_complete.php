@@ -26,10 +26,11 @@ try{
 
 if($_POST != NULL){
     $id = $_POST['id'];
+    $yotei_delete_flg = $_POST['yotei_delete_flg'];
     
     try{
         if($delete_error_flag == 0){
-        $stmt = $pdo ->  query('delete from schedule where id = '.$id);
+        $stmt = $pdo->query("UPDATE setting SET yotei_delete_flg = $yotei_delete_flg where id = $id");
         }
     }catch(PDOException $Exception){
         $delete_error_message = $Exception->getMessage();

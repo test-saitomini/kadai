@@ -77,7 +77,7 @@ $delete = $stmt->fetch();
         <main>
             <div class = "main-container">
                 こちらは削除をする画面です。<br>予定を削除してもよろしければ下の確認ボタンを押してください。
-                <form action="delete_confirm.php" method="post">
+                <form action="schedule_delete_confirm.php" method="post">
                     <div class="textarea">
                         <p><label>名前（姓）</label>
                             <?php echo $delete['day_kaishi']; ?></p>

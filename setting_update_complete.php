@@ -28,14 +28,13 @@ if($_POST != NULL){
     $id = $_POST['id'];
     $day_kaishi = $_POST['day_kaishi'];
     $day_owari = $_POST['day_owari'];
-    $yotei = $_POST['yotei'];
+    $midashi = $_POST['midashi'];
     $naiyou = $_POST['naiyou'];
-    $url = $_POST['url'];
     
     try{
         if($update_error_flag == 0){
-        $stmt = $pdo -> prepare("UPDATE schedule SET day_kaishi =?,day_owari =?,yotei=?,naiyou=?,url=? where id = ".$id);
-        $stmt->execute(array($day_kaishi,$day_owari,$yotei,$naiyou,$url));
+        $stmt = $pdo -> prepare("UPDATE setting SET day_kaishi =?,day_owari =?,midashi=?,naiyou=? where id = ".$id);
+        $stmt->execute(array($day_kaishi,$day_owari,$midashi,$naiyou));
         }
     }catch(PDOException $Exception){
         $update_error_message = $Exception->getMessage();
@@ -57,13 +56,16 @@ if($_POST != NULL){
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     </head>
     <?php if($login_account == 1) : ?>
-    <header>
+    <?php if($login_authority == 1) : ?>
+        <header>
             <ul>
                 <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
                 <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
+                <li><a href = "http://localhost/kadai/mypage.php">マイページ</a></li>
+                <li><a href = "http://localhost/kadai/setting.php">設定</a></li>
                 <li><a href = "http://localhost/kadai/logout.php">ログアウト</a></li>
             </ul>
-    </header>
+        </header>
     <body>
         <div class = "main-container">
         <div class="back-top">
@@ -82,6 +84,31 @@ if($_POST != NULL){
         </div>
         </div>
     </body>
+        <?php else : ?>
+        <header>
+            <ul>
+                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
+                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
+                <li><a href = "http://localhost/kadai/mypage.php">マイページ</a></li>
+                <li><a href = "http://localhost/kadai/logout.php">ログアウト</a></li>
+            </ul>
+        </header>
+        <main>
+            <div class="error_messge">
+                <h8>※この画面は操作できません。</h8>
+                <form action="login.php">
+                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                </form>
+                <form action="regist.php">
+                    <input type="submit" class="submit" value="会員登録画面へ戻る">
+                </form>
+                <form action="top.php" >
+                    <input type="submit" class="submit" value="トップページへ戻る">
+                </form>
+            </div>
+            <br>
+        </main>
+        <?php endif; ?>
     <?php elseif($login_account == 0) : ?>
     <header>
             <ul>
@@ -92,7 +119,7 @@ if($_POST != NULL){
     </header>
     <main>
         <div class="update_error_messge">
-            <h8>※この画面は操作できません。</h8>
+            <h8>※アカウントログインしてから操作を行ってください。</h8>
             <form action="login.php" >
                 <input type="submit" class="submit" value="ログイン画面へ戻る">
             </form>

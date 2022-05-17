@@ -26,7 +26,6 @@ if($_SESSION != NULL){
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
     <body>
-        
         <?php 
         $date = $_GET['date'];
         //$day = new DateTime($date);
@@ -34,7 +33,7 @@ if($_SESSION != NULL){
         
         $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
         
-        $stmt = $pdo -> prepare("select * from schedule where yotei = ?");
+        $stmt = $pdo -> prepare("select * from schedule where yotei = ? AND yotei_delete_flg = 0");
         $stmt -> execute(array($date));
         
         $yotei = $stmt -> fetch();
@@ -101,11 +100,11 @@ if($_SESSION != NULL){
                 <form action="top.php" >
                     <input type="submit" class="submit" value="トップページへ戻る">
                 </form>
-                <form action="update.php" method="post">
+                <form action="schedule_update.php" method="post">
                     <input type="hidden" name = "id" value="<?php echo $yotei['id'];?>">
                     <input type="submit" value="更新">
                 </form>
-                <form action="delete.php" method="post">
+                <form action="schedule_delete.php" method="post">
                     <input type="hidden" name = "id" value="<?php echo $yotei['id'];?>">
                     <input type="submit" value="削除">
                 </form>

@@ -47,11 +47,13 @@ if($_SESSION != NULL){
         </main>
         
         <?php elseif($login_account == 1) : ?>
-        
+        <?php if($login_authority == 1) : ?>
         <header>
             <ul>
                 <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
-                <li>会員登録</li>
+                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
+                <li><a href = "http://localhost/kadai/mypage.php">マイページ</a></li>
+                <li><a href = "http://localhost/kadai/setting.php">設定</a></li>
                 <li><a href = "http://localhost/kadai/logout.php">ログアウト</a></li>
             </ul>
         </header>
@@ -62,13 +64,38 @@ if($_SESSION != NULL){
             
             <input type="submit" onclick=history.back() value="戻って修正する">
             
-            <form action="delete_complete.php" method="post">
+            <form action="setting_delete_complete.php" method="post">
                 <input type="submit" name="delete_submit" value="登録する">
                 <input type="hidden" name = "id" value="<?php echo $_POST['id'];?>">
+                <input type="hidden" value="1" name="set_delete_flg">
             </form>
             </div>
             </div>
         </main>
+        <?php else : ?>
+        <header>
+            <ul>
+                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
+                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
+                <li><a href = "http://localhost/kadai/mypage.php">マイページ</a></li>
+                <li><a href = "http://localhost/kadai/logout.php">ログアウト</a></li>
+            </ul>
+        </header>
+        <main>
+            <div class = "main-container">
+                <h8>※この画面は操作できません。</h8>
+                <form action="login.php">
+                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                </form>
+                <form action="regist.php">
+                    <input type="submit" class="submit" value="会員登録画面へ戻る">
+                </form>
+                <form action="top.php" >
+                    <input type="submit" class="submit" value="トップページへ戻る">
+                </form>
+            </div>
+        </main>
+        <?php endif; ?>
         <?php else : ?>
         <header>
             <ul>
@@ -96,6 +123,6 @@ if($_SESSION != NULL){
         <footer>
             Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
         </footer>
-        <script type="text/javascript" src="regist_check_schedule.js"></script>
+        <script type="text/javascript" src="regist_check_setting.js"></script>
     </body>
 </html>

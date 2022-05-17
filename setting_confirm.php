@@ -67,14 +67,14 @@ if($_SESSION != NULL){
                 <p>日付（開始）
                     <br>
                     <?php echo $_POST['day_kaishi'];?>
-                </p> 日付（終了）
-                <p>
+                </p> 
+                <p>日付（終了）
                     <br>
                     <?php echo $_POST['day_owari'];?>
                 </p>
-                <p>予定の見出し
+                <p>見出し
                     <br>
-                    <?php　echo $_POST['midashi'];?>
+                    <?php echo $_POST['midashi'];?>
                 </p>
                 <p>詳細内容
                     <br>
@@ -83,14 +83,16 @@ if($_SESSION != NULL){
         
         <input type="submit" onclick=history.back() value="戻って修正する">
             
-        <form action="regist_complete.php" method="post">
+        <form action="setting_complete.php" method="post">
             <input type="submit" name="btn_submit" value="登録する">
             <input type="hidden" value="<?php echo $_POST['day_kaishi'];?>" name="day_kaishi">
             <input type="hidden" value="<?php echo $_POST['day_owari'];?>" name="day_owari">
             <input type="hidden" value="<?php echo $_POST['midashi'];?>" name="midashi">
             <input type="hidden" value="<?php echo $_POST['naiyou'];?>" name="naiyou">
+            <input type="hidden" value="0" name="set_delete_flg">
         </form>
         </div>
+            <?php endif; ?>
         </div>
         <?php else : ?>
         <main>
@@ -119,7 +121,7 @@ if($_SESSION != NULL){
         </header>
         <main>
             <div class="error_messge">
-                <h8>※何らかのエラーが発生しています。<br>
+                <h8>※何らかのエラーが発生しました。<br>
                 最初からやり直してください。</h8>
                 <form action="login.php">
                     <input type="submit" class="submit" value="ログイン画面へ戻る">
@@ -133,8 +135,9 @@ if($_SESSION != NULL){
             </div>
         </main>
         <?php endif; ?>
-    </body>
-    <footer>
+        <footer>
             Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
-    </footer>
+        </footer>
+        <script type="text/javascript" src="regist_check_setting.js"></script>
+    </body>
 </html>

@@ -74,9 +74,10 @@ if($_SESSION != NULL){
             
             <input type="submit" onclick=history.back() value="戻って修正する">
             
-            <form action="delete_complete.php" method="post">
+            <form action="schedule_delete_complete.php" method="post">
                 <input type="submit" name="delete_submit" value="登録する">
                 <input type="hidden" name = "id" value="<?php echo $_POST['id'];?>">
+                <input type="hidden" value="1" name="yotei_delete_flg">
             </form>
             </div>
             </div>

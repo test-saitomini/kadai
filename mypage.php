@@ -78,7 +78,7 @@ $mypage = $stmt -> fetch();
         
         <main>
             <div class = "main-container">
-                会員情報の詳細です。<br>更新する場合や削除する場合は下のボタンを押してください。
+                <?php echo $mypage['name']; ?>さんの会員情報の詳細です。<br>情報を更新またはアカウント削除する場合は下のボタンを押してください。<br>
                 <p><label>名前</label>
                     <?php echo $mypage['name']; ?></p>
             
@@ -97,13 +97,17 @@ $mypage = $stmt -> fetch();
                 <form action="top.php" >
                     <input type="submit" class="submit" value="トップページへ戻る">
                 </form>
+                <form action="password_resetting_confirm.php" method="post">
+                    <input type="hidden" name = "id" value="<?php echo $mypage['id'];?>">
+                    <input type="submit" value="パスワード更新">
+                </form>
                 <form action="account_update.php" method="post">
                     <input type="hidden" name = "id" value="<?php echo $mypage['id'];?>">
-                    <input type="submit" value="更新">
+                    <input type="submit" value="アカウント更新">
                 </form>
                 <form action="account_delete.php" method="post">
                     <input type="hidden" name = "id" value="<?php echo $mypage['id'];?>">
-                    <input type="submit" value="削除">
+                    <input type="submit" value="アカウント削除">
                 </form>
             </div>
         </main>

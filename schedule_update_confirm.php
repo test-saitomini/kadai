@@ -28,7 +28,7 @@ if($_SESSION != NULL){
         <header>
             <ul>
                 <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
-                <li>会員登録</li>
+                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
                 <li><a href = "http://localhost/kadai/login.php">ログイン</a></li>
             </ul>
         </header>
@@ -98,7 +98,7 @@ if($_SESSION != NULL){
         
         <input type="submit" onclick=history.back() value="戻って修正する">
             
-        <form action="update_complete.php" method="post">
+        <form action="schedule_update_complete.php" method="post">
             <input type="submit" name="btn_submit" value="登録する">
             <input type="hidden" name = "id" value="<?php echo $_POST['id'];?>">
             <input type="hidden" value="<?php echo $_POST['day_kaishi'];?>" name="day_kaishi">
@@ -107,25 +107,9 @@ if($_SESSION != NULL){
             <input type="hidden" value="<?php echo $_POST['naiyou'];?>" name="naiyou">
             <input type="hidden" value="<?php echo $_POST['url'];?>" name="url">
         </form>
+        <?php endif; ?>
         </div>
-        </div>
-        <?php else : ?>
-        <main>
-            <div class="error_messge">
-                <h8>※この画面は操作できません。</h8>
-                <form action="login.php">
-                    <input type="submit" class="submit" value="ログイン画面へ戻る">
-                </form>
-                <form action="regist.php">
-                    <input type="submit" class="submit" value="会員登録画面へ戻る">
-                </form>
-                <form action="top.php" >
-                    <input type="submit" class="submit" value="トップページへ戻る">
-                </form>
-            </div>
-            <br>
-        </main>
-        <?php endif; ?> 
+        </div> 
         <?php else : ?>
         <header>
             <ul>

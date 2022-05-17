@@ -25,7 +25,7 @@ try{
 if($_POST != NULL){
     try{
         if($error_flag == 0){
-        $pdo -> exec("insert into setting(day_kaishi,day_owari,midashi,naiyou)values('".$_POST['day_kaishi']."','".$_POST['day_owari']."','".$_POST['midashi']."','".$_POST['naiyou']."');");
+        $pdo -> exec("insert into setting(day_kaishi,day_owari,midashi,naiyou,set_delete_flg)values('".$_POST['day_kaishi']."','".$_POST['day_owari']."','".$_POST['midashi']."','".$_POST['naiyou']."','".$_POST['set_delete_flg']."');");
         }
     }catch(PDOException $Exception){
         $error_message = $Exception->getMessage();

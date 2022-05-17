@@ -77,12 +77,12 @@ if($_SESSION != NULL){
                         </div>
                         <div class="textarea">
                             <label>見出し</label><h7>*</h7>
-                            <input type="text"class="text" size="100"name="midashi"id="midashi"value="<?php if( !empty($_POST['midashi']) ){ echo $_POST['midashi']; } ?>"><br>
+                            <input type="text"class="text" size="10"name="midashi"id="midashi"value="<?php if( !empty($_POST['midashi']) ){ echo $_POST['midashi']; } ?>"><br>
                             <span id = 'midashi_error' class="error_m"></span><br>
                         </div>
                         <div class="textarea">
                             <label>詳細内容</label><h7>*</h7>
-                            <input type="text"class="text" size="500"name="naiyou"id="naiyou"value="<?php if( !empty($_POST['naiyou']) ){ echo $_POST['naiyou']; } ?>"><br>
+                            <input type="text"class="text" size="50"name="naiyou"id="naiyou"value="<?php if( !empty($_POST['naiyou']) ){ echo $_POST['naiyou']; } ?>"><br>
                             <span id = 'naiyou_error' class="error_m"></span><br>
                         </div>
                         <div class="textarea">
