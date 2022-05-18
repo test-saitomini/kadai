@@ -30,7 +30,7 @@ if($_POST != NULL){
     
     try{
         if($delete_error_flag == 0){
-        $stmt = $pdo->query("UPDATE setting SET yotei_delete_flg = $yotei_delete_flg where id = $id");
+        $stmt = $pdo->query("UPDATE schedule SET yotei_delete_flg = $yotei_delete_flg where id = $id");
         }
     }catch(PDOException $Exception){
         $delete_error_message = $Exception->getMessage();

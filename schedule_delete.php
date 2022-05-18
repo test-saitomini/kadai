@@ -102,6 +102,7 @@ $delete = $stmt->fetch();
                     <div class="textarea">
                         <input type="submit" class="btn_submit" id="btn_confirm" value="確認する">
                         <input type="hidden" name = "id" value="<?php echo $id;?>">
+                        <input type="hidden" value="1" name="yotei_delete_flg">
                     </div>
                 </form>
             </div>

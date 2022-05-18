@@ -152,6 +152,6 @@ if($_SESSION != NULL){
         <footer>
             Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
         </footer>
-        <script type="text/javascript" src="regist_check.js"></script>
+        <script type="text/javascript" src="regist_check_setting.js"></script>
     </body>
 </html>

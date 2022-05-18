@@ -54,7 +54,7 @@ function input_check(){
     //パスワード
     //alert(document.getElementById("password_check"));
     //alert(document.getElementById("password_check").checked);
-    //if(document.getElementById("password_check") === null　|| document.getElementById("password_check").checked){
+    if(document.getElementById("password_check") === null　|| document.getElementById("password_check").checked){
         if(password == ""){
 		$("#password_error").html(" パスワードが未入力です。");
 		$("#password").addClass("inp_error");

@@ -14,15 +14,7 @@ if($_SESSION != NULL){
     $login_mail= NULL;
 }
 
-$id = $_POST['id'];
-
-$pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
-            
-$stmt = $pdo -> query('select * from account where id = '.$id);
-$delete = $stmt->fetch();
-
 ?>
-
 <!DOCTYPE HTML>
 <html lang="ja">
     <head>
@@ -77,30 +69,39 @@ $delete = $stmt->fetch();
         <?php endif; ?>
         <main>
             <div class = "main-container">
-                こちらは削除をする画面です。<br>予定を削除してもよろしければ下の確認ボタンを押してください。
-                <form action="account_delete_confirm.php" method="post">
-                    <div class="textarea">
-                        <p><label>名前</label>
-                    <?php echo $delete['name']; ?></p>
+            <h4>この内容に変更します。<br>よろしければ下の登録するボタンを押してください。</h4>
+                <div class = kakunin>
+                    <p>名前
+                        <br>
+                        <?php echo $_POST['name'];?>
+                    </p> 
+                    <p>メールアドレス
+                        <br>
+                        <?php echo $_POST['mail'];?>
+                    </p>
+                    <p>パスワード
+                        <br>
+                        <?php
+                        $password = $_POST['password'];
+                        for($i=0;$i< mb_strlen($password);$i++){
+                            echo '●';}?>
+                    </p>
+                    <p>アカウント権限
+                        <br>
+                        <?php if($_POST['authority']==="0"){
+                            echo'一般';
+                        }else{
+                            echo '管理者'; 
+                        }?>
             
-                        <p><label>メールアドレス</label>
-                    <?php  echo $delete['mail']; ?></p>
-                
-                        <p><label>パスワード</label>
-                    <h7>※セキュリティ上、パスワードを非表示にしています。</h7></p>
-                        
-                        <p><label>アカウント権限</label>
-                    <?php if($delete['authority']==="0"){ 
-                        echo'一般';
-                    }else{ echo '管理者'; }?></p> 
-                    </div>
-                
-                    <div class="textarea">
-                        <input type="submit" class="btn_submit" id="btn_confirm" value="確認する">
-                        <input type="hidden" name = "id" value="<?php echo $id;?>">
-                        <input type="hidden" value="1" name="account_delete_flg">
-                    </div>
-                </form>
+            <input type="submit" onclick=history.back() value="戻って修正する">
+            
+            <form action="account_delete_complete.php" method="post">
+                <input type="submit" name="delete_submit" value="登録する">
+                <input type="hidden" name = "id" value="<?php echo $_POST['id'];?>">
+                <input type="hidden" value="0" name="account_delete_flg">
+            </form>
+            </div>
             </div>
         </main>
         <?php else : ?>

@@ -5,6 +5,9 @@ date_default_timezone_set('Asia/Tokyo');
 
 session_start();
 
+$delete_error_flag = 0;
+$delete_error_message = 'カレンダーから予定を削除する日を選択してください。';
+
 if($_SESSION != NULL){
     $login_account = "1";
     $login_mail = $_SESSION["mail"];
@@ -14,12 +17,29 @@ if($_SESSION != NULL){
     $login_mail= NULL;
 }
 
-$id = $_POST['id'];
+try{
+    $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
+}catch(PDOException $Exception){
+    $delete_error_message = $Exception->getMessage();
+    $delete_error_flag = 1;
+}
 
-$pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
-            
-$stmt = $pdo -> query('select * from account where id = '.$id);
-$delete = $stmt->fetch();
+if($_POST != NULL){
+    $id = $_POST['id'];
+    $account_delete_flg = $_POST['account_delete_flg'];
+    
+    try{
+        if($delete_error_flag == 0){
+        $stmt = $pdo->query("UPDATE account SET account_delete_flg = $account_delete_flg where id = $id");
+        }
+    }catch(PDOException $Exception){
+        $delete_error_message = $Exception->getMessage();
+        $delete_error_flag = 1;
+    }
+}else{
+    $delete_error_flag = 1;
+}
+
 
 ?>
 
@@ -43,7 +63,7 @@ $delete = $stmt->fetch();
             </ul>
         </header>
         <main>
-            <div class="error_messge">
+            <div class="delete_error_messge">
                 <h8>※アカウントをログインしてから行ってください。</h8>
                 <form action="login.php" >
                     <input type="submit" class="submit" value="ログイン画面へ戻る">
@@ -77,30 +97,20 @@ $delete = $stmt->fetch();
         <?php endif; ?>
         <main>
             <div class = "main-container">
-                こちらは削除をする画面です。<br>予定を削除してもよろしければ下の確認ボタンを押してください。
-                <form action="account_delete_confirm.php" method="post">
-                    <div class="textarea">
-                        <p><label>名前</label>
-                    <?php echo $delete['name']; ?></p>
-            
-                        <p><label>メールアドレス</label>
-                    <?php  echo $delete['mail']; ?></p>
-                
-                        <p><label>パスワード</label>
-                    <h7>※セキュリティ上、パスワードを非表示にしています。</h7></p>
-                        
-                        <p><label>アカウント権限</label>
-                    <?php if($delete['authority']==="0"){ 
-                        echo'一般';
-                    }else{ echo '管理者'; }?></p> 
-                    </div>
-                
-                    <div class="textarea">
-                        <input type="submit" class="btn_submit" id="btn_confirm" value="確認する">
-                        <input type="hidden" name = "id" value="<?php echo $id;?>">
-                        <input type="hidden" value="1" name="account_delete_flg">
-                    </div>
-                </form>
+                <div class="back-top">
+                    <?php if($delete_error_flag == 1){
+                        echo '<h7>エラーが発生したためアカウントの削除が登録できません。<br>
+                        '.$delete_error_message.'</h7>';
+                    }else{
+                        echo '<h4>アカウントの削除が完了しました。</h4>';
+                    };?>
+                    <form action="top.php" >
+                        <input type="submit" class="submit" value="トップページへ戻る">
+                    </form>
+                    <form action="login.php">
+                        <input type="submit" class="submit" value="ログイン画面へ戻る">
+                    </form>
+                </div>
             </div>
         </main>
         <?php else : ?>
@@ -112,7 +122,7 @@ $delete = $stmt->fetch();
             </ul>
         </header>
         <main>
-            <div class="error_messge">
+            <div class="delete_error_messge">
                 <h8>※何らかのエラーが発生しました。<br>
                 最初からやり直してください。</h8>
                 <form action="login.php">
