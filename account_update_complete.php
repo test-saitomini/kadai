@@ -40,7 +40,7 @@ try{
         if($password_check == 1){
             $password_update = "password = ?,";
         }
-        $stmt = $pdo->prepare("UPDATE account SET name = ?,mail = ?,".$password_update."authority = ?,account_delete_flag = ?,update_time = ? where id = $id");
+        $stmt = $pdo->prepare("UPDATE account SET name = ?,mail = ?,".$password_update."authority = ?,account_delete_flag = ? where id = $id");
     }
 }catch(PDOException $Exception){
     $update_error_message = $Exception->getMessage();

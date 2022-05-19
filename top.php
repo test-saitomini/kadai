@@ -59,7 +59,6 @@ if($login_mail != NULL){
         
         foreach($yotei as $out){
             $day_out = strtotime((string) $out['day_kaishi']);
-            $day2_out = strtotime((string) $out['day_owari']);
             $yotei_out = (string) $out['yotei'];
             $yotei_delete_flg_out = (int) $out['yotei_delete_flg'];
             if($yotei_delete_flg_out == 0){
@@ -81,6 +80,43 @@ if($login_mail != NULL){
             return $reseryotei;
         }
     }
+    
+    function getyotei_owari(){
+        global $login_mail;
+        $mail = $login_mail;
+        
+        $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
+
+        $yotei = $pdo -> prepare('select * from schedule where mail = ?');
+        $yotei ->execute(array($mail));
+        
+        $reseryotei_owari = array();
+        
+        foreach($yotei as $out){
+            $day_out = strtotime((string) $out['day_kaishi']);
+            $day2_out = strtotime((string) $out['day_owari']);
+            $yotei_out = (string) $out['yotei'];
+            $yotei_delete_flg_out = (int) $out['yotei_delete_flg'];
+            if($yotei_delete_flg_out == 0 && $day_out != $day2_out){
+                $reseryotei_owari[date('Y-m-d', $day2_out)] = $yotei_out;
+            }
+        }
+        ksort($reseryotei_owari);
+        return $reseryotei_owari;
+    }
+    
+    $reseryotei_owari_array = getyotei_owari();
+    
+    function reseryotei_owari($date,$reseryotei_owari_array){
+    //カレンダーの日付と予約された日付を照合する関数
+    
+        if(array_key_exists($date,$reseryotei_owari_array)){
+            //もし"カレンダーの日付"と"予約された日"が一致すれば以下を実行する
+            $reseryotei_owari = $reseryotei_owari_array[$date];
+            return $reseryotei_owari;
+        }
+    }
+    
 }
 
 //GoogleカレンダーAPIから祝日を取得
@@ -195,6 +231,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
     $Holidays_day = display_to_Holidays(date("Y-m-d",strtotime($date)),$Holidays_array);
     if($login_mail != NULL){
         $reseryotei = reseryotei(date("Y-m-d",strtotime($date)),$reseryotei_array);
+        $reseryotei_owari = reseryotei_owari(date("Y-m-d",strtotime($date)),$reseryotei_owari_array);
     }
     
     $tag = '<td class="%value%">'. $day;
@@ -219,6 +256,10 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
             $link2 = '<a href="yotei.php?date=' .$reseryotei. '">' . $reseryotei . '</a>';
             //$week .= '<td>' . $day ."<br/>". $link2;
             $tag .= "<br/>". $link2;
+            }if(reseryotei_owari(date("Y-m-d",strtotime($date)),$reseryotei_owari_array)){
+            $link3 = '<a href="yotei.php?date=' .$reseryotei_owari. '">' . $reseryotei_owari . '</a>';
+            //$week .= '<td>' . $day ."<br/>". $link2;
+            $tag .= "<br/>". $link3;
             }
         }
     $tag = str_replace("%value%", $value, $tag);

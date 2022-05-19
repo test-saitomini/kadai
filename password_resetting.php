@@ -41,7 +41,7 @@ if (isset($_POST['kakunin'])) {
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             
             if(!empty($result['name'])){ 
-                if($result['name'] == $name){
+                if($result['name'] == $name && $result['account_delete_flg'] == 0){
                     $_SESSION['name'] = $result['name'];
                     $_SESSION['authority'] = $result['authority'];
                     $_SESSION['mail'] = $result['mail'];

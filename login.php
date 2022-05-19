@@ -41,12 +41,17 @@ if (isset($_POST['login'])) {
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             
             if(!empty($result['password'])){
-                if (password_verify($password, $result['password']) && $result['account_delete_flg'] == 0) {    
-                    $_SESSION['name'] = $result['name'];
-                    $_SESSION['authority'] = $result['authority'];
-                    $_SESSION['mail'] = $result['mail'];
-                    header('Location: top.php');
-                    exit();
+                if (password_verify($password, $result['password'])) {
+                    if($result['account_delete_flg'] == 0){
+                        $_SESSION['name'] = $result['name'];
+                        $_SESSION['authority'] = $result['authority'];
+                        $_SESSION['mail'] = $result['mail'];
+                        header('Location: top.php');
+                        exit();
+                    }else{
+                        $login_error['login'] = 'アカウントはすでに削除されています。';
+                    }
+                    
                 } else {
                     $login_error['login'] = 'メールアドレスまたはパスワードに誤りがあります。';
                 }
