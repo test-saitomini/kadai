@@ -8,9 +8,12 @@ $update_error_message = 'アカウント一覧画面から更新するデータ�
 
 session_start();
 if($_SESSION != NULL){
+    $login_account = "1";
+    $login_mail = $_SESSION["mail"];
     $login_authority = $_SESSION["authority"];
-}else{
-    $login_authority = "NULL";
+    }else{
+    $login_account = "0";
+    $login_mail= NULL;
 }
 
 if($_POST != NULL){
@@ -19,12 +22,10 @@ if($_POST != NULL){
     $mail = $_POST['mail'];
     $password_check = $_POST['password_check'];
     $password = $_POST['password'];
-    $authority = $_POST['authority'];
-    $account_delete_flag = $_POST['account_delete_flag'];
+    $account_delete_flg = $_POST['account_delete_flg'];
 }else{
     $update_error_flag = 1;
 }
-
 
 
 try{
@@ -40,7 +41,7 @@ try{
         if($password_check == 1){
             $password_update = "password = ?,";
         }
-        $stmt = $pdo->prepare("UPDATE account SET name = ?,mail = ?,".$password_update."authority = ?,account_delete_flag = ? where id = $id");
+        $stmt = $pdo->prepare("UPDATE account SET name = ?,mail = ?,".$password_update."account_delete_flg = ?,update_time = ? where id = $id");
     }
 }catch(PDOException $Exception){
     $update_error_message = $Exception->getMessage();
@@ -56,8 +57,7 @@ try{
             $data = array_merge($data,array($password));// 配列に追加したいけど、正しい書き方ではない
         }
 
-        $data =  array_merge($data,array($$authority,
-                      $delete_flag));// 更に追加してあげたいけど、、、
+        $data =  array_merge($data,array($account_delete_flg,date('Y-m-d H:i:s')));// 更に追加してあげたいけど、、、
 
         $stmt->execute($data);
     }

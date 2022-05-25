@@ -82,23 +82,28 @@ if($_SESSION != NULL){
                     <p>パスワード
                         <br>
                         <?php
-                        $password = $_POST['password'];
-                        for($i=0;$i< mb_strlen($password);$i++){
-                            echo '●';}?>
-                    </p>
-                    <p>アカウント権限
-                        <br>
-                        <?php if($_POST['authority']==="0"){
-                            echo'一般';
+            
+                        if(isset($_POST['password_check'])){
+                            $password = $_POST['password'];
+                            for($i=0;$i< mb_strlen($password);$i++){
+                                echo '●';}
+                            $_POST['password_check'] = 1;
                         }else{
-                            echo '管理者'; 
-                        }?>
+                            echo '<h7>パスワードは変更されません。</h7>';
+                            $_POST['password_check'] = 0;
+                        }
+                        ?>
+                    </p>
             
             <input type="submit" onclick=history.back() value="戻って修正する">
             
-            <form action="account_delete_complete.php" method="post">
-                <input type="submit" name="delete_submit" value="登録する">
+            <form action="account_update_complete.php" method="post">
+                <input type="submit" name="btn_submit" value="登録する">
                 <input type="hidden" name = "id" value="<?php echo $_POST['id'];?>">
+                <input type="hidden" value="<?php echo $_POST['name'];?>" name="name">
+                <input type="hidden" value="<?php echo $_POST['mail'];?>" name="mail">
+                <input type="hidden" value="<?php echo $_POST['password_check'];?>" name="password_check">
+                <input type="hidden" value="<?php echo $_POST['password'];?>" name="password">
                 <input type="hidden" value="0" name="account_delete_flg">
             </form>
             </div>

@@ -97,10 +97,6 @@ $mypage = $stmt -> fetch();
                 <form action="top.php" >
                     <input type="submit" class="submit" value="トップページへ戻る">
                 </form>
-                <form action="password_resetting_confirm.php" method="post">
-                    <input type="hidden" name = "id" value="<?php echo $mypage['id'];?>">
-                    <input type="submit" value="パスワード更新">
-                </form>
                 <form action="account_update.php" method="post">
                     <input type="hidden" name = "id" value="<?php echo $mypage['id'];?>">
                     <input type="submit" value="アカウント更新">

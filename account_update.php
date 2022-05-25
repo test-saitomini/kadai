@@ -93,19 +93,15 @@ $update = $stmt->fetch();
                             <input type = "checkbox" name = "password_check" id = "password_check">※パスワードを変更する場合は左のチェックボックスにチェックをしてください。<br>
                         <!--変更したいのと変更したくない場合どのようにすべきか -->
                         <div class="password_area">
-                        <input type="text"class="text" size="10"
+                        <input type="password"class="text" size="10"
                                name="password"id="password"
                                value="<?php if( !empty($_POST['password']) ){ echo $_POST['password'];} ?>">
-                        </div>
-                        <span id = 'password_error' class="error_m"></span>
-                        <br>
-                        </div>
-                        <div class="textarea">
-                        <label>アカウント権限</label>
-                        <select class="dropdown" name="authority">
-                            <option value='0'<?php if((int)$update['authority']=="0") echo "selected"; ?>>一般</option>
-                            <option value='1'<?php if((int)$update['authority']=="1") echo "selected"; ?>>管理者</option>
-                        </select>
+                            <span id = 'password_error' class="error_m"></span>
+                            <br>
+                            <label>もう一度パスワードを入力してください。</label><h7>*</h7>
+                            <input type="password"class="text" size="10"name="password_re"id="password_re"value="<?php if( !empty($_POST['password_re']) ){ echo $_POST['password_re']; } ?>"><br>
+                            <span id = 'password_re_error' class="error_m"></span><br>
+                            </div>
                     </div>
                 
                         <div class="textarea">

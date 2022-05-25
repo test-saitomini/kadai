@@ -22,10 +22,13 @@ try{
     $error_flag = 1;
 }
 
-if($_POST != NULL){
+if($_POST != NULL){    
     try{
         if($error_flag == 0){
-        $pdo -> exec("insert into account(name,mail,password,authority)values('".$_POST['name']."','".$_POST['mail']."','".password_hash($_POST['password'],PASSWORD_DEFAULT)."','".$_POST['authority']."');");
+            $date = new DateTime('2000-01-01');
+            //$date->format('Y-m-d H:i:s');
+            
+            $pdo -> exec("insert into account(name,mail,password,authority,account_delete_flg,create_time,account_delete_time)values('".$_POST['name']."','".$_POST['mail']."','".password_hash($_POST['password'],PASSWORD_DEFAULT)."','".$_POST['authority']."','".$_POST['account_delete_flg']."','".date('Y-m-d H:i:s')."','".$date->format('Y-m-d H:i:s')."');");
         }
     }catch(PDOException $Exception){
         $error_message = $Exception->getMessage();

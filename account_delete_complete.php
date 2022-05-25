@@ -6,7 +6,7 @@ date_default_timezone_set('Asia/Tokyo');
 session_start();
 
 $delete_error_flag = 0;
-$delete_error_message = 'カレンダーから予定を削除する日を選択してください。';
+$delete_error_message = '削除するアカウントでログインをしてください。';
 
 if($_SESSION != NULL){
     $login_account = "1";
@@ -30,9 +30,21 @@ if($_POST != NULL){
     
     try{
         if($delete_error_flag == 0){
-        $stmt = $pdo->query("UPDATE account SET account_delete_flg = $account_delete_flg where id = $id");
+        //$stmt = $pdo->query("UPDATE account SET account_delete_flg = ?,update_time = ? where id = $id");
+            $stmt = $pdo->prepare("UPDATE account SET account_delete_flg = ?,account_delete_time = ? where id = $id");
         }
     }catch(PDOException $Exception){
+        $delete_error_message = $Exception->getMessage();
+        $delete_error_flag = 1;
+    }
+    
+    try{
+        if($delete_error_flag == 0){
+            //$stmt ->execute(array($account_delete_flg,date('Y-m-d H:i:s')));
+            $stmt ->execute(array($account_delete_flg,date('Y-m-d H:i:s')));
+        }
+       
+        }catch(PDOException $Exception){
         $delete_error_message = $Exception->getMessage();
         $delete_error_flag = 1;
     }

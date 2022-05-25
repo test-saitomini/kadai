@@ -54,13 +54,6 @@ if($_SESSION != NULL){
             for($i=0;$i< mb_strlen($password);$i++){
             echo '●';}?>
         </p>
-        <p>アカウント権限
-        <br>
-        <?php if($_POST['authority']==="0"){
-            echo'一般';
-        }else{
-            echo '管理者'; 
-        }?>
         
         <input type="submit" onclick=history.back() value="戻って修正する">
             
@@ -69,6 +62,8 @@ if($_SESSION != NULL){
             <input type="hidden" value="<?php echo $_POST['name'];?>" name="name">
             <input type="hidden" value="<?php echo $_POST['mail'];?>" name="mail">
             <input type="hidden" value="<?php echo $_POST['password'];?>" name="password">
+            <input type="hidden" value="0" name="authority">
+            <input type="hidden" value="0" name="account_delete_flg">
         </form>
         </div>
         </div>

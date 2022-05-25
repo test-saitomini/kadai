@@ -52,7 +52,7 @@ if($login_mail != NULL){
         
         $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
 
-        $yotei = $pdo -> prepare('select * from schedule where mail = ?');
+        $yotei = $pdo -> prepare('select * from schedule where mail = ? AND day_kaishi = day_owari AND yotei_delete_flg = 0');
         $yotei ->execute(array($mail));
         
         $reseryotei = array();
@@ -60,10 +60,7 @@ if($login_mail != NULL){
         foreach($yotei as $out){
             $day_out = strtotime((string) $out['day_kaishi']);
             $yotei_out = (string) $out['yotei'];
-            $yotei_delete_flg_out = (int) $out['yotei_delete_flg'];
-            if($yotei_delete_flg_out == 0){
-                $reseryotei[date('Y-m-d', $day_out)] = $yotei_out;
-            }
+            $reseryotei[date('Y-m-d', $day_out)] = $yotei_out;
         }
         ksort($reseryotei);
         return $reseryotei;
@@ -87,7 +84,7 @@ if($login_mail != NULL){
         
         $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
 
-        $yotei = $pdo -> prepare('select * from schedule where mail = ?');
+        $yotei = $pdo -> prepare('select * from schedule where mail = ? AND day_kaishi != day_owari AND yotei_delete_flg = 0');
         $yotei ->execute(array($mail));
         
         $reseryotei_owari = array();
@@ -96,9 +93,8 @@ if($login_mail != NULL){
             $day_out = strtotime((string) $out['day_kaishi']);
             $day2_out = strtotime((string) $out['day_owari']);
             $yotei_out = (string) $out['yotei'];
-            $yotei_delete_flg_out = (int) $out['yotei_delete_flg'];
-            if($yotei_delete_flg_out == 0 && $day_out != $day2_out){
-                $reseryotei_owari[date('Y-m-d', $day2_out)] = $yotei_out;
+            for($now = strtotime("+1 day",$day_out);$now <= $day2_out; $now = strtotime("+1 day",$now)){
+                $reseryotei_owari[date('Y-m-d', $now)] = $yotei_out;
             }
         }
         ksort($reseryotei_owari);
@@ -307,7 +303,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         <main>
             <div class = "main-container">
                 <div class = "left">
-                    <h3>東京ディズニーリゾート</h3>
+                    <h3>東京ディズニーリゾートカレンダー</h3>
                     <br>
                     ～情報～<br>
                     現在のディズニーリゾートでの閑散期は
@@ -316,6 +312,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
                     12月や2月後半も混雑しています。<br>
                     日にちによってチケットの販売価格が異なりますので、
                     下のリンクからチケットの金額等ご確認ください。
+                    <br>
                     <br>
                     <p>リンク</p>
                     <a href = "https://www.tokyodisneyresort.jp/top.html" target="_blank" rel="noopener">公式サイトはコチラ</a>
@@ -368,7 +365,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         <main>
             <div class = "main-container">
                 <div class = "left">
-                    <h3>東京ディズニーリゾート</h3>
+                    <h3>東京ディズニーリゾートカレンダー</h3>
                     <br>
                     <h2>～情報～</h2><br>
                     現在のディズニーリゾートでの閑散期は
@@ -377,6 +374,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
                     12月や2月後半も混雑しています。<br>
                     日にちによってチケットの販売価格が異なりますので、
                     下のリンクからチケットの金額等ご確認ください。
+                    <br>
                     <br>
                     <h2>リンク</h2>
                     <a href = "https://www.tokyodisneyresort.jp/top.html" target="_blank" rel="noopener">公式サイトはコチラ</a>
