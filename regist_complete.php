@@ -25,11 +25,28 @@ try{
 if($_POST != NULL){    
     try{
         if($error_flag == 0){
-            $date = new DateTime('2000-01-01');
+            //$date = new DateTime('2000-01-01');
             //$date->format('Y-m-d H:i:s');
             
-            $pdo -> exec("insert into account(name,mail,password,authority,account_delete_flg,create_time,account_delete_time)values('".$_POST['name']."','".$_POST['mail']."','".password_hash($_POST['password'],PASSWORD_DEFAULT)."','".$_POST['authority']."','".$_POST['account_delete_flg']."','".date('Y-m-d H:i:s')."','".$date->format('Y-m-d H:i:s')."');");
+            $date = $_POST['mail'];
+            
+            $stmt = $pdo -> prepare("select * from account where mail = ? AND account_delete_time IS NULL");
+            $stmt -> execute(array($date));
+            $account = $stmt -> fetch(PDO::FETCH_ASSOC);
+            
+            if(!empty($account['mail'])){
+                $error_flag = 1;
+                $error_message = 'アカウントはすでに登録されています。';
+            }
         }
+    }catch(PDOException $Exception){
+        $error_message = $Exception->getMessage();
+        $error_flag = 1;
+    }
+     try{
+         if($error_flag == 0){
+             $pdo -> exec("insert into account(name,mail,password,authority,account_delete_flg,create_time)values('".$_POST['name']."','".$_POST['mail']."','".password_hash($_POST['password'],PASSWORD_DEFAULT)."','".$_POST['authority']."','".$_POST['account_delete_flg']."','".date('Y-m-d H:i:s')."');");
+             }       
     }catch(PDOException $Exception){
         $error_message = $Exception->getMessage();
         $error_flag = 1;

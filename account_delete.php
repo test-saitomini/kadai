@@ -77,7 +77,7 @@ $delete = $stmt->fetch();
         <?php endif; ?>
         <main>
             <div class = "main-container">
-                こちらは削除をする画面です。<br>予定を削除してもよろしければ下の確認ボタンを押してください。
+                こちらは削除をする画面です。<br>アカウントを削除してもよろしければ下の確認ボタンを押してください。
                 <form action="account_delete_confirm.php" method="post">
                     <div class="textarea">
                         <p><label>名前</label>
@@ -89,10 +89,6 @@ $delete = $stmt->fetch();
                         <p><label>パスワード</label>
                     <h7>※セキュリティ上、パスワードを非表示にしています。</h7></p>
                         
-                        <p><label>アカウント権限</label>
-                    <?php if($delete['authority']==="0"){ 
-                        echo'一般';
-                    }else{ echo '管理者'; }?></p> 
                     </div>
                 
                     <div class="textarea">

@@ -88,11 +88,6 @@ $mypage = $stmt -> fetch();
                 <p><label>パスワード</label>
                     <h7>※セキュリティ上、パスワードを非表示にしています。</h7></p>
         
-                <p><label>アカウント権限</label>
-                    <?php if($mypage['authority']==="0"){ 
-                        echo'一般';
-                    }else{ echo '管理者'; }?></p> 
-                    
                 
                 <form action="top.php" >
                     <input type="submit" class="submit" value="トップページへ戻る">

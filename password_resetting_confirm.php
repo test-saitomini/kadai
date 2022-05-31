@@ -29,7 +29,7 @@ $restting = $stmt -> fetch();
 
 <head>
     <meta charset="utf-8">
-    <title>パスワード再設定画面</title>
+    <title>TORカレンダー_ポートフォリオ</title>
     <link rel="stylesheet"type="text/css" href="regist.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
@@ -46,7 +46,7 @@ $restting = $stmt -> fetch();
         
         <main>
             <div class = "main-container">
-            <h1>パスワード再設定確認画面</h1>
+            <h1>パスワード再設定</h1>
                 新しいパスワードを設定してください。
             <div class="form">
             <form id="kakuninForm" name="kakuninForm" action="password_resetting_complete.php" method="POST">

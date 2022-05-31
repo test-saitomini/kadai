@@ -52,6 +52,9 @@ if($_POST != NULL){
     $delete_error_flag = 1;
 }
 
+session_start();
+$_SESSION = array();
+session_destroy();
 
 ?>
 

@@ -53,7 +53,7 @@ session_destroy();
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title>パスワード再設定完了画面</title>
+        <title>TORカレンダー_ポートフォリオ</title>
         <link rel="stylesheet"type="text/css" href="regist.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
@@ -67,6 +67,7 @@ session_destroy();
         </header>
     <body>
         <div class = "main-container">
+            <h1>パスワード再設定完了</h1>
         <div class="back-top">
             <?php if($update_error_flag == 1){
                 echo '<h7>エラーが発生したためパスワード再設定ができません。<br>

@@ -196,7 +196,7 @@ if($timestamp === false){//エラー対策として形式チェックを追加
  
 //今月の日付　フォーマット　例）2020-10-2
 $today = date('Y-m-j');
- 
+
 //カレンダーのタイトルを作成　例）2020年10月
 $html_title = date('Y年n月', $timestamp);//date(表示する内容,基準)
  
@@ -217,6 +217,7 @@ $week = '';
  
 //第１週目：空のセルを追加
 //str_repeat(文字列, 反復回数)
+//$week .= str_repeat('<td></td>', $youbi);
 $week .= str_repeat('<td></td>', $youbi);
  
 for($day = 1; $day <= $day_count; $day++, $youbi++){
@@ -269,6 +270,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         //土曜日を取得
         
         if($day == $day_count){//月の最終日、空セルを追加
+            //$week .= str_repeat('<td></td>', 6 - ($youbi % 7));
             $week .= str_repeat('<td></td>', 6 - ($youbi % 7));
         }
         

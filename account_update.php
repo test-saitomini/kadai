@@ -98,7 +98,7 @@ $update = $stmt->fetch();
                                value="<?php if( !empty($_POST['password']) ){ echo $_POST['password'];} ?>">
                             <span id = 'password_error' class="error_m"></span>
                             <br>
-                            <label>もう一度パスワードを入力してください。</label><h7>*</h7>
+                            <label>確認のため、もう一度パスワードを入力してください。</label><h7>*</h7>
                             <input type="password"class="text" size="10"name="password_re"id="password_re"value="<?php if( !empty($_POST['password_re']) ){ echo $_POST['password_re']; } ?>"><br>
                             <span id = 'password_re_error' class="error_m"></span><br>
                             </div>
