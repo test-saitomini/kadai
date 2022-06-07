@@ -30,13 +30,15 @@ if($_POST != NULL){
             
             $date = $_POST['mail'];
             
-            $stmt = $pdo -> prepare("select * from account where mail = ? AND account_delete_time IS NULL");
+            $stmt = $pdo -> prepare("select * from account where mail = ? AND account_delete_flg = 0 AND account_delete_time IS NULL");
             $stmt -> execute(array($date));
             $account = $stmt -> fetch(PDO::FETCH_ASSOC);
             
             if(!empty($account['mail'])){
                 $error_flag = 1;
                 $error_message = 'アカウントはすでに登録されています。';
+            }else{
+                $error_flag = 0;
             }
         }
     }catch(PDOException $Exception){
@@ -61,7 +63,7 @@ if($_POST != NULL){
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title>アカウント登録完了画面</title>
+        <title>TORカレンダー_ポートフォリオ</title>
         <link rel="stylesheet"type="text/css" href="regist.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">

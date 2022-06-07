@@ -7,7 +7,7 @@ session_destroy();
 <!DOCTYPE html>
 <html>
     <head>
-        <title>ログアウト</title>
+        <title>TORカレンダー_ポートフォリオ</title>
         <link rel="stylesheet"type="text/css"href="regist.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">

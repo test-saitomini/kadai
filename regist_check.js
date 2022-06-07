@@ -70,7 +70,14 @@ function input_check(){
            $("#password_error").html(" パスワードは半角英数字で入力してください。");
            $("#password").addClass("inp_error");
            result = false;
-       }else if(password !== password_re){
+       }
+    }
+    if(document.getElementById("password_check") === null　|| document.getElementById("password_check").checked){
+        if(password_re == ""){
+            $("#password_re_error").html(" パスワードが未入力です。");
+            $("#password_re").addClass("inp_error");
+            result = false;
+        }else if(password !== password_re){
            $("#password_re_error").html(" パスワードが一致しません。");
            $("#password_re").addClass("inp_error");
            result = false;

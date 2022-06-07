@@ -27,14 +27,15 @@ if($_SESSION != NULL){
     </head>
     <body>
         <?php 
-        $date = $_GET['date'];
+        
+        $id = $_GET['id'];
         //$day = new DateTime($date);
         //var_dump($day);
         
         $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
         
-        $stmt = $pdo -> prepare("select * from schedule where yotei = ? AND yotei_delete_flg = 0");
-        $stmt -> execute(array($date));
+        $stmt = $pdo -> prepare("select * from schedule where id = ? AND yotei_delete_flg = 0");
+        $stmt -> execute(array($id));
         
         $yotei = $stmt -> fetch();
         ?>

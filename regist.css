@@ -129,10 +129,15 @@ h4{
 }
 /*regist.phpアカウント登録画面装飾*/
 .textarea{
+    
     font-size: 15px;
 	font-weight: normal;
     padding-left: 10px;
-    background-color: #e0ffff;
+    /*background-color: ;背景色を何色にするか*/
+}
+.box{
+    width: 500px;
+    background-color: #f0f8ff;
 }
 
 /*login.phpでのエラーの際の文言*/

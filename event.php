@@ -27,13 +27,13 @@ if($_SESSION != NULL){
     </head>
     <body>
         <?php 
-        $date = $_GET['date'];
+        $id = $_GET['id'];
         //$day = new DateTime($date);
         $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
             
         //$stmt = $pdo -> query("select * from setting where day_kaishi = DATE(".$day.",'%Y-%m-%d')");
-        $stmt = $pdo -> prepare("select * from setting where midashi = ? AND set_delete_flg = 0");
-        $stmt -> execute(array($date));
+        $stmt = $pdo -> prepare("select * from setting where id = ? AND set_delete_flg = 0");
+        $stmt -> execute(array($id));
         
         $set = $stmt -> fetch();
         ?>

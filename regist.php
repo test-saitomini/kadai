@@ -18,7 +18,7 @@ if($_SESSION != NULL){
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title>新規会員登録画面</title>
+        <title>TORカレンダー_ポートフォリオ</title>
         <link rel="stylesheet"type="text/css"href="regist.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
@@ -39,22 +39,23 @@ if($_SESSION != NULL){
                 <h1>会員登録入力フォーム</h1>
                 会員登録を行います。<br>必要事項を入力し、間違えがなければ「確認」ボタンを押下してください。<br>
                 <h7>*</h7>は必須項目になっています。
+                <br>
                 <div class = "box">
                     <div class="textarea">
-                        <label>名前</label><h7>*</h7>
+                        <label>名前</label><h7>*</h7><br>
                         <input type="text"class="text"size="10"name="name"id="name"value="<?php if( !empty($_POST['name']) ){ echo $_POST['name']; } ?>"><br>
                         <span id = 'name_error' class="error_m"></span><br>
                     </div>
                     <div class="textarea">
-                        <label>メールアドレス</label><h7>*</h7>
-                        <input type="text"class="text" size="10"name="mail"id="mail"value="<?php if( !empty($_POST['mail']) ){ echo $_POST['mail']; } ?>"><br>
+                        <label>メールアドレス</label><h7>*</h7><br>
+                        <input type="text"class="text" size="15"name="mail"id="mail"value="<?php if( !empty($_POST['mail']) ){ echo $_POST['mail']; } ?>"><br>
                         <span id = 'mail_error' class="error_m"></span><br>
                     </div>
                     <div class="textarea">
-                        <label>パスワード</label><h7>*</h7>
+                        <label>パスワード</label><h7>*</h7><br>
                         <input type="password"class="text" size="10"name="password"id="password"value="<?php if( !empty($_POST['password']) ){ echo $_POST['password']; } ?>"><br>
                         <span id = 'password_error' class="error_m"></span><br>
-                        <label>もう一度パスワードを入力してください。</label><h7>*</h7>
+                        <label>もう一度パスワードを入力してください。</label><h7>*</h7><br>
                         <input type="password"class="text" size="10"name="password_re"id="password_re"value="<?php if( !empty($_POST['password_re']) ){ echo $_POST['password_re']; } ?>"><br>
                         <span id = 'password_re_error' class="error_m"></span><br>
                     </div>

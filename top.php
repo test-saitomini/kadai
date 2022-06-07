@@ -17,16 +17,12 @@ if($_SESSION != NULL){
 function getreservation(){
     $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
 
-    $schedule = $pdo -> query('select * from setting');
+    $schedule = $pdo -> query('select * from setting where set_delete_flg = 0');
     $reservation_midashi = array();
 
     foreach($schedule as $out){
         $day_out = strtotime((string) $out['day_kaishi']);
-        $midashi_out = (string) $out['midashi'];
-        $set_delete_flg_out = (int) $out['set_delete_flg'];
-        if($set_delete_flg_out == 0){
-            $reservation_midashi[date('Y-m-d', $day_out)] = $midashi_out;
-        }
+        $reservation_midashi[date('Y-m-d', $day_out)] = $out;
     }
     ksort($reservation_midashi);
     return $reservation_midashi;
@@ -58,9 +54,10 @@ if($login_mail != NULL){
         $reseryotei = array();
         
         foreach($yotei as $out){
+            //$id_out = (string)$out['id'];
             $day_out = strtotime((string) $out['day_kaishi']);
-            $yotei_out = (string) $out['yotei'];
-            $reseryotei[date('Y-m-d', $day_out)] = $yotei_out;
+            //$yotei_out = (string) $out['yotei'];
+            $reseryotei[date('Y-m-d', $day_out)] = $out;
         }
         ksort($reseryotei);
         return $reseryotei;
@@ -92,9 +89,9 @@ if($login_mail != NULL){
         foreach($yotei as $out){
             $day_out = strtotime((string) $out['day_kaishi']);
             $day2_out = strtotime((string) $out['day_owari']);
-            $yotei_out = (string) $out['yotei'];
+            //$yotei_out = (string) $out['yotei'];
             for($now = strtotime("+1 day",$day_out);$now <= $day2_out; $now = strtotime("+1 day",$now)){
-                $reseryotei_owari[date('Y-m-d', $now)] = $yotei_out;
+                $reseryotei_owari[date('Y-m-d', $now)] = $out;
             }
         }
         ksort($reseryotei_owari);
@@ -245,16 +242,16 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
             $tag .= $Holidays_day;
             $value .="holiday ";
         }if(reservation(date("Y-m-d",strtotime($date)),$reservation_array)){
-            $link1 = '<a href="event.php?date=' .$reservation. '">' . $reservation . '</a>';
+            $link1 = '<a href="event.php?id=' .$reservation['id']. '">' . $reservation['midashi'] . '</a>';
             //$week .= '<td>' . $day ."<br/>". $link1;
             $tag .="<br/>". $link1;
         }if($login_mail != NULL){
             if(reseryotei(date("Y-m-d",strtotime($date)),$reseryotei_array)){
-            $link2 = '<a href="yotei.php?date=' .$reseryotei. '">' . $reseryotei . '</a>';
+            $link2 = '<a href="yotei.php?id=' .$reseryotei['id']. '">' . $reseryotei['yotei'] . '</a>';
             //$week .= '<td>' . $day ."<br/>". $link2;
             $tag .= "<br/>". $link2;
             }if(reseryotei_owari(date("Y-m-d",strtotime($date)),$reseryotei_owari_array)){
-            $link3 = '<a href="yotei.php?date=' .$reseryotei_owari. '">' . $reseryotei_owari . '</a>';
+            $link3 = '<a href="yotei.php?id=' .$reseryotei_owari['id']. '">' . $reseryotei_owari['yotei'] . '</a>';
             //$week .= '<td>' . $day ."<br/>". $link2;
             $tag .= "<br/>". $link3;
             }
@@ -379,9 +376,9 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
                     <br>
                     <br>
                     <h2>リンク</h2>
-                    <a href = "https://www.tokyodisneyresort.jp/top.html" target="_blank" rel="noopener">公式サイトはコチラ</a>
-                    <br>
-                    <h3>予定入力する場合は<br><a href = "http://localhost/kadai/schedule.php">コチラ</a></h3>
+                    公式サイトは<a href = "https://www.tokyodisneyresort.jp/top.html" target="_blank" rel="noopener">コチラ</a>
+                    <br><br>
+                    <p>予定入力する場合は<a href = "http://localhost/kadai/schedule.php">コチラ</a></p>
                 </div>
                 <div class = "right">
                     <div class="container">
