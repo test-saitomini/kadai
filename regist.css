@@ -1,19 +1,19 @@
 header{
-    position: fixed;
-    top:0;
-    left: 0;
+    position: absolute;
+    top:0px;
+    left: 0px;
+    height: 60px;
     width: 100%;
 }
 
 header ul{float: left;
     width: 100%;
-    display: flex;
     line-height: 40px;
     background-color: black;
 }
 
 header ul li{
-    float:left;
+    float: left;
     list-style:none;
     color: white;
     padding-right: 20px;
@@ -21,18 +21,22 @@ header ul li{
 }
 
 header li:last-child{
-    margin-left: auto;
+    float:right;
 }
 
-footer{float:left;
-    position: fixed; 
-    bottom: 0;
-    left: 0;
+footer{clear: left;
     width: 100%;
+    position: absolute;
+    left: 0px;
+    bottom: 0;
     color: white;
     background-color: black;
     text-align: center;
     line-height: 60px;
+}
+
+main{
+    clear: both;
 }
 
 .main-container{width:95%;
@@ -54,17 +58,16 @@ table.table-bordered{
 .left{float: left;
     font-size: 15px;
     width: 25%;
-    height: 50%;
+    height: 100%;
 }
 
 .right{
     float: left;
     width: 50%;
-    height: auto;
+    height: 100%;
 }
 
 .container{
-   /* font-family: 'Noto Sans', sans-serif;　--GoogleFontsを使用--*/
     width: 700px;
 }
 h3{
@@ -135,6 +138,14 @@ h4{
     padding-left: 10px;
     /*background-color: ;背景色を何色にするか*/
 }
+.textarea_box{
+    font-size: 15px;
+	font-weight: normal;
+    padding-left: 10px;
+    
+    /*background-color: ;背景色を何色にするか*/
+}
+
 .box{
     width: 500px;
     background-color: #f0f8ff;

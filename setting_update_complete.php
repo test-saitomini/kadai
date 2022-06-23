@@ -119,7 +119,7 @@ if($_POST != NULL){
     </header>
     <main>
         <div class="update_error_messge">
-            <h8>※アカウントログインしてから操作を行ってください。</h8>
+            <h8>※アカウントログインしてから行ってください。</h8>
             <form action="login.php" >
                 <input type="submit" class="submit" value="ログイン画面へ戻る">
             </form>

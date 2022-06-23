@@ -90,9 +90,9 @@ if($_SESSION != NULL){
                             <input type="text"class="text" size="10"name="yotei"id="yotei"value="<?php if( !empty($_POST['yotei']) ){ echo $_POST['yotei']; } ?>"><br>
                             <span id = 'yotei_error' class="error_m"></span><br>
                         </div>
-                        <div class="textarea">
+                        <div class="textarea_box">
                             <label>内容</label>
-                            <input type="text"class="text" size="10"name="naiyou"id="naiyou"value="<?php if( !empty($_POST['naiyou']) ){ echo $_POST['naiyou']; } ?>"><br>
+                            <input type="textarea"class="text" size="50"name="naiyou"id="naiyou"value="<?php if( !empty($_POST['naiyou']) ){ echo $_POST['naiyou']; } ?>"><br>
                             <span id = 'naiyou_error' class="error_m"></span><br>
                         </div>
                         <div class="textarea">

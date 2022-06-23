@@ -291,6 +291,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
     <body>
+        <div class="home">
         <?php if($login_account == 0) : ?>
         <header>
             <ul>
@@ -433,5 +434,6 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
             Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
         </footer>
         <script type="text/javascript" src="regist_check.js"></script>
+        </div>
     </body>
 </html>

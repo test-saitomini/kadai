@@ -14,13 +14,6 @@ if($_SESSION != NULL){
     $login_mail= NULL;
 }
 
-$id = $_POST['id'];
-
-$pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
-            
-$stmt = $pdo -> query('select * from account where id = '.$id);
-$delete = $stmt->fetch();
-
 ?>
 
 <!DOCTYPE HTML>
@@ -75,6 +68,16 @@ $delete = $stmt->fetch();
             </ul>
         </header>
         <?php endif; ?>
+        <?php 
+        $id = $_POST['id'];
+
+        $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
+            
+        $stmt = $pdo -> query('select * from account where id = '.$id);
+        $delete = $stmt->fetch();
+        
+        ?>
+        
         <main>
             <div class = "main-container">
                 こちらは削除をする画面です。<br>アカウントを削除してもよろしければ下の確認ボタンを押してください。

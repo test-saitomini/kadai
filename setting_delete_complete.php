@@ -63,7 +63,7 @@ if($_POST != NULL){
             </ul>
         </header>
         <main>
-            <div class="delete_error_messge">
+            <div class="error_messge">
                 <h8>※アカウントをログインしてから行ってください。</h8>
                 <form action="login.php" >
                     <input type="submit" class="submit" value="ログイン画面へ戻る">

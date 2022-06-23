@@ -14,13 +14,6 @@ if($_SESSION != NULL){
     $login_mail= NULL;
 }
 
-$id = $_POST['id'];
-
-$pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
-            
-$stmt = $pdo -> query('select * from account where id = '.$id);
-$update = $stmt->fetch();
-
 ?>
 
 <!DOCTYPE HTML>
@@ -75,6 +68,15 @@ $update = $stmt->fetch();
             </ul>
         </header>
         <?php endif; ?>
+        <?php 
+        $id = $_POST['id'];
+
+        $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
+            
+        $stmt = $pdo -> query('select * from account where id = '.$id);
+        $update = $stmt->fetch();
+        ?>
+        
         <main>
             <div class = "main-container">
                 <form action="account_update_confirm.php" method="post">
