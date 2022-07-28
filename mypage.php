@@ -29,8 +29,6 @@ $mypage = $stmt -> fetch();
         <meta charset="UTF-8">
         <title>TORカレンダー_ポートフォリオ</title>
         <link rel="stylesheet"type="text/css"href="regist.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
     <body>
@@ -45,12 +43,20 @@ $mypage = $stmt -> fetch();
         <main>
             <div class="error_messge">
                 <h8>※アカウントをログインしてから行ってください。</h8>
-                <form action="login.php" >
-                    <input type="submit" class="submit" value="ログイン画面へ戻る">
-                </form>
-                <form action="top.php" >
-                    <input type="submit" class="submit" value="トップページへ戻る">
-                </form>
+                <table class="button">
+                        <tr>
+                            <td>
+                                <form action="top.php" >
+                                    <input type="submit" class="submit" value="トップページへ戻る">
+                                </form>
+                            </td>
+                            <td>
+                                <form action="login.php">
+                                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                                </form>
+                            </td>
+                        </tr>
+                </table>
             </div>
         </main>
         
@@ -79,27 +85,41 @@ $mypage = $stmt -> fetch();
         <main>
             <div class = "main-container">
                 <?php echo $mypage['name']; ?>さんの会員情報の詳細です。<br>情報を更新またはアカウント削除する場合は下のボタンを押してください。<br>
-                <p><label>名前</label>
-                    <?php echo $mypage['name']; ?></p>
-            
-                <p><label>メールアドレス</label>
-                    <?php  echo $mypage['mail']; ?></p>
-            
-                <p><label>パスワード</label>
-                    <h7>※セキュリティ上、パスワードを非表示にしています。</h7></p>
-        
-                
-                <form action="top.php" >
-                    <input type="submit" class="submit" value="トップページへ戻る">
-                </form>
-                <form action="account_update.php" method="post">
-                    <input type="hidden" name = "id" value="<?php echo $mypage['id'];?>">
-                    <input type="submit" value="アカウント更新">
-                </form>
-                <form action="account_delete.php" method="post">
-                    <input type="hidden" name = "id" value="<?php echo $mypage['id'];?>">
-                    <input type="submit" value="アカウント削除">
-                </form>
+                <table class="box2">
+                    <tr>
+                        <td><label>名前</label></td>
+                        <td><?php echo $mypage['name']; ?></td>
+                    </tr>
+                    <tr>
+                        <td><label>メールアドレス</label></td>
+                        <td><?php  echo $mypage['mail']; ?></td>
+                    </tr>
+                    <tr>
+                       <td><label>パスワード</label></td>
+                        <td><h7>※セキュリティ上、パスワードを非表示にしています。</h7></td>
+                    </tr>
+                </table>
+                <table class="button">
+                    <tr>
+                        <td>
+                            <form action="top.php" >
+                                <input type="submit" class="submit" value="トップページへ戻る">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="account_update.php" method="post">
+                                <input type="hidden" name = "id" value="<?php echo $mypage['id'];?>">
+                                <input type="submit" value="アカウント更新">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="account_delete.php" method="post">
+                                <input type="hidden" name = "id" value="<?php echo $mypage['id'];?>">
+                                <input type="submit" value="アカウント削除">
+                            </form>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </main>
         <?php else : ?>
@@ -114,20 +134,30 @@ $mypage = $stmt -> fetch();
             <div class="error_messge">
                 <h8>※何らかのエラーが発生しました。<br>
                 最初からやり直してください。</h8>
-                <form action="login.php">
-                    <input type="submit" class="submit" value="ログイン画面へ戻る">
-                </form>
-                <form action="regist.php">
-                    <input type="submit" class="submit" value="会員登録画面へ戻る">
-                </form>
-                <form action="top.php" >
-                    <input type="submit" class="submit" value="トップページへ戻る">
-                </form>
+                <table class="button">
+                    <tr>
+                        <td>
+                            <form action="top.php" >
+                                <input type="submit" class="submit" value="トップページへ戻る">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="login.php">
+                                <input type="submit" class="submit" value="ログイン画面へ戻る">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="regist.php">
+                                <input type="submit" class="submit" value="会員登録画面へ戻る">
+                            </form>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </main>
         <?php endif; ?>
         <footer>
-            Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
+            Copyright D.I.Works| portfolio_TDR-calendar
         </footer>
         <script type="text/javascript" src="regist_check.js"></script>
     </body>

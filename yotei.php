@@ -21,8 +21,6 @@ if($_SESSION != NULL){
         <meta charset="UTF-8">
         <title>TORカレンダー_ポートフォリオ</title>
         <link rel="stylesheet"type="text/css"href="regist.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
     <body>
@@ -51,12 +49,20 @@ if($_SESSION != NULL){
         <main>
             <div class="error_messge">
                 <h8>※アカウントをログインしてから行ってください。</h8>
-                <form action="login.php" >
-                    <input type="submit" class="submit" value="ログイン画面へ戻る">
-                </form>
-                <form action="top.php" >
-                    <input type="submit" class="submit" value="トップページへ戻る">
-                </form>
+                <table class="button">
+                <tr>
+                    <td>
+                        <form action="top.php" >
+                            <input type="submit" class="submit" value="トップページへ戻る">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="login.php">
+                            <input type="submit" class="submit" value="ログイン画面へ戻る">
+                        </form>
+                    </td>
+                </tr>
+            </table>
             </div>
         </main>
         
@@ -84,31 +90,49 @@ if($_SESSION != NULL){
         <main>
             <div class = "main-container">
                 予定の詳細です。
-                <p><label>日付（開始）</label>
-                    <?php echo $yotei['day_kaishi']; ?></p>
-            
-                <p><label>日付（終了）</label>
-                    <?php  echo $yotei['day_owari']; ?></p>
-            
-                <p><label>見出し</label>
-                    <?php echo $yotei['yotei']; ?></p>
-        
-                <p><label>内容</label>
-                    <?php echo $yotei['naiyou']; ?></p>
-                    
-                <p><label>URL</label>
-                    <?php echo '<a href = "'.$yotei['url'].'"target="_blank" rel="noopener">'.$yotei['url']."</a>"; ?></p>
-                <form action="top.php" >
-                    <input type="submit" class="submit" value="トップページへ戻る">
-                </form>
-                <form action="schedule_update.php" method="post">
-                    <input type="hidden" name = "id" value="<?php echo $yotei['id'];?>">
-                    <input type="submit" value="更新">
-                </form>
-                <form action="schedule_delete.php" method="post">
-                    <input type="hidden" name = "id" value="<?php echo $yotei['id'];?>">
-                    <input type="submit" value="削除">
-                </form>
+                <table class="box2">
+                    <tr>
+                <td><label>日付（開始）</label></td>
+                    <td><?php echo $yotei['day_kaishi']; ?></td>
+            </tr>
+                    <tr>
+                <td><label>日付（終了）</label></td>
+                    <td><?php  echo $yotei['day_owari']; ?></td>
+            </tr>
+                    <tr>
+                <td><label>見出し</label></td>
+                    <td><?php echo $yotei['yotei']; ?></td>
+        </tr>
+                    <tr>
+                <td><label>内容</label></td>
+                    <td><?php echo $yotei['naiyou']; ?></td>
+                    </tr>
+                    <tr>
+                <td><label>URL</label></td>
+                    <td><?php echo '<a href = "'.$yotei['url'].'"target="_blank" rel="noopener">'.$yotei['url']."</a>"; ?></td>
+        </tr>
+                    </table>
+                <table class="button">
+                    <tr>
+                        <td>
+                            <form action="top.php" >
+                                <input type="submit" class="submit" value="トップページへ戻る">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="schedule_update.php" method="post">
+                                <input type="hidden" name = "id" value="<?php echo $yotei['id'];?>">
+                                <input type="submit" value="更新">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="schedule_delete.php" method="post">
+                                <input type="hidden" name = "id" value="<?php echo $yotei['id'];?>">
+                                <input type="submit" value="削除">
+                            </form>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </main>
         <?php else : ?>
@@ -123,20 +147,30 @@ if($_SESSION != NULL){
             <div class="error_messge">
                 <h8>※何らかのエラーが発生しました。<br>
                 最初からやり直してください。</h8>
-                <form action="login.php">
-                    <input type="submit" class="submit" value="ログイン画面へ戻る">
-                </form>
-                <form action="regist.php">
-                    <input type="submit" class="submit" value="会員登録画面へ戻る">
-                </form>
-                <form action="top.php" >
-                    <input type="submit" class="submit" value="トップページへ戻る">
-                </form>
+                <table class="button">
+                    <tr>
+                        <td>
+                            <form action="top.php" >
+                                <input type="submit" class="submit" value="トップページへ戻る">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="login.php">
+                                <input type="submit" class="submit" value="ログイン画面へ戻る">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="regist.php">
+                                <input type="submit" class="submit" value="会員登録画面へ戻る">
+                            </form>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </main>
         <?php endif; ?>
         <footer>
-            Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
+            Copyright D.I.Works| portfolio_TDR-calendar
         </footer>
         <script type="text/javascript" src="regist_check_schedule.js"></script>
     </body>

@@ -80,12 +80,20 @@ session_destroy();
         <main>
             <div class="error_messge">
                 <h8>※アカウントをログインしてから行ってください。</h8>
-                <form action="login.php" >
-                    <input type="submit" class="submit" value="ログイン画面へ戻る">
-                </form>
-                <form action="top.php" >
-                    <input type="submit" class="submit" value="トップページへ戻る">
-                </form>
+                <table class="button">
+                        <tr>
+                            <td>
+                                <form action="top.php" >
+                                    <input type="submit" class="submit" value="トップページへ戻る">
+                                </form>
+                            </td>
+                            <td>
+                                <form action="login.php">
+                                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
             </div>
         </main>
         
@@ -119,12 +127,20 @@ session_destroy();
                     }else{
                         echo '<h4>アカウントの削除が完了しました。</h4>';
                     };?>
-                    <form action="top.php" >
-                        <input type="submit" class="submit" value="トップページへ戻る">
-                    </form>
-                    <form action="login.php">
-                        <input type="submit" class="submit" value="ログイン画面へ戻る">
-                    </form>
+                    <table class="button">
+                        <tr>
+                            <td>
+                                <form action="top.php" >
+                                    <input type="submit" class="submit" value="トップページへ戻る">
+                                </form>
+                            </td>
+                            <td>
+                                <form action="login.php">
+                                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </main>
@@ -140,20 +156,30 @@ session_destroy();
             <div class="error_messge">
                 <h8>※何らかのエラーが発生しました。<br>
                 最初からやり直してください。</h8>
-                <form action="login.php">
-                    <input type="submit" class="submit" value="ログイン画面へ戻る">
-                </form>
-                <form action="regist.php">
-                    <input type="submit" class="submit" value="会員登録画面へ戻る">
-                </form>
-                <form action="top.php" >
-                    <input type="submit" class="submit" value="トップページへ戻る">
-                </form>
+                <table class="button">
+                    <tr>
+                        <td>
+                            <form action="top.php" >
+                                <input type="submit" class="submit" value="トップページへ戻る">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="login.php">
+                                <input type="submit" class="submit" value="ログイン画面へ戻る">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="regist.php">
+                                <input type="submit" class="submit" value="会員登録画面へ戻る">
+                            </form>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </main>
         <?php endif; ?>
         <footer>
-            Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
+            Copyright D.I.Works| portfolio_TDR-calendar
         </footer>
         <script type="text/javascript" src="regist_check.js"></script>
     </body>

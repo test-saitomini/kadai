@@ -22,8 +22,6 @@ if($_SESSION != NULL){
         <meta charset="UTF-8">
         <title>TORカレンダー_ポートフォリオ</title>
         <link rel="stylesheet"type="text/css"href="regist.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
     <body>
@@ -38,12 +36,20 @@ if($_SESSION != NULL){
         <main>
             <div class="error_messge">
                 <h8>※アカウントをログインしてから行ってください。</h8>
-                <form action="login.php" >
-                    <input type="submit" class="submit" value="ログイン画面へ戻る">
-                </form>
-                <form action="top.php" >
-                    <input type="submit" class="submit" value="トップページへ戻る">
-                </form>
+                <table class="button">
+                        <tr>
+                            <td>
+                                <form action="top.php" >
+                                    <input type="submit" class="submit" value="トップページへ戻る">
+                                </form>
+                            </td>
+                            <td>
+                                <form action="login.php">
+                                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
             </div>
         </main>
         
@@ -82,23 +88,28 @@ if($_SESSION != NULL){
             <div class = "main-container">
                 こちらは削除をする画面です。<br>アカウントを削除してもよろしければ下の確認ボタンを押してください。
                 <form action="account_delete_confirm.php" method="post">
+                    <table class="box2">
+                        <tr>
+                        <td><label>名前</label>
+                    <td><?php echo $delete['name']; ?></td>
+                            </tr>
+                        <tr>
+                        <td><label>メールアドレス</label></td>
+                    <td><?php  echo $delete['mail']; ?></td>
+                        </tr>
+                        <tr>
+                        <td><label>パスワード</label></td>
+                   <td> <h7>※セキュリティ上、パスワードを非表示にしています。</h7></td>
+                    </tr>
+                        <tr>
                     <div class="textarea">
-                        <p><label>名前</label>
-                    <?php echo $delete['name']; ?></p>
-            
-                        <p><label>メールアドレス</label>
-                    <?php  echo $delete['mail']; ?></p>
-                
-                        <p><label>パスワード</label>
-                    <h7>※セキュリティ上、パスワードを非表示にしています。</h7></p>
-                        
-                    </div>
-                
-                    <div class="textarea">
-                        <input type="submit" class="btn_submit" id="btn_confirm" value="確認する">
+                        <td></td>
+                        <td><input type="submit" class="btn_submit" id="btn_confirm" value="確認する">
                         <input type="hidden" name = "id" value="<?php echo $id;?>">
-                        <input type="hidden" value="1" name="account_delete_flg">
+                        <input type="hidden" value="1" name="account_delete_flg"></td>
                     </div>
+                </tr>
+                        </table>
                 </form>
             </div>
         </main>
@@ -114,20 +125,30 @@ if($_SESSION != NULL){
             <div class="error_messge">
                 <h8>※何らかのエラーが発生しました。<br>
                 最初からやり直してください。</h8>
-                <form action="login.php">
-                    <input type="submit" class="submit" value="ログイン画面へ戻る">
-                </form>
-                <form action="regist.php">
-                    <input type="submit" class="submit" value="会員登録画面へ戻る">
-                </form>
-                <form action="top.php" >
-                    <input type="submit" class="submit" value="トップページへ戻る">
-                </form>
+                <table class="button">
+                    <tr>
+                        <td>
+                            <form action="top.php" >
+                                <input type="submit" class="submit" value="トップページへ戻る">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="login.php">
+                                <input type="submit" class="submit" value="ログイン画面へ戻る">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="regist.php">
+                                <input type="submit" class="submit" value="会員登録画面へ戻る">
+                            </form>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </main>
         <?php endif; ?>
         <footer>
-            Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
+            Copyright D.I.Works| portfolio_TDR-calendar
         </footer>
         <script type="text/javascript" src="regist_check.js"></script>
     </body>

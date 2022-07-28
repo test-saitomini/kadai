@@ -90,7 +90,7 @@ if($login_mail != NULL){
             $day_out = strtotime((string) $out['day_kaishi']);
             $day2_out = strtotime((string) $out['day_owari']);
             //$yotei_out = (string) $out['yotei'];
-            for($now = strtotime("+1 day",$day_out);$now <= $day2_out; $now = strtotime("+1 day",$now)){
+            for($now = strtotime("0 day",$day_out);$now <= $day2_out; $now = strtotime("+1 day",$now)){
                 $reseryotei_owari[date('Y-m-d', $now)] = $out;
             }
         }
@@ -286,12 +286,9 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         <meta charset="UTF-8">
         <title>TORカレンダー_ポートフォリオ</title>
         <link rel="stylesheet"type="text/css"href="regist.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
     <body>
-        <div class="home">
         <?php if($login_account == 0) : ?>
         <header>
             <ul>
@@ -303,7 +300,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         <main>
             <div class = "main-container">
                 <div class = "left">
-                    <h3>東京ディズニーリゾートカレンダー</h3>
+                    <h2>東京ディズニーリゾート<br>カレンダー</h2>
                     <br>
                     ～情報～<br>
                     現在のディズニーリゾートでの閑散期は
@@ -365,7 +362,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         <main>
             <div class = "main-container">
                 <div class = "left">
-                    <h3>東京ディズニーリゾートカレンダー</h3>
+                    <h2>東京ディズニーリゾート<br>カレンダー</h2>
                     <br>
                     <h2>～情報～</h2><br>
                     現在のディズニーリゾートでの閑散期は
@@ -417,23 +414,32 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
             <div class="error_messge">
                 <h8>※何らかのエラーが発生しました。<br>
                     最初からやり直してください。</h8>
-                <form action="login.php">
-                    <input type="submit" class="submit" value="ログイン画面へ戻る">
-                </form>
-                <form action="regist.php">
-                    <input type="submit" class="submit" value="会員登録画面へ戻る">
-                </form>
-                <form action="top.php" >
-                    <input type="submit" class="submit" value="トップページへ戻る">
-                </form>
+                <table class="button">
+                    <tr>
+                        <td>
+                            <form action="top.php" >
+                                <input type="submit" class="submit" value="トップページへ戻る">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="login.php">
+                                <input type="submit" class="submit" value="ログイン画面へ戻る">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="regist.php">
+                                <input type="submit" class="submit" value="会員登録画面へ戻る">
+                            </form>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </main>
         
         <?php endif; ?>
         <footer>
-            Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
+            Copyright D.I.Works| portfolio_TDR-calendar
         </footer>
         <script type="text/javascript" src="regist_check.js"></script>
-        </div>
     </body>
 </html>

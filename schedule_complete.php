@@ -43,8 +43,6 @@ if($_POST != NULL){
         <meta charset="UTF-8">
         <title>TORカレンダー_ポートフォリオ</title>
         <link rel="stylesheet"type="text/css" href="regist.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     </head>
     <?php if($login_account == 1) : ?>
     <?php if($login_authority == 1) : ?>
@@ -76,12 +74,20 @@ if($_POST != NULL){
             }else{
                 echo '<h4>予定の入力が完了しました。</h4>';
             };?>
-            <form action="top.php" >
-                    <input type="submit" class="submit" value="トップページへ戻る">
-                </form>
-            <form action="login.php">
-                <input type="submit" class="submit" value="ログイン画面へ戻る">
-            </form>
+            <table class="button">
+                        <tr>
+                            <td>
+                                <form action="top.php" >
+                                    <input type="submit" class="submit" value="トップページへ戻る">
+                                </form>
+                            </td>
+                            <td>
+                                <form action="login.php">
+                                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                                </form>
+                            </td>
+                        </tr>
+            </table>
         </div>
         </div>
     </body>
@@ -96,12 +102,20 @@ if($_POST != NULL){
     <main>
         <div class="error_messge">
             <h8>※アカウントをログインしてから行ってください。</h8>
-            <form action="login.php" >
-                <input type="submit" class="submit" value="ログイン画面へ戻る">
-            </form>
-            <form action="top.php" >
-                <input type="submit" class="submit" value="トップページへ戻る">
-            </form>
+            <table class="button">
+                <tr>
+                    <td>
+                        <form action="top.php" >
+                            <input type="submit" class="submit" value="トップページへ戻る">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="login.php">
+                            <input type="submit" class="submit" value="ログイン画面へ戻る">
+                        </form>
+                    </td>
+                </tr>
+            </table>
         </div>
     </main>
     <?php else : ?>
@@ -116,20 +130,30 @@ if($_POST != NULL){
         <div class="error_messge">
             <h8>※何らかのエラーが発生しました。<br>
                 最初からやり直してください。</h8>
-            <form action="login.php">
-                <input type="submit" class="submit" value="ログイン画面へ戻る">
-            </form>
-            <form action="regist.php">
-                <input type="submit" class="submit" value="会員登録画面へ戻る">
-            </form>
-            <form action="top.php" >
-                <input type="submit" class="submit" value="トップページへ戻る">
-            </form>
+            <table class="button">
+                    <tr>
+                        <td>
+                            <form action="top.php" >
+                                <input type="submit" class="submit" value="トップページへ戻る">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="login.php">
+                                <input type="submit" class="submit" value="ログイン画面へ戻る">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="regist.php">
+                                <input type="submit" class="submit" value="会員登録画面へ戻る">
+                            </form>
+                        </td>
+                    </tr>
+                </table>
         </div>
     </main>
     <?php endif; ?>
     <footer>
-            Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
+            Copyright D.I.Works| portfolio_TDR-calendar
     </footer>
     
 </html>

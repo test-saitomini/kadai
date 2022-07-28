@@ -37,12 +37,20 @@ if($_SESSION != NULL){
         <main>
             <div class="error_messge">
                 <h8>※アカウントをログインしてから行ってください。</h8>
-                <form action="login.php" >
-                    <input type="submit" class="submit" value="ログイン画面へ戻る">
-                </form>
-                <form action="top.php" >
-                    <input type="submit" class="submit" value="トップページへ戻る">
-                </form>
+                <table class="button">
+                        <tr>
+                            <td>
+                                <form action="top.php" >
+                                    <input type="submit" class="submit" value="トップページへ戻る">
+                                </form>
+                            </td>
+                            <td>
+                                <form action="login.php">
+                                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
             </div>
         </main>
         
@@ -71,14 +79,20 @@ if($_SESSION != NULL){
             <div class = "main-container">
             <div class="kakunin">
             <h4>本当に削除してよろしいですか？</h4>
-            
-            <input type="submit" onclick=history.back() value="戻って修正する">
-            
-            <form action="account_delete_complete.php" method="post">
-                <input type="submit" name="delete_submit" value="登録する">
-                <input type="hidden" name = "id" value="<?php echo $_POST['id'];?>">
-                <input type="hidden" value="1" name="account_delete_flg">
-            </form>
+                <table class="button">
+                    <tr>
+                        <td>
+                            <input type="submit" onclick=history.back() value="戻って修正する">
+                        </td>
+                        <td>
+                            <form action="account_delete_complete.php" method="post">
+                                <input type="submit" name="delete_submit" value="登録する">
+                                <input type="hidden" name = "id" value="<?php echo $_POST['id'];?>">
+                                <input type="hidden" value="1" name="account_delete_flg">
+                            </form>
+                        </td>
+                    </tr>
+                </table>
             </div>
             </div>
         </main>
@@ -94,20 +108,30 @@ if($_SESSION != NULL){
             <div class="error_messge">
                 <h8>※何らかのエラーが発生しました。<br>
                 最初からやり直してください。</h8>
-                <form action="login.php">
-                    <input type="submit" class="submit" value="ログイン画面へ戻る">
-                </form>
-                <form action="regist.php">
-                    <input type="submit" class="submit" value="会員登録画面へ戻る">
-                </form>
-                <form action="top.php" >
-                    <input type="submit" class="submit" value="トップページへ戻る">
-                </form>
+                <table class="button">
+                    <tr>
+                        <td>
+                            <form action="top.php" >
+                                <input type="submit" class="submit" value="トップページへ戻る">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="login.php">
+                                <input type="submit" class="submit" value="ログイン画面へ戻る">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="regist.php">
+                                <input type="submit" class="submit" value="会員登録画面へ戻る">
+                            </form>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </main>
         <?php endif; ?>
         <footer>
-            Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
+            Copyright D.I.Works| portfolio_TDR-calendar
         </footer>
         <script type="text/javascript" src="regist_check.js"></script>
     </body>

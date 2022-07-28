@@ -28,8 +28,6 @@ $delete = $stmt->fetch();
         <meta charset="UTF-8">
         <title>TORカレンダー_ポートフォリオ</title>
         <link rel="stylesheet"type="text/css"href="regist.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
     <body>
@@ -44,12 +42,20 @@ $delete = $stmt->fetch();
         <main>
             <div class="error_messge">
                 <h8>※アカウントをログインしてから行ってください。</h8>
-                <form action="login.php" >
-                    <input type="submit" class="submit" value="ログイン画面へ戻る">
-                </form>
-                <form action="top.php" >
-                    <input type="submit" class="submit" value="トップページへ戻る">
-                </form>
+                <table class="button">
+                        <tr>
+                            <td>
+                                <form action="top.php" >
+                                    <input type="submit" class="submit" value="トップページへ戻る">
+                                </form>
+                            </td>
+                            <td>
+                                <form action="login.php">
+                                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
             </div>
         </main>
         
@@ -78,32 +84,50 @@ $delete = $stmt->fetch();
             <div class = "main-container">
                 こちらは削除をする画面です。<br>予定を削除してもよろしければ下の確認ボタンを押してください。
                 <form action="schedule_delete_confirm.php" method="post">
-                    <div class="textarea">
-                        <p><label>名前（姓）</label>
-                            <?php echo $delete['day_kaishi']; ?></p>
-                    </div>
-                    <div class="textarea">
-                        <p><label>日付（終了）</label>
-                            <?php echo $delete['day_owari']; ?></p>
-                    </div>
-                    <div class="textarea">
-                        <p><label>予定の見出し</label>
-                            <?php echo $delete['yotei']; ?></p>
-                    </div>
-                    <div class="textarea">
-                        <p><label>内容</label>
-                            <?php echo $delete['naiyou']; ?></p>
-                    </div>
-                    <div class="textarea">
-                        <p><label>URL</label>
-                            <?php echo $delete['url']; ?></p>
-                    </div>
-                
-                    <div class="textarea">
-                        <input type="submit" class="btn_submit" id="btn_confirm" value="確認する">
-                        <input type="hidden" name = "id" value="<?php echo $id;?>">
-                        <input type="hidden" value="1" name="yotei_delete_flg">
-                    </div>
+                    <table class="box2">
+                        <tr>
+                            <div class="textarea">
+                                <td><label>名前（姓）</label></td>
+                                <td><?php echo $delete['day_kaishi']; ?></td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="textarea">
+                                <td><label>日付（終了）</label></td>
+                                <td><?php echo $delete['day_owari']; ?></td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="textarea">
+                                <td><label>予定の見出し</label></td>
+                                <td><?php echo $delete['yotei']; ?></td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="textarea">
+                                <td><label>内容</label></td>
+                                <td><?php echo $delete['naiyou']; ?></td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="textarea">
+                                <td><label>URL</label></td>
+                                <td><?php echo $delete['url']; ?></td>
+                            </div>
+                        </tr>
+                        
+                        </table>
+                        <table class="loginbutton">
+                    <tr>
+                        <td></td>
+                        <div class="textarea">
+                                <td></td>
+                                <td><input type="submit" class="btn_submit" id="btn_confirm" value="確認する">
+                                    <input type="hidden" name = "id" value="<?php echo $id;?>">
+                                    <input type="hidden" value="1" name="yotei_delete_flg"></td>
+                            </div>
+                    </tr>
+                </table> 
                 </form>
             </div>
         </main>
@@ -119,20 +143,30 @@ $delete = $stmt->fetch();
             <div class="error_messge">
                 <h8>※何らかのエラーが発生しました。<br>
                 最初からやり直してください。</h8>
-                <form action="login.php">
-                    <input type="submit" class="submit" value="ログイン画面へ戻る">
-                </form>
-                <form action="regist.php">
-                    <input type="submit" class="submit" value="会員登録画面へ戻る">
-                </form>
-                <form action="top.php" >
-                    <input type="submit" class="submit" value="トップページへ戻る">
-                </form>
+                <table class="button">
+                    <tr>
+                        <td>
+                            <form action="top.php" >
+                                <input type="submit" class="submit" value="トップページへ戻る">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="login.php">
+                                <input type="submit" class="submit" value="ログイン画面へ戻る">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="regist.php">
+                                <input type="submit" class="submit" value="会員登録画面へ戻る">
+                            </form>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </main>
         <?php endif; ?>
         <footer>
-            Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
+            Copyright D.I.Works| portfolio_TDR-calendar
         </footer>
         <script type="text/javascript" src="regist_check_schedule.js"></script>
     </body>

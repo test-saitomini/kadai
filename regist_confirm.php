@@ -19,8 +19,6 @@ if($_SESSION != NULL){
         <meta charset="UTF-8">
         <title>TORカレンダー_ポートフォリオ</title>
         <link rel="stylesheet"type="text/css"href="regist.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     </head>
     <body>
         
@@ -39,32 +37,40 @@ if($_SESSION != NULL){
         <br>よろしければ「登録する」ボタンを押してください。
         </p>
         <div class = kakunin>
-        <p>名前
-        <br>
-        <?php echo $_POST['name'];?>
-        </p> 
-        <p>メールアドレス
-        <br>
-        <?php echo $_POST['mail'];?>
-        </p>
-        <p>パスワード
-        <br>
-        <?php
-            $password = $_POST['password'];
-            for($i=0;$i< mb_strlen($password);$i++){
-            echo '●';}?>
-        </p>
-        
-        <input type="submit" onclick=history.back() value="戻って修正する">
-            
-        <form action="regist_complete.php" method="post">
-            <input type="submit" name="btn_submit" value="登録する">
-            <input type="hidden" value="<?php echo $_POST['name'];?>" name="name">
-            <input type="hidden" value="<?php echo $_POST['mail'];?>" name="mail">
-            <input type="hidden" value="<?php echo $_POST['password'];?>" name="password">
-            <input type="hidden" value="0" name="authority">
-            <input type="hidden" value="0" name="account_delete_flg">
-        </form>
+            <table class="box2">
+                <tr>
+                    <td>名前</td>
+                    <td><?php echo $_POST['name'];?></td>
+                    </tr>
+                <tr>
+                    <td>メールアドレス</td>
+                    <td><?php echo $_POST['mail'];?></td>
+                </tr>
+                <tr>
+                    <td>パスワード</td>
+                    <td><?php
+                        $password = $_POST['password'];
+                        for($i=0;$i< mb_strlen($password);$i++){
+                            echo '●';}?></td>
+                </tr>
+                </table>
+        <table class="button">
+            <tr>
+                <td>
+                    <input type="submit" onclick=history.back() value="戻って修正する">
+                </td>
+                <td>
+                    <form action="regist_complete.php" method="post">
+                        <input type="submit" name="btn_submit" value="登録する">
+                        <input type="hidden" value="<?php echo $_POST['name'];?>" name="name">
+                        <input type="hidden" value="<?php echo $_POST['mail'];?>" name="mail">
+                        <input type="hidden" value="<?php echo $_POST['password'];?>" name="password">
+                        <input type="hidden" value="0" name="authority">
+                        <input type="hidden" value="0" name="account_delete_flg">
+                    </form>
+                </td>
+            </tr>
+        </table>
         </div>
         </div>
         <?php else : ?>
@@ -88,12 +94,20 @@ if($_SESSION != NULL){
         <main>
             <div class="error_messge">
                 <h8>※すでにアカウント登録されています。</h8>
-                <form action="login.php" >
-                    <input type="submit" class="submit" value="ログイン画面へ戻る">
-                </form>
-                <form action="top.php" >
-                    <input type="submit" class="submit" value="トップページへ戻る">
-                </form>
+                <table class="button">
+                        <tr>
+                            <td>
+                                <form action="top.php" >
+                                    <input type="submit" class="submit" value="トップページへ戻る">
+                                </form>
+                            </td>
+                            <td>
+                                <form action="login.php">
+                                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
             </div>
         </main>
         <?php else : ?>
@@ -108,20 +122,30 @@ if($_SESSION != NULL){
             <div class="error_messge">
                 <h8>※何らかのエラーが発生しています。<br>
                 最初からやり直してください。</h8>
-                <form action="login.php">
-                    <input type="submit" class="submit" value="ログイン画面へ戻る">
-                </form>
-                <form action="regist.php">
-                    <input type="submit" class="submit" value="会員登録画面へ戻る">
-                </form>
-                <form action="top.php" >
-                    <input type="submit" class="submit" value="トップページへ戻る">
-                </form>
+                <table class="button">
+                    <tr>
+                        <td>
+                            <form action="top.php" >
+                                <input type="submit" class="submit" value="トップページへ戻る">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="login.php">
+                                <input type="submit" class="submit" value="ログイン画面へ戻る">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="regist.php">
+                                <input type="submit" class="submit" value="会員登録画面へ戻る">
+                            </form>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </main>
         <?php endif; ?>
     </body>
     <footer>
-            Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
+            Copyright D.I.Works| portfolio_TDR-calendar
     </footer>
 </html>

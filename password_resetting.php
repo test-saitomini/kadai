@@ -83,8 +83,6 @@ if (isset($_POST['kakunin'])) {
     <meta charset="utf-8">
     <title>TORカレンダー_ポートフォリオ</title>
     <link rel="stylesheet"type="text/css" href="regist.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
 </head>
     
     <body>
@@ -113,25 +111,32 @@ if (isset($_POST['kakunin'])) {
                 };
 
                ?>
-                <div>
-                   <label for="name">名前
-                   <input type="name" id="name" name="name" value="" placeholder="名前">
-                   </label>
-               </div>
-
-               <div>
-                   <label for="mail">メールアドレス
-                   <input type="text" id="mail" name="mail" placeholder="メールアドレス" value="<?php if (!empty($_POST["mail"])) {echo $_POST["mail"];} ?>">
-                   </label>
-                </div>
-                <input type="submit" id="kakunin" name="kakunin" value="確認する">
+                <table class="box">
+                    <tr>
+                    <div>
+                        <td><label for="name">名前</label></td>
+                        <td><input type="name" id="name" name="name" value="" placeholder="名前"></td>
+                   
+                        </div>
+                    </tr>
+                    <tr>
+                        <div>
+                            <td><label for="mail">メールアドレス</label></td>
+                            <td><input type="text" id="mail" name="mail" placeholder="メールアドレス" value="<?php if (!empty($_POST["mail"]))     {echo $_POST["mail"];} ?>"></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" id="kakunin" name="kakunin" value="確認する"></td>
+                    </tr>
+                </table>
             </form>
             </div>
             </div>
         </main>
         
         <footer>
-            Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
+            Copyright D.I.Works| portfolio_TDR-calendar
         </footer>
         <script type="text/javascript" src="regist_check.js"></script>
     </body>

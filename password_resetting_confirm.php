@@ -31,8 +31,6 @@ $restting = $stmt -> fetch();
     <meta charset="utf-8">
     <title>TORカレンダー_ポートフォリオ</title>
     <link rel="stylesheet"type="text/css" href="regist.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
 </head>
     
     <body>
@@ -50,23 +48,30 @@ $restting = $stmt -> fetch();
                 新しいパスワードを設定してください。
             <div class="form">
             <form id="kakuninForm" name="kakuninForm" action="password_resetting_complete.php" method="POST">
-                <div class="textarea">
-                        <label>パスワード</label><h7>*</h7>
-                        <input type="password"class="text" size="10"name="password"id="password"value="<?php if( !empty($_POST['password']) ){ echo $_POST['password']; } ?>"><br>
-                        <span id = 'password_error' class="error_m"></span><br>
-                        <label>もう一度パスワードを入力してください。</label><h7>*</h7>
-                        <input type="password"class="text" size="10"name="password_re"id="password_re"value="<?php if( !empty($_POST['password_re']) ){ echo $_POST['password_re']; } ?>"><br>
-                        <span id = 'password_re_error' class="error_m"></span><br>
-                    </div>
-                <input type="submit" id="kakunin" name="kakunin" value="確認する">
-                <input type="hidden" name = "id" id="id" value="<?php echo $restting['id'];?>">
-            </form>
-            </div>
+                <table class="box">
+                    <tr>
+                        <td><label>パスワード</label><h7>*</h7></td>
+                        <td><input type="password"class="text" size="45"name="password"id="password"value="<?php if(    !empty($_POST['password']) ){ echo $_POST['password']; } ?>"><br>
+                            <span id = 'password_error' class="error_m"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label>もう一度パスワードを入力してください。</label><h7>*</h7></td>
+                        <td><input type="password"class="text" size="45"name="password_re"id="password_re"value="<?php if(  !empty($_POST['password_re']) ){ echo $_POST['password_re']; } ?>"><br>
+                        <span id = 'password_re_error' class="error_m"></span></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" id="kakunin" name="kakunin" value="確認する">
+                            <input type="hidden" name = "id" id="id" value="<?php echo $restting['id'];?>"></td>
+                    </tr>
+                </table>
+                </form>
+                </div>
             </div>
         </main>
-        
+          
         <footer>
-            Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
+            Copyright D.I.Works| portfolio_TDR-calendar
         </footer>
         <script type="text/javascript" src="regist_check.js"></script>
     </body>

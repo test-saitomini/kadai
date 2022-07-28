@@ -1,36 +1,38 @@
 header{
-    position: absolute;
     top:0px;
     left: 0px;
     height: 60px;
     width: 100%;
 }
 
-header ul{float: left;
-    width: 100%;
+header ul{
+    float: left;
+    padding-left: 0;
+    width: inherit;
     line-height: 40px;
-    background-color: black;
+    color: black;
+    background-color: #e6e6fa;
 }
 
 header ul li{
     float: left;
     list-style:none;
     color: white;
-    padding-right: 20px;
+    padding-left: 20px;
     font-size: 18px;
 }
 
 header li:last-child{
     float:right;
+    padding-right: 20px;
 }
 
-footer{clear: left;
+footer{float: left;
     width: 100%;
-    position: absolute;
     left: 0px;
     bottom: 0;
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: #e6e6fa;
     text-align: center;
     line-height: 60px;
 }
@@ -41,11 +43,12 @@ main{
 
 .main-container{width:95%;
     margin: 0 auto;
-    margin-top:70px;
+    margin-top:40px;
 }
 
 table.table-bordered{
     width: 700px;
+    border-collapse:collapse;
 }
 
 .error_messge{
@@ -71,7 +74,8 @@ table.table-bordered{
     width: 700px;
 }
 h3{
-    margin-bottom: 30px;
+    font-size: 30px;
+    margin-bottom: 10px;
 }
 table.table-bordered th{
     height: 30px;
@@ -81,21 +85,26 @@ table.table-bordered th{
 table.table-bordered td{
     height: 100px;
     width: 100px;
-    margin: 0 auto;
-    text-align: left;
+    vertical-align:top;
     word-wrap: break-word;
 }
-.today{
-    color: black;
-    background: orange;　/*--日付が今日の場合は背景オレンジ--*/
+
+table.table-bordered tr{
+    border-top:1px solid #000;
 }
-th:nth-of-type(1),td:nth-of-type(1){
+
+table.table-bordered th:nth-of-type(1),table.table-bordered td:nth-of-type(1){
     color: #FF0000;
     background:#fff0f5;
 }
-th:nth-of-type(7),td:nth-of-type(7){
+table.table-bordered th:nth-of-type(7),table.table-bordered td:nth-of-type(7){
     color: #0000FF;
     background:#e0ffff;
+}
+
+.today{
+    color: black;
+    background: orange;　/*--日付が今日の場合は背景オレンジ--*/
 }
 
 .holiday{
@@ -119,6 +128,7 @@ span.error_m {
     display: block;
     margin: 0;
 }
+
 /*regist_complete.phpアカウント登録完了画面装飾*/
 h4{
     font-size: 30px;
@@ -132,24 +142,67 @@ h4{
 }
 /*regist.phpアカウント登録画面装飾*/
 .textarea{
-    
     font-size: 15px;
 	font-weight: normal;
     padding-left: 10px;
-    /*background-color: ;背景色を何色にするか*/
 }
 .textarea_box{
     font-size: 15px;
 	font-weight: normal;
     padding-left: 10px;
-    
-    /*background-color: ;背景色を何色にするか*/
 }
 
-.box{
+table.loginbutton{
     width: 500px;
-    background-color: #f0f8ff;
 }
+table.loginbutton td{
+    float: right;
+}
+
+
+table.box{
+    width: 500px;
+    border-collapse:collapse;
+}
+table.box td:nth-of-type(1){
+    width: 150px;
+    text-align: center;
+    font-size: 13px;
+    padding: 10px;
+    background-color: #87cefa;
+}
+
+table.box tr{
+    border-top:1px solid #000;
+    border-bottom:1px solid #000;
+}
+
+table.box2{
+    width: 500px;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse:collapse;
+}
+
+table.box2 td:nth-of-type(1){
+    width: 150px;
+    padding: 10px;
+    text-align: center;
+    border-right: 1px dashed #000;
+}
+
+table.box2 tr{
+    border-top:1px solid #000;
+    border-bottom:1px solid #000;
+}
+
+table.button{
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
 /*login.phpでのエラーの際の文言*/
 h7{

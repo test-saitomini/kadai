@@ -55,8 +55,6 @@ session_destroy();
         <meta charset="UTF-8">
         <title>TORカレンダー_ポートフォリオ</title>
         <link rel="stylesheet"type="text/css" href="regist.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     </head>
         <header>
             <ul>
@@ -75,16 +73,24 @@ session_destroy();
             }else{
                 echo '<h4>パスワード再設定が完了しました。</h4>';
             };?>
-            <form action="top.php" >
-                    <input type="submit" class="submit" value="トップページへ戻る">
-                </form>
-            <form action="login.php">
-                <input type="submit" class="submit" value="ログイン画面へ戻る">
-            </form>
+            <table class="button">
+                    <tr>
+                        <td>
+                            <form action="top.php" >
+                                <input type="submit" class="submit" value="トップページへ戻る">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="login.php">
+                                <input type="submit" class="submit" value="ログイン画面へ戻る">
+                            </form>
+                        </td>
+                    </tr>
+            </table>
         </div>
         </div>
     <footer>
-            Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
+            Copyright D.I.Works| portfolio_TDR-calendar
         </footer>
         <script type="text/javascript" src="regist_check.js"></script>
     </body>

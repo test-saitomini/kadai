@@ -87,8 +87,6 @@ if (isset($_POST['login'])) {
     <meta charset="utf-8">
     <title>TORカレンダー_ポートフォリオ</title>
     <link rel="stylesheet"type="text/css" href="regist.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
 </head>
     
     <body>
@@ -117,21 +115,32 @@ if (isset($_POST['login'])) {
 
                ?>
 
+                <table class="box">
+                    <tr>
                <div>
-                   <label for="mail">メールアドレス
-                   <input type="text" id="mail" name="mail" placeholder="メールアドレス" value="<?php if (!empty($_POST["mail"])) {echo $_POST["mail"];} ?>">
-                   </label>
+                   <td><label for="mail">メールアドレス</label></td>
+                   <td><input type="text" id="mail" name="mail" placeholder="メールアドレス" value="<?php if (!empty($_POST["mail"])) {echo $_POST["mail"];} ?>"></td>
+                   
                </div>
 
+                        </tr>
+                    <tr>
                <div>
-                   <label for="password">パスワード
-                   <input type="password" id="password" name="password" value="" placeholder="パスワード">
-                   </label>
+                   <td><label for="password">パスワード</label></td>
+                   <td><input type="password" id="password" name="password" value="" placeholder="パスワード"></td>
+                   
                </div>
-                <input type="submit" id="login" name="login" value="ログイン">
+                        </table>
+                <table class="loginbutton">
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" id="login" name="login" value="ログイン"></td>
+                    </tr>
+                </table>
+                   
             </form>
             </div>
-            
+            <br>
             新規会員登録は<a href="http://localhost/kadai/regist.php">コチラ</a>
             <br>
             パスワードを忘れた方は<a href="http://localhost/kadai/password_resetting.php">コチラ</a>
@@ -139,7 +148,7 @@ if (isset($_POST['login'])) {
         </main>
         
         <footer>
-            Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
+            Copyright D.I.Works| portfolio_TDR-calendar
         </footer>
         <script type="text/javascript" src="regist.js"></script>
     </body>
