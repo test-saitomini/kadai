@@ -136,7 +136,7 @@ if (isset($_POST['kakunin'])) {
         </main>
         
         <footer>
-            Copyright D.I.Works| portfolio_TDR-calendar
+            Copyright D.I.Works| portfolio_趣味-calendar_saito
         </footer>
         <script type="text/javascript" src="regist_check.js"></script>
     </body>

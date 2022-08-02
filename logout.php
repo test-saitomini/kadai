@@ -26,7 +26,7 @@ session_destroy();
         <p><a href='login.php'>ログインページに戻る</a></p>
         </div>
         <footer>
-            Copyright D.I.Works| portfolio_TDR-calendar
+            Copyright D.I.Works| portfolio_趣味-calendar_saito
         </footer>
     </body>
 </html>

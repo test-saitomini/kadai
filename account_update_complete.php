@@ -182,7 +182,7 @@ try{
     </main>
     <?php endif; ?>
     <footer>
-            Copyright D.I.Works| portfolio_TDR-calendar
+            Copyright D.I.Works| portfolio_趣味-calendar_saito
     </footer>
     
 </html>

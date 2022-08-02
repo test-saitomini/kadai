@@ -284,7 +284,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title>TORカレンダー_ポートフォリオ</title>
+        <title>趣味カレンダー_ポートフォリオ</title>
         <link rel="stylesheet"type="text/css"href="regist.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
@@ -300,15 +300,12 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         <main>
             <div class = "main-container">
                 <div class = "left">
-                    <h2>東京ディズニーリゾート<br>カレンダー</h2>
+                    <h2>趣味<br>カレンダー</h2>
                     <br>
-                    ～情報～<br>
-                    現在のディズニーリゾートでの閑散期は
-                    1月・6月・7月となっております。<br>
-                    繁忙期は3月・8月が一番多く、
-                    12月や2月後半も混雑しています。<br>
-                    日にちによってチケットの販売価格が異なりますので、
-                    下のリンクからチケットの金額等ご確認ください。
+                    <h5>～情報～</h5>
+                    <br>自分の好きなキャラクターの誕生日やイベント情報などをカレンダーに追加できるカレンダーです。<br>
+                    また、それとは別に自分自身の予定も入れられるカレンダーになっています。
+                    また、公式のリンクなども張り付けています。<br>
                     <br>
                     <br>
                     <p>リンク</p>
@@ -362,15 +359,12 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         <main>
             <div class = "main-container">
                 <div class = "left">
-                    <h2>東京ディズニーリゾート<br>カレンダー</h2>
+                    <h2>趣味<br>カレンダー</h2>
                     <br>
-                    <h2>～情報～</h2><br>
-                    現在のディズニーリゾートでの閑散期は
-                    1月・6月・7月となっております。<br>
-                    繁忙期は3月・8月が一番多く、
-                    12月や2月後半も混雑しています。<br>
-                    日にちによってチケットの販売価格が異なりますので、
-                    下のリンクからチケットの金額等ご確認ください。
+                    <h5>～情報～</h5>
+                    <br>自分の好きなキャラクターの誕生日やイベント情報などをカレンダーに追加できるカレンダーです。<br>
+                    また、それとは別に自分自身の予定も入れられるカレンダーになっています。
+                    また、公式のリンクなども張り付けています。<br>
                     <br>
                     <br>
                     <h2>リンク</h2>
@@ -438,7 +432,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         
         <?php endif; ?>
         <footer>
-            Copyright D.I.Works| portfolio_TDR-calendar
+            Copyright D.I.Works| portfolio_趣味-calendar_saito
         </footer>
         <script type="text/javascript" src="regist_check.js"></script>
     </body>
