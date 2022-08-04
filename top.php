@@ -15,7 +15,7 @@ if($_SESSION != NULL){
 }
 
 function getreservation(){
-    $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
+    $pdo = new PDO("mysql:dbname=heroku_17972d351cbc689;host=us-cdbr-east-06.cleardb.net;","b41db83d8abad7","a07a30e7");
 
     $schedule = $pdo -> query('select * from setting where set_delete_flg = 0');
     $reservation_midashi = array();
