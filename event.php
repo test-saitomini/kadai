@@ -27,7 +27,7 @@ if($_SESSION != NULL){
         <?php 
         $id = $_GET['id'];
         //$day = new DateTime($date);
-        $pdo = new PDO("mysql:dbname=heroku_7f44de0a892964f;host=us-cdbr-east-06.cleardb.net;","b51f5ef5ea5d11","5edf58c2");
+        $pdo = new PDO("mysql:dbname=heroku_7f44de0a892964f;host=us-cdbr-east-06.cleardb.net;charset=utf8","b51f5ef5ea5d11","5edf58c2");
             
         //$stmt = $pdo -> query("select * from setting where day_kaishi = DATE(".$day.",'%Y-%m-%d')");
         $stmt = $pdo -> prepare("select * from setting where id = ? AND set_delete_flg = 0");
@@ -39,9 +39,9 @@ if($_SESSION != NULL){
         <?php if($login_account == 0) : ?>
         <header>
             <ul>
-                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
-                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
-                <li><a href = "http://localhost/kadai/login.php">ログイン</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/top.php">トップ</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/regist.php">会員登録</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/login.php">ログイン</a></li>
             </ul>
         </header>
         <main>
@@ -78,20 +78,20 @@ if($_SESSION != NULL){
         <?php if($login_authority == 1) : ?>
         <header>
             <ul>
-                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
-                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
-                <li><a href = "http://localhost/kadai/mypage.php">マイページ</a></li>
-                <li><a href = "http://localhost/kadai/setting.php">設定</a></li>
-                <li><a href = "http://localhost/kadai/logout.php">ログアウト</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/top.php">トップ</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/regist.php">会員登録</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/mypage.php">マイページ</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/setting.php">設定</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/logout.php">ログアウト</a></li>
             </ul>
         </header>
         <?php else : ?>
         <header>
             <ul>
-                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
-                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
-                <li><a href = "http://localhost/kadai/mypage.php">マイページ</a></li>
-                <li><a href = "http://localhost/kadai/logout.php">ログアウト</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/top.php">トップ</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/regist.php">会員登録</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/mypage.php">マイページ</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/logout.php">ログアウト</a></li>
             </ul>
         </header>
         <?php endif; ?>
@@ -147,9 +147,9 @@ if($_SESSION != NULL){
         <?php else : ?>
         <header>
             <ul>
-                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
-                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
-                <li><a href = "http://localhost/kadai/login.php">ログイン</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/top.php">トップ</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/regist.php">会員登録</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/login.php">ログイン</a></li>
             </ul>
         </header>
         <main>

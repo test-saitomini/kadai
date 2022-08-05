@@ -1,7 +1,4 @@
 <?php
-echo "1";
-exit;
-
 mb_language('ja');
 mb_internal_encoding("UTF-8");
 date_default_timezone_set('Asia/Tokyo');
@@ -16,6 +13,8 @@ if($_SESSION != NULL){
     $login_account = "0";
     $login_mail= NULL;
 }
+echo "1";
+exit;
 
 function getreservation(){
     $pdo = new PDO("mysql:dbname=heroku_7f44de0a892964f;host=us-cdbr-east-06.cleardb.net;charset=utf8","b51f5ef5ea5d11","5edf58c2");
@@ -295,9 +294,9 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         <?php if($login_account == 0) : ?>
         <header>
             <ul>
-                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
-                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
-                <li><a href = "http://localhost/kadai/login.php">ログイン</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/top.php">トップ</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/regist.php">会員登録</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/login.php">ログイン</a></li>
             </ul>
         </header>
         <main>
@@ -342,20 +341,20 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         <?php if($login_authority == 1) : ?>
         <header>
             <ul>
-                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
-                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
-                <li><a href = "http://localhost/kadai/mypage.php">マイページ</a></li>
-                <li><a href = "http://localhost/kadai/setting.php">設定</a></li>
-                <li><a href = "http://localhost/kadai/logout.php">ログアウト</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/top.php">トップ</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/regist.php">会員登録</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/mypage.php">マイページ</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/setting.php">設定</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/logout.php">ログアウト</a></li>
             </ul>
         </header>
         <?php else : ?>
         <header>
             <ul>
-                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
-                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
-                <li><a href = "http://localhost/kadai/mypage.php">マイページ</a></li>
-                <li><a href = "http://localhost/kadai/logout.php">ログアウト</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/top.php">トップ</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/regist.php">会員登録</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/mypage.php">マイページ</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/logout.php">ログアウト</a></li>
             </ul>
         </header>
         <?php endif; ?>
@@ -373,7 +372,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
                     <h2>リンク</h2>
                     GitHubは<a href = "https://github.com/test-saitomini/kadai" target="_blank" rel="noopener">コチラ</a>
                     <br><br>
-                    <p>予定入力する場合は<a href = "http://localhost/kadai/schedule.php">コチラ</a></p>
+                    <p>予定入力する場合は<a href = "https://heroku-portfolio-app.herokuapp.com/schedule.php">コチラ</a></p>
                 </div>
                 <div class = "right">
                     <div class="container">
@@ -402,9 +401,9 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         <?php else : ?>
         <header>
             <ul>
-                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
-                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
-                <li><a href = "http://localhost/kadai/login.php">ログイン</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/top.php">トップ</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/regist.php">会員登録</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/login.php">ログイン</a></li>
             </ul>
         </header>
         <main>

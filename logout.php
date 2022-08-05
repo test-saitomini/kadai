@@ -14,9 +14,9 @@ session_destroy();
     <body>
         <header>
             <ul>
-                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
-                <li><a href="http://localhost/kadai/regist.php">会員登録</a></li>
-                <li><a href = "http://localhost/kadai/login.php">ログイン</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/top.php">トップ</a></li>
+                <li><a href="https://heroku-portfolio-app.herokuapp.com/regist.php">会員登録</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/login.php">ログイン</a></li>
             </ul>
         </header>
         <div class = "main-container">

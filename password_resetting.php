@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$pdo = new PDO("mysql:dbname=heroku_7f44de0a892964f;host=us-cdbr-east-06.cleardb.net;","b51f5ef5ea5d11","5edf58c2");
+$pdo = new PDO("mysql:dbname=heroku_7f44de0a892964f;host=us-cdbr-east-06.cleardb.net;charset=utf8","b51f5ef5ea5d11","5edf58c2");
 
 //エラーメッセージの初期化
 $kakunin_error = array();
@@ -88,8 +88,8 @@ if (isset($_POST['kakunin'])) {
     <body>
         <header>
             <ul>
-                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
-                <li><a href="http://localhost/kadai/regist.php">会員登録</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/top.php">トップ</a></li>
+                <li><a href="https://heroku-portfolio-app.herokuapp.com/regist.php">会員登録</a></li>
                 <li> </li>
             </ul>
         </header>

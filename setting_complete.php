@@ -16,7 +16,7 @@ if($_SESSION != NULL){
 }
 
 try{
-    $pdo = new PDO("mysql:dbname=heroku_7f44de0a892964f;host=us-cdbr-east-06.cleardb.net;","b51f5ef5ea5d11","5edf58c2");
+    $pdo = new PDO("mysql:dbname=heroku_7f44de0a892964f;host=us-cdbr-east-06.cleardb.net;charset=utf8","b51f5ef5ea5d11","5edf58c2");
 }catch(PDOException $Exception){
     $error_message = $Exception->getMessage();
     $error_flag = 1;
@@ -47,10 +47,10 @@ if($_POST != NULL){
     <?php if($login_account == 1) : ?>
     <header>
             <ul>
-                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
-                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
-                <li><a href = "http://localhost/kadai/mypage.php">マイページ</a></li>
-                <li><a href = "http://localhost/kadai/logout.php">ログアウト</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/top.php">トップ</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/regist.php">会員登録</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/mypage.php">マイページ</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/logout.php">ログアウト</a></li>
             </ul>
     </header>
     <?php if($login_authority == 1) : ?>
@@ -110,9 +110,9 @@ if($_POST != NULL){
     <?php elseif($login_account == 0) : ?>
     <header>
             <ul>
-                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
-                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
-                <li><a href = "http://localhost/kadai/login.php">ログイン</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/top.php">トップ</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/regist.php">会員登録</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/login.php">ログイン</a></li>
             </ul>
     </header>
     <main>
@@ -137,9 +137,9 @@ if($_POST != NULL){
     <?php else : ?>
     <header>
             <ul>
-                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
-                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
-                <li><a href = "http://localhost/kadai/login.php">ログイン</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/top.php">トップ</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/regist.php">会員登録</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/login.php">ログイン</a></li>
             </ul>
     </header>
     <main>

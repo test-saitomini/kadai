@@ -26,9 +26,9 @@ if($_SESSION != NULL){
         <?php if($login_account == 0) : ?>
         <header>
             <ul>
-                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
-                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
-                <li><a href = "http://localhost/kadai/login.php">ログイン</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/top.php">トップ</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/regist.php">会員登録</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/login.php">ログイン</a></li>
             </ul>
         </header>
         <main>
@@ -80,10 +80,10 @@ if($_SESSION != NULL){
         <?php elseif($login_account == 1) : ?>
         <header>
             <ul>
-                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
-                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
-                <li><a href = "http://localhost/kadai/mypage.php">マイページ</a></li>
-                <li><a href = "http://localhost/kadai/logout.php">ログアウト</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/top.php">トップ</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/regist.php">会員登録</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/mypage.php">マイページ</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/logout.php">ログアウト</a></li>
             </ul>
         </header>
         <main>
@@ -108,9 +108,9 @@ if($_SESSION != NULL){
         <?php else : ?>
         <header>
             <ul>
-                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
-                <li><a href = "http://localhost/kadai/regist.php">会員登録</a></li>
-                <li><a href = "http://localhost/kadai/login.php">ログイン</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/top.php">トップ</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/regist.php">会員登録</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/login.php">ログイン</a></li>
             </ul>
         </header>
         <main>

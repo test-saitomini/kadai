@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$pdo = new PDO("mysql:dbname=heroku_7f44de0a892964f;host=us-cdbr-east-06.cleardb.net;","b51f5ef5ea5d11","5edf58c2");
+$pdo = new PDO("mysql:dbname=heroku_7f44de0a892964f;host=us-cdbr-east-06.cleardb.net;charset=utf8","b51f5ef5ea5d11","5edf58c2");
 
 //エラーメッセージの初期化
 $login_error = array();
@@ -92,8 +92,8 @@ if (isset($_POST['login'])) {
     <body>
         <header>
             <ul>
-                <li><a href = "http://localhost/kadai/top.php">トップ</a></li>
-                <li><a href="http://localhost/kadai/regist.php">会員登録</a></li>
+                <li><a href = "https://heroku-portfolio-app.herokuapp.com/top.php">トップ</a></li>
+                <li><a href="https://heroku-portfolio-app.herokuapp.com/regist.php">会員登録</a></li>
                 <li> </li>
             </ul>
         </header>
@@ -141,9 +141,9 @@ if (isset($_POST['login'])) {
             </form>
             </div>
             <br>
-            新規会員登録は<a href="http://localhost/kadai/regist.php">コチラ</a>
+            新規会員登録は<a href="https://heroku-portfolio-app.herokuapp.com/regist.php">コチラ</a>
             <br>
-            パスワードを忘れた方は<a href="http://localhost/kadai/password_resetting.php">コチラ</a>
+            パスワードを忘れた方は<a href="https://heroku-portfolio-app.herokuapp.com/password_resetting.php">コチラ</a>
             </div>
         </main>
         
