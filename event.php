@@ -27,7 +27,7 @@ if($_SESSION != NULL){
         <?php 
         $id = $_GET['id'];
         //$day = new DateTime($date);
-        $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
+        $pdo = new PDO("mysql:dbname=heroku_7f44de0a892964f;host=us-cdbr-east-06.cleardb.net;","b51f5ef5ea5d11","5edf58c2");
             
         //$stmt = $pdo -> query("select * from setting where day_kaishi = DATE(".$day.",'%Y-%m-%d')");
         $stmt = $pdo -> prepare("select * from setting where id = ? AND set_delete_flg = 0");

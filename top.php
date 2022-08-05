@@ -15,7 +15,7 @@ if($_SESSION != NULL){
 }
 
 function getreservation(){
-    $pdo = new PDO("mysql:dbname=heroku_17972d351cbc689;host=us-cdbr-east-06.cleardb.net;","b41db83d8abad7","a07a30e7");
+    $pdo = new PDO("mysql:dbname=heroku_7f44de0a892964f;host=us-cdbr-east-06.cleardb.net;","b51f5ef5ea5d11","5edf58c2");
 
     $schedule = $pdo -> query('select * from setting where set_delete_flg = 0');
     $reservation_midashi = array();
@@ -46,7 +46,7 @@ if($login_mail != NULL){
         global $login_mail;
         $mail = $login_mail;
         
-        $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
+        $pdo = new PDO("mysql:dbname=heroku_7f44de0a892964f;host=us-cdbr-east-06.cleardb.net;","b51f5ef5ea5d11","5edf58c2");
 
         $yotei = $pdo -> prepare('select * from schedule where mail = ? AND day_kaishi = day_owari AND yotei_delete_flg = 0');
         $yotei ->execute(array($mail));
@@ -79,7 +79,7 @@ if($login_mail != NULL){
         global $login_mail;
         $mail = $login_mail;
         
-        $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
+        $pdo = new PDO("mysql:dbname=heroku_7f44de0a892964f;host=us-cdbr-east-06.cleardb.net;","b51f5ef5ea5d11","5edf58c2");
 
         $yotei = $pdo -> prepare('select * from schedule where mail = ? AND day_kaishi != day_owari AND yotei_delete_flg = 0');
         $yotei ->execute(array($mail));
@@ -309,7 +309,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
                     <br>
                     <br>
                     <p>リンク</p>
-                    <a href = "https://www.tokyodisneyresort.jp/top.html" target="_blank" rel="noopener">公式サイトはコチラ</a>
+                    GitHubは<a href = "https://github.com/test-saitomini/kadai" target="_blank" rel="noopener">コチラ</a>
                 </div>
                 <div class = "right">
                     <div class="container">
@@ -368,7 +368,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
                     <br>
                     <br>
                     <h2>リンク</h2>
-                    公式サイトは<a href = "https://www.tokyodisneyresort.jp/top.html" target="_blank" rel="noopener">コチラ</a>
+                    GitHubは<a href = "https://github.com/test-saitomini/kadai" target="_blank" rel="noopener">コチラ</a>
                     <br><br>
                     <p>予定入力する場合は<a href = "http://localhost/kadai/schedule.php">コチラ</a></p>
                 </div>

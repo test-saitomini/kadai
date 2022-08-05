@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
+$pdo = new PDO("mysql:dbname=heroku_7f44de0a892964f;host=us-cdbr-east-06.cleardb.net;","b51f5ef5ea5d11","5edf58c2");
 
 //エラーメッセージの初期化
 $login_error = array();

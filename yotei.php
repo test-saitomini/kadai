@@ -30,7 +30,7 @@ if($_SESSION != NULL){
         //$day = new DateTime($date);
         //var_dump($day);
         
-        $pdo = new PDO("mysql:dbname=portfolio;host=localhost;","root","");
+        $pdo = new PDO("mysql:dbname=heroku_7f44de0a892964f;host=us-cdbr-east-06.cleardb.net;","b51f5ef5ea5d11","5edf58c2");
         
         $stmt = $pdo -> prepare("select * from schedule where id = ? AND yotei_delete_flg = 0");
         $stmt -> execute(array($id));
