@@ -1,4 +1,7 @@
 <?php
+echo "1";
+exit;
+
 mb_language('ja');
 mb_internal_encoding("UTF-8");
 date_default_timezone_set('Asia/Tokyo');
@@ -15,7 +18,7 @@ if($_SESSION != NULL){
 }
 
 function getreservation(){
-    $pdo = new PDO("mysql:dbname=heroku_7f44de0a892964f;host=us-cdbr-east-06.cleardb.net;","b51f5ef5ea5d11","5edf58c2");
+    $pdo = new PDO("mysql:dbname=heroku_7f44de0a892964f;host=us-cdbr-east-06.cleardb.net;charset=utf8","b51f5ef5ea5d11","5edf58c2");
 
     $schedule = $pdo -> query('select * from setting where set_delete_flg = 0');
     $reservation_midashi = array();
@@ -46,7 +49,7 @@ if($login_mail != NULL){
         global $login_mail;
         $mail = $login_mail;
         
-        $pdo = new PDO("mysql:dbname=heroku_7f44de0a892964f;host=us-cdbr-east-06.cleardb.net;","b51f5ef5ea5d11","5edf58c2");
+        $pdo = new PDO("mysql:dbname=heroku_7f44de0a892964f;host=us-cdbr-east-06.cleardb.net;charset=utf8","b51f5ef5ea5d11","5edf58c2");
 
         $yotei = $pdo -> prepare('select * from schedule where mail = ? AND day_kaishi = day_owari AND yotei_delete_flg = 0');
         $yotei ->execute(array($mail));
@@ -79,7 +82,7 @@ if($login_mail != NULL){
         global $login_mail;
         $mail = $login_mail;
         
-        $pdo = new PDO("mysql:dbname=heroku_7f44de0a892964f;host=us-cdbr-east-06.cleardb.net;","b51f5ef5ea5d11","5edf58c2");
+        $pdo = new PDO("mysql:dbname=heroku_7f44de0a892964f;host=us-cdbr-east-06.cleardb.net;charset=utf8","b51f5ef5ea5d11","5edf58c2");
 
         $yotei = $pdo -> prepare('select * from schedule where mail = ? AND day_kaishi != day_owari AND yotei_delete_flg = 0');
         $yotei ->execute(array($mail));
