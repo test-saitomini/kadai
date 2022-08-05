@@ -3,6 +3,8 @@ mb_language('ja');
 mb_internal_encoding("UTF-8");
 date_default_timezone_set('Asia/Tokyo');
 
+echo "1";
+exit;
 session_start();
 
 if($_SESSION != NULL){
@@ -13,8 +15,7 @@ if($_SESSION != NULL){
     $login_account = "0";
     $login_mail= NULL;
 }
-echo "1";
-exit;
+
 
 function getreservation(){
     $pdo = new PDO("mysql:dbname=heroku_7f44de0a892964f;host=us-cdbr-east-06.cleardb.net;charset=utf8","b51f5ef5ea5d11","5edf58c2");
