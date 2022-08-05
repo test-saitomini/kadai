@@ -1,7 +1,4 @@
 <?php
-mb_language('ja');
-mb_internal_encoding("UTF-8");
-date_default_timezone_set('Asia/Tokyo');//日本時間へ変更（20210622）
 $error_flag = 0;
 $error_message = '予定入力画面からやり直してください。';
 

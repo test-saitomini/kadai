@@ -1,6 +1,4 @@
 <?php
-mb_language('ja');
-mb_internal_encoding("UTF-8");
 
 session_start();
 
