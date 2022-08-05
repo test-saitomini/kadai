@@ -8,7 +8,7 @@ $schedule = $pdo -> query('select * from setting where set_delete_flg = 0');
 echo "テーブルセレクト成功<br>";
 
 
-$yotei = $pdo -> prepare('select * from schedule where mail = "test@gmail.com"');
+$pdo -> query('select * from schedule ');
 
 echo "テーブルセレクト2成功<br>";
 //phpinfo();
