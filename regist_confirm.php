@@ -18,8 +18,6 @@ if($_SESSION != NULL){
         <title>TORカレンダー_ポートフォリオ</title>
         <link rel="stylesheet"type="text/css"href="regist.css">
     </head>
-    <body>
-        
         <?php if($login_account == 0) : ?>
         <header>
             <ul>
@@ -146,5 +144,4 @@ if($_SESSION != NULL){
     <footer>
             Copyright D.I.Works| portfolio_趣味-calendar_saito
     </footer>
-    </body>
-        </html>
+</html>
