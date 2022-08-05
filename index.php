@@ -6,6 +6,11 @@ echo "データ接続成功<br>";
 $schedule = $pdo -> query('select * from setting where set_delete_flg = 0');
 
 echo "テーブルセレクト成功<br>";
+
+
+$yotei = $pdo -> prepare('select * from schedule where mail = "test@gmail.com"');
+
+echo "テーブルセレクト2成功<br>";
 //phpinfo();
 
 //header('Location: ./top.php');
