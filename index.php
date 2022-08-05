@@ -1,3 +1,6 @@
 <?php
-header('Location: top.php');
+phpinfo();
+
+//header('Location: ./top.php');
+//exit();
 ?>
