@@ -142,8 +142,9 @@ if($_SESSION != NULL){
             </div>
         </main>
         <?php endif; ?>
-    </body>
+    
     <footer>
             Copyright D.I.Works| portfolio_趣味-calendar_saito
     </footer>
-</html>
+    </body>
+        </html>
