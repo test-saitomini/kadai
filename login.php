@@ -11,6 +11,8 @@ $login_error_flag = 0;
 // ログインボタンが押されたら
 if (isset($_POST['login'])) {
 
+    echo "1";
+    exit();
    //エラー文
     if (empty($_POST['mail'])) {
        $login_error['mail'] = 'メールアドレスが未入力です。';
