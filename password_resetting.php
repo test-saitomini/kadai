@@ -19,16 +19,6 @@ if (isset($_POST['kakunin'])) {
        $kakunin_error['name'] = 'パスワードが未入力です。';
     }
     
-    /*$mail_mblen = mb_strlen($_POST['mail']);
-    $name_mblen = mb_strlen($_POST['name']);
-    
-    if($mail_mblen > 100){
-        $kakunin_error['mail'] = 'メールアドレスは100文字以内で入力してください。';
-    }
-    if ($name_mblen > 100) {
-       $kakunin_error['name'] = '名前は100文字以内で入力してください。';
-    }*/
-    
     if (!empty($_POST['mail']) && !empty($_POST['name'])) {
         $mail = $_POST['mail'];
         try {
