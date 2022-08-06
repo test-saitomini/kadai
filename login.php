@@ -18,7 +18,8 @@ if (isset($_POST['login'])) {
     if (empty($_POST['password'])) {
        $login_error['password'] = 'パスワードが未入力です。';
     }
-    
+    echo "成功";
+    exit();
     $mail_mblen = mb_strlen($_POST['mail']);
     $password_mblen = mb_strlen($_POST['password']);
     
