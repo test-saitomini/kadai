@@ -19,7 +19,7 @@ if (isset($_POST['login'])) {
        $login_error['password'] = 'パスワードが未入力です。';
     }
     
-    $mail_mblen = mb_strlen($_POST['mail']);
+    /*$mail_mblen = mb_strlen($_POST['mail']);
     $password_mblen = mb_strlen($_POST['password']);
     
     if($mail_mblen > 100){
@@ -27,9 +27,8 @@ if (isset($_POST['login'])) {
     }
     if ($password_mblen > 10) {
        $login_error['password'] = 'パスワードは10文字以内で入力してください。';
-    }
-    echo "成功";
-    exit();
+    }*/
+    
     if (!empty($_POST['mail']) && !empty($_POST['password'])) {
         $mail = $_POST['mail'];
         try {
@@ -73,7 +72,8 @@ if (isset($_POST['login'])) {
         }
     }
 }
-
+echo "成功";
+    exit();
 //セッションの中身を消す
 //$_SESSION = array();
 //セッションクリア
