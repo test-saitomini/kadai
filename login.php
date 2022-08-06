@@ -18,8 +18,7 @@ if (isset($_POST['login'])) {
     if (empty($_POST['password'])) {
        $login_error['password'] = 'パスワードが未入力です。';
     }
-    echo "成功";
-    exit();
+    
     $mail_mblen = mb_strlen($_POST['mail']);
     $password_mblen = mb_strlen($_POST['password']);
     
@@ -29,7 +28,8 @@ if (isset($_POST['login'])) {
     if ($password_mblen > 10) {
        $login_error['password'] = 'パスワードは10文字以内で入力してください。';
     }
-    
+    echo "成功";
+    exit();
     if (!empty($_POST['mail']) && !empty($_POST['password'])) {
         $mail = $_POST['mail'];
         try {
