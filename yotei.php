@@ -16,7 +16,7 @@ if($_SESSION != NULL){
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title>TORカレンダー_ポートフォリオ</title>
+        <title>趣味カレンダー_ポートフォリオ</title>
         <link rel="stylesheet"type="text/css"href="regist.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>

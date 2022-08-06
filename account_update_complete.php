@@ -71,7 +71,7 @@ try{
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title>TORカレンダー_ポートフォリオ</title>
+        <title>趣味カレンダー_ポートフォリオ</title>
         <link rel="stylesheet"type="text/css" href="regist.css">
     </head>
     <?php if($login_account == 1) : ?>

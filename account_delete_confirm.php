@@ -16,7 +16,7 @@ if($_SESSION != NULL){
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title>TORカレンダー_ポートフォリオ</title>
+        <title>趣味カレンダー_ポートフォリオ</title>
         <link rel="stylesheet"type="text/css"href="regist.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
@@ -79,7 +79,7 @@ if($_SESSION != NULL){
                 <table class="button">
                     <tr>
                         <td>
-                            <input type="submit" onclick=history.back() value="戻って修正する">
+                            <input type="submit" onclick=his趣味y.back() value="戻って修正する">
                         </td>
                         <td>
                             <form action="account_delete_complete.php" method="post">

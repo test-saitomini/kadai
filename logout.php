@@ -7,7 +7,7 @@ session_destroy();
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TORカレンダー_ポートフォリオ</title>
+        <title>趣味カレンダー_ポートフォリオ</title>
         <link rel="stylesheet"type="text/css"href="regist.css">
     </head>
     

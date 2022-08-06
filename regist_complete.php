@@ -1,6 +1,4 @@
 <?php
-mb_language('ja');
-mb_internal_encoding("UTF-8");
 date_default_timezone_set('Asia/Tokyo');//日本時間へ変更（20210622）
 $error_flag = 0;
 $error_message = 'アカウント登録画面からアカウント登録をしてください。';
@@ -63,7 +61,7 @@ if($_POST != NULL){
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title>TORカレンダー_ポートフォリオ</title>
+        <title>趣味カレンダー_ポートフォリオ</title>
         <link rel="stylesheet"type="text/css" href="regist.css">
     </head>
     <?php if($login_account == 0) : ?>

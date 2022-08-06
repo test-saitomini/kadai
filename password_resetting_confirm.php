@@ -26,7 +26,7 @@ $restting = $stmt -> fetch();
 
 <head>
     <meta charset="utf-8">
-    <title>TORカレンダー_ポートフォリオ</title>
+    <title>趣味カレンダー_ポートフォリオ</title>
     <link rel="stylesheet"type="text/css" href="regist.css">
 </head>
     

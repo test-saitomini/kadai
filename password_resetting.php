@@ -81,7 +81,7 @@ if (isset($_POST['kakunin'])) {
 
 <head>
     <meta charset="utf-8">
-    <title>TORカレンダー_ポートフォリオ</title>
+    <title>趣味カレンダー_ポートフォリオ</title>
     <link rel="stylesheet"type="text/css" href="regist.css">
 </head>
     
@@ -125,11 +125,14 @@ if (isset($_POST['kakunin'])) {
                             <td><input type="text" id="mail" name="mail" placeholder="メールアドレス" value="<?php if (!empty($_POST["mail"]))     {echo $_POST["mail"];} ?>"></td>
                         </div>
                     </tr>
+                    </table>
+                <table class="loginbutton">
                     <tr>
                         <td></td>
                         <td><input type="submit" id="kakunin" name="kakunin" value="確認する"></td>
                     </tr>
                 </table>
+                
             </form>
             </div>
             </div>
