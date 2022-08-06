@@ -72,7 +72,7 @@ if($_SESSION != NULL){
         <?php endif; ?>
         <main>
             <div class = "main-container">
-            <h4>この内容に変更します。<br>よろしければ下の登録するボタンを押してください。</h4>
+            <h5>この内容に変更します。<br>よろしければ下の登録するボタンを押してください。</h5>
                 <div class = kakunin>
                     <table class="box2">
                         <tr>
@@ -88,9 +88,7 @@ if($_SESSION != NULL){
                         <td><?php
             
                         if(isset($_POST['password_check'])){
-                            $password = $_POST['password'];
-                            for($i=0;$i< mb_strlen($password);$i++){
-                                echo '●';}
+                            echo '<h7>セキュリティ上、パスワードは非表示にしています。</h7>';
                             $_POST['password_check'] = 1;
                         }else{
                             echo '<h7>パスワードは変更されません。</h7>';
