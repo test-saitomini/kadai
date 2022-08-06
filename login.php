@@ -71,8 +71,6 @@ if (isset($_POST['login'])) {
             $login_error_flag = 1;
         }
     }
-    echo "成功";
-    exit();
 }
 
 //セッションの中身を消す

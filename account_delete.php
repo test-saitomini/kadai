@@ -98,6 +98,8 @@ if($_SESSION != NULL){
                         <td><label>パスワード</label></td>
                    <td> <h7>※セキュリティ上、パスワードを非表示にしています。</h7></td>
                     </tr>
+                        </table>
+                    <table class="loginbutton">
                         <tr>
                     <div class="textarea">
                         <td></td>
@@ -106,7 +108,7 @@ if($_SESSION != NULL){
                         <input type="hidden" value="1" name="account_delete_flg"></td>
                     </div>
                 </tr>
-                        </table>
+                    </table>   
                 </form>
             </div>
         </main>
