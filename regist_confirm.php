@@ -44,10 +44,7 @@ if($_SESSION != NULL){
                 </tr>
                 <tr>
                     <td>パスワード</td>
-                    <td><?php
-                        $password = $_POST['password'];
-                        for($i=0;$i< mb_strlen($password);$i++){
-                            echo '●';}?></td>
+                    <td>※セキュリティ上、非表示にしています。</td>
                 </tr>
                 </table>
         <table class="button">

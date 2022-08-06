@@ -46,7 +46,7 @@ if (isset($_POST['kakunin'])) {
                     $_SESSION['authority'] = $result['authority'];
                     $_SESSION['mail'] = $result['mail'];
                     $_SESSION['id'] = $result['id'];
-                    header('Location: password_resetting_confirm.php');
+                    header('Location: ./password_resetting_confirm.php');
                     exit();
                 }else{
                 $kakunin_error['kakunin'] = '名前またはメールアドレスに誤りがあります。';

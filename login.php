@@ -46,7 +46,7 @@ if (isset($_POST['login'])) {
                         $_SESSION['name'] = $result['name'];
                         $_SESSION['authority'] = $result['authority'];
                         $_SESSION['mail'] = $result['mail'];
-                        header('Location: top.php');
+                        header('Location: ./top.php');
                         exit();
                     }else{
                         $login_error['login'] = 'アカウントはすでに削除されています。';
