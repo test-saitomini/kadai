@@ -50,7 +50,7 @@ if($_SESSION != NULL){
         <table class="button">
             <tr>
                 <td>
-                    <input type="submit" onclick=his趣味y.back() value="戻って修正する">
+                    <input type="submit" onclick=history.back() value="戻って修正する">
                 </td>
                 <td>
                     <form action="regist_complete.php" method="post">

@@ -105,7 +105,7 @@ $update = $stmt->fetch();
                         <tr>
                         <div class="textarea">
                             <td><label>内容</label></td>
-                            <td><textarea cols="50" rows="5" name="naiyou"id="naiyou"value="<?php if( !empty($update['naiyou']) ){ echo $update['naiyou']; } ?>"></textarea><br>
+                            <td><textarea cols="50" rows="5" name="naiyou"id="naiyou"><?php if( !empty($update['naiyou']) ){ echo $update['naiyou']; } ?>"></textarea><br>
                             <span id = 'naiyou_error' class="error_m"></span></td>
                         </div>
                         </tr>
